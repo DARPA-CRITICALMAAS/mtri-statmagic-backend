@@ -30,3 +30,14 @@ def recursive_hardlink(local_path, qgis_path):
             os.makedirs(local_path / relative_path, exist_ok=True)
         else:
             (local_path / relative_path).hardlink_to(entry)
+
+
+def polytextreplace(poly_text):
+    ptype = poly_text.split(" ")[0]
+
+    if ptype == 'Polygon':
+        poly_text = poly_text.replace('Polygon', 'POLYGON', 1)
+    elif ptype == 'MultiPolygonZ':
+        for r in (('MultiPolygonZ', 'POLYGON', 1), ("(", "", 1), (")", "", 1)):
+            poly_text = poly_text.replace(*r)
+    return poly_text
