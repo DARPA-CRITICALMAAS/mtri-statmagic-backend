@@ -88,7 +88,7 @@ setup(
     # `src/`, it is necessary to specify the `package_dir` argument.
     package_dir={"": "src"},  # Optional
     package_data={
-        "statmagic.data": ["*.npy"],
+        "statmagic_backend.data": ["*.npy"],
     },
     # Alternatively, to distribute a single Python file, use
     # the `py_modules` argument instead as follows, which will expect a file
