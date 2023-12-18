@@ -84,19 +84,6 @@ def RasBoreMatch(vlistitem, RasterDataSet):
     bandmatch = np.logical_and(rbds < max, rbds > min)
     return bandmatch
 
-def soft_clustering_weights(data, cluster_centres, m):
-    Nclusters = cluster_centres.shape[0]
-    Ndp = data.shape[0]
-    # Get distances from the cluster centres for each data point and each cluster
-    EuclidDist = np.zeros((Ndp, Nclusters))
-    for i in range(Nclusters):
-        EuclidDist[:, i] = np.sum((data - np.matlib.repmat(cluster_centres[i], Ndp, 1)) ** 2, axis=1)
-    # Denominator of the weight from wikipedia:
-    invWeight = EuclidDist ** (2 / (m - 1)) * np.matlib.repmat(
-        np.sum((1. / EuclidDist) ** (2 / (m - 1)), axis=1).reshape(-1, 1), 1, Nclusters)
-    Weight = 1. / invWeight
-    return Weight
-
 def sdMatchStack(datastack, meanstdlist, sdval):
     matchbandlist = []
     for band, meadSD in zip(np.rollaxis(datastack, 0), meanstdlist):
