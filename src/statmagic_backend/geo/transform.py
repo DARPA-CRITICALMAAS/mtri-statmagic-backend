@@ -5,6 +5,7 @@ import os
 import fiona
 from shapely.geometry import shape, mapping, Polygon
 from shapely.ops import unary_union
+from shapely.validation import make_valid
 from shapely import to_geojson
 from pathlib import Path
 import numpy as np
@@ -75,6 +76,9 @@ def download_tiles(tile_indices, tileserver, service):
 
 def decode_protobuf_to_geojson_wgs84(tile,layername,bounds,tilesize):
     '''
+    Decodes a Google protobuf binary object representing a vector tile return
+    from a MapBox tile server into a vector represented as a geoJSON dict in
+    EPSG 4326 (WGS 84) map projection.
 
     tile : Google protobuf binary
         Object returned from Mapbox vector tile server
@@ -92,6 +96,9 @@ def decode_protobuf_to_geojson_wgs84(tile,layername,bounds,tilesize):
     '''
 
     def process_coord_pair(coord_pair):
+        '''
+        Scales relative coordinates to known lat/lon bounds.
+        '''
         return [
             round(float(coord_pair[0]) / float(tilesize) * (
                         bounds.east - bounds.west) + bounds.west, 5),
@@ -101,9 +108,9 @@ def decode_protobuf_to_geojson_wgs84(tile,layername,bounds,tilesize):
 
     # Decode to dict and pull out the GeoJSON for the target layer
     data_decoded = mapbox_vector_tile.decode(tile)
-    #print(data_decoded)
+    #print(list(data_decoded.keys()))
     if layername not in data_decoded:
-        print(f'Layer name "{layername}" not present in this data. Skipping...')
+        print(f'\t\tLayer name "{layername}" not present in this data. Skipping...')
         return None
 
     data = data_decoded[layername]
@@ -112,19 +119,31 @@ def decode_protobuf_to_geojson_wgs84(tile,layername,bounds,tilesize):
     fnews = []
     for feature in data['features']:
         fnew = copy.deepcopy(feature)
+        #print(fnew)
         coords = fnew['geometry']['coordinates']
         coords_new = []
-        for poly in coords:
-            poly_new = []
-            for part in poly:
-                if type(part[0]) == list:
-                    part_new = []
-                    for coord_pair in part:
-                        part_new.append(process_coord_pair(coord_pair))
-                    poly_new.append(part_new)
-                else:
-                    poly_new.append(process_coord_pair(part))
-            coords_new.append(poly_new)
+
+        # Process coords for lines
+        if fnew['geometry']['type'] == 'LineString':
+            #line_new = []
+            for coord_pair in coords:
+                coords_new.append(process_coord_pair(coord_pair))
+
+
+        # Process coords for polygons
+        else:
+            for poly in coords:
+                poly_new = []
+                for part in poly:
+                    if type(part[0]) == list:
+                        part_new = []
+                        for coord_pair in part:
+                            part_new.append(process_coord_pair(coord_pair))
+                        poly_new.append(part_new)
+                    else:
+                        poly_new.append(process_coord_pair(part))
+                coords_new.append(poly_new)
+
         fnew['geometry']['coordinates'] = coords_new
         fnews.append(fnew)
 
@@ -207,8 +226,8 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
 
     *mercentile.tile* returns just a single tile by a point lat/lon, so in
     order to get ALL tiles within a bounding box, we have to iterate searches
-    over a grid of lat/lon point within the bounds. Grid size is determined by
-    zoom_level:
+    over a grid of lat/lon point within the bounds. Only the unique set of tiles
+    is retained. Grid size is determined by zoom_level:
 
     ---------------------------------
     Zoom level*| Tile size | Grid resolution
@@ -268,10 +287,10 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
 
 
 
-
 def dissolve_vector_files_by_property(
         vector_files,
         property_name,
+        valid_geom_types,
         output_file,
         n=None,s=None,e=None,w=None
     ):
@@ -289,15 +308,17 @@ def dissolve_vector_files_by_property(
         List of str's representing geojson file paths
     property_name : str
         Name of the feature property in the geoJSON to dissolve features by
+    valid_geom_types : list of str's
+        List of valid GeoJSON geometry types for the given layer
     output_file : str
         File path for the output file
-    n : float
+    n : (optional) float
         Latitude indicating northern bounds of BBOX used to clip features
-    s : float
+    s : (optional) float
         Latitude indicating northern bounds of BBOX used to clip features
-    e : float
+    e : (optional) float
         Longitude indicating eastern bounds of BBOX used to clip features
-    w : float
+    w : (optional) float
         Longitude indicating western bounds of BBOX used to clip features
 
     Returns
@@ -309,7 +330,6 @@ def dissolve_vector_files_by_property(
     if not vector_files:
         print('No vector data to dissolve, skipping...')
         return
-
 
     # If clip bounds are provided, create the bbox geometry to clip to
     bbox_geom = None
@@ -339,7 +359,7 @@ def dissolve_vector_files_by_property(
         ):
 
         properties, geom = zip(
-            *[(feature['properties'], shape(feature['geometry']))
+            *[(feature['properties'], make_valid(shape(feature['geometry'])))
               for feature in group]
         )
 
@@ -349,26 +369,47 @@ def dissolve_vector_files_by_property(
         # Perform the clip here
         if bbox_geom:
             g = json.loads(to_geojson(shape(g).intersection(bbox_geom)))
+        #print(g)
 
-        # Skip empty features
-        if len(g['coordinates'][0]) == 0:
-            continue
+        # Wrap non-collections to resemble a collection so we don't need
+        # multiple processing procedures for collections and non-collections
+        if g['type'] != 'GeometryCollection':
+           g = {'geometries': [g]}
 
-        # Convert any Polygon feature types to MultiPolygon (output file will
-        # be MultiPolygon type; see below)
-        if g['type'] == 'Polygon':
-            g['type'] = 'MultiPolygon'
-            g['coordinates'] = [g['coordinates']]
 
-        # Store newly created dissolved features
-        features_new.append({
-            'geometry': g,
-            'properties': properties[0]
-        })
+        for g0 in g['geometries']:
+
+            # Skip empty features
+            if len(g0['coordinates']) == 0 or len(g0['coordinates'][0]) == 0:
+                continue
+
+            # Skip lines and points
+            if g0['type'] not in valid_geom_types:#('Polygon','MultiPolygon','LineString'):
+                continue
+
+            # Convert any Polygon feature types to MultiPolygon (output file will
+            # be MultiPolygon type; see below)
+            if g0['type'] == 'Polygon':
+                g0['type'] = 'MultiPolygon'
+                g0['coordinates'] = [g0['coordinates']]
+
+            if g0['type'] == 'LineString':
+                g0['type'] = 'MultiLineString'
+                g0['coordinates'] = [g0['coordinates']]
+
+            # Store newly created dissolved features
+            features_new.append({
+                'geometry': g0,
+                'properties': properties[0]
+            })
+
+            # Store type for writing output
+            gtype = g0['type']
 
     # Update the geometry type from Polygon to MultiPolygon so that it can
     # handle cases where adjacent tile coords don't line up precisely
-    meta['schema']['geometry'] = 'MultiPolygon'
+    gtype = [x for x in valid_geom_types if 'Multi' in x][0]
+    meta['schema']['geometry'] = gtype#'MultiPolygon'
     with fiona.open(output_file, 'w', **meta) as output:
         for feature in features_new:
             output.write(feature)
@@ -378,28 +419,66 @@ if __name__ == "__main__":
     # Processing directory to store output files
     processing_dir = Path.home() / "PROCESSING/macrostrat/"
 
+    # Vector tile layers to download
+    layers = [
+        { # vv polygon map units
+            'layername': 'units',
+            'dissolve_by_property': 'map_id',
+            'valid_geom_types': ['Polygon','MultiPolygon']
+        },
+        {# vv fault lines
+            'layername': 'lines',
+            'dissolve_by_property': 'line_id',
+            'valid_geom_types': ['LineString','MultiLineString']
+        },
+    ]
+
+
+    ########
+    # Two options for setting tile_indices to process:
+
+    # OPTION 1: manually define
     # Set of tiles by XYZ indices; order is: z(zoom), x(x index), y(y index)
     tile_indices = (
-        [7,42,47],# z, x, y
+        [7,42,42],# z, x, y
         #[9,600,300],
     )
 
+    bounds = {}
+    # # OPTION 2: set lat/lon bounds; tile list will be retrieved
+    # bounds = {
+    #     'n': 43.0,
+    #     's': 40.9,
+    #     'e': -59,
+    #     'w': -62,
+    # }
+    #
     bounds = {
-        'n': 43.0,
-        's': 40.9,
-        'e': -59,
-        'w': -62,
+        'n': 42.4046340196102,
+        's': 40.35045988370135,
+        'e': -93.39360118961542,
+        'w': -97.14894692014128
     }
 
     tile_indices = get_tiles_for_ll_bounds(**bounds)
 
-    mapbox_tiles = download_tiles(tile_indices, "https://dev.macrostrat.org/tiles/", "carto")
-    js_paths = process_tiles(mapbox_tiles, tile_indices, processing_dir, "units", 4096)
+    ########
+    # Process tile list
 
-    dissolve_vector_files_by_property(
-        js_paths,
-        'map_id',
-        os.path.join(processing_dir,'test_dissolve.json'),
-        **bounds
-    )
+    mapbox_tiles = download_tiles(tile_indices, "https://dev.macrostrat.org/tiles/", "carto")
+
+    for layer in layers:
+        print(f'\n\tProcessing layer: {layer["layername"]}')
+
+        js_paths = process_tiles(
+            mapbox_tiles, tile_indices, processing_dir, layer['layername'], 4096
+        )
+
+        dissolve_vector_files_by_property(
+            js_paths,
+            layer['dissolve_by_property'],
+            layer['valid_geom_types'],
+            os.path.join(processing_dir,f'test_dissolve_{layer["layername"]}.json'),
+            **bounds
+        )
     pass
