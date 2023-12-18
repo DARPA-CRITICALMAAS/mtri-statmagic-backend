@@ -1,6 +1,6 @@
 import numpy as np
 
-from statmagic.math.utils import hardenedLDivide, is_numeric
+from statmagic_backend.math.utils import hardenedLDivide, is_numeric
 
 
 def normalKLDiv(mu1=None, sigma1=None, mu2=None, sigma2=None, theta1=None, theta2=None):

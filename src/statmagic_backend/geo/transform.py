@@ -74,12 +74,14 @@ def download_tiles(tile_indices, tileserver, service):
     return mapbox_tiles
 
 
-def decode_protobuf_to_geojson_wgs84(tile,layername,bounds,tilesize):
-    '''
+def decode_protobuf_to_geojson_wgs84(tile, layername, bounds, tilesize):
+    """
     Decodes a Google protobuf binary object representing a vector tile return
     from a MapBox tile server into a vector represented as a geoJSON dict in
     EPSG 4326 (WGS 84) map projection.
-
+    
+    Parameters
+    ----------
     tile : Google protobuf binary
         Object returned from Mapbox vector tile server
     layername : str
@@ -93,12 +95,10 @@ def decode_protobuf_to_geojson_wgs84(tile,layername,bounds,tilesize):
     -------
     data : dict
         Dict representing GeoJSON data
-    '''
+    """
 
     def process_coord_pair(coord_pair):
-        '''
-        Scales relative coordinates to known lat/lon bounds.
-        '''
+        """ Scales relative coordinates to known lat/lon bounds. """
         return [
             round(float(coord_pair[0]) / float(tilesize) * (
                         bounds.east - bounds.west) + bounds.west, 5),
@@ -219,7 +219,7 @@ def get_tile_xyz_by_ll(lat,lon,zoom_level=7):
 
 
 def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
-    '''
+    """
     Takes in latitude and longitude bounds and returns a list of tiles (defined
     by [z,x,y] indices) for the provided zoom_level within those bounds.
 
@@ -262,7 +262,7 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
                 [7,42,43],
                 [7,42,44],
             ]
-    '''
+    """
 
     # Default search grid resolution
     grid_res_degrees = 10
@@ -294,7 +294,7 @@ def dissolve_vector_files_by_property(
         output_file,
         n=None,s=None,e=None,w=None
     ):
-    '''
+    """
     Takes in a list of geospatial vector files and outputs a single vector file
     (same format as inputs) containing all features of the input files, with
     boundaries between features of common property name dissolved.
@@ -321,11 +321,11 @@ def dissolve_vector_files_by_property(
     w : (optional) float
         Longitude indicating western bounds of BBOX used to clip features
 
-    Returns
-    --------
-    Nothing (output is written to file)
+    Notes
+    -----
+    Returns nothing (output is written to file)
 
-    '''
+    """
 
     if not vector_files:
         print('No vector data to dissolve, skipping...')
