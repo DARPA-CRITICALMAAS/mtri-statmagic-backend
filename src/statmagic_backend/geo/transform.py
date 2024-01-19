@@ -78,11 +78,12 @@ def download_tiles(tile_indices, tileserver, service):
     ** i.e. vertices can be off by this much at this zoom level
     """
     mapbox_tiles = []
+    base_url = urljoin(tileserver, service) + "/"
     for tile_index in tile_indices:
         tile_str = [str(x) for x in tile_index]
 
         # Set URL of the tile to be downloaded
-        url = str(Path(tileserver, service, *tile_str)).replace(":/", "://")
+        url = urljoin(base_url, "/".join(tile_str))
         # TODO: use urllib instead of pathlib
 
         # Retrieve tile from URL
