@@ -253,10 +253,11 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
     ---------------------------------
     5 | 11 - 18 degrees | 10 degrees
     6 |  5 -  9 degrees |  4 degrees
-    7 |  2 -  3 degrees |  1 degree
-    8 |  ? -  ? degrees |  ???      <- the macrostrat vector tile data does not
-                                       seem to be available at zoom levels
-                                       greater than 7
+    7 |  2 -  3 degrees |  1 degree (~100 km)
+    8 |  ? -  ? degrees |  0.25 degree (~25 km)
+    9 | | 0.0625 degrees (~6.25 km)
+   10 | | 0.016 degrees (~1.6 km)
+   11 | | 0.004 degrees (~400 m)
     ---------------------------------
 
     n : float
@@ -290,6 +291,10 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
     zoom_to_gridres = {
         6: 4,
         7: 1,
+        8: 0.25,
+        9: 0.0625,
+        10: 0.016,
+        11: 0.004
     }
 
     if zoom_level in zoom_to_gridres:
@@ -479,7 +484,7 @@ if __name__ == "__main__":
         'w': -97.14894692014128
     }
 
-    tile_indices = get_tiles_for_ll_bounds(**bounds)
+    tile_indices = get_tiles_for_ll_bounds(**bounds, zoom_level=10)
 
     ########
     # Process tile list
