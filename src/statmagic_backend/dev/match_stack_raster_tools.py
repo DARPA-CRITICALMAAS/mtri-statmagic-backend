@@ -5,6 +5,7 @@ from rasterio.enums import Resampling
 from rasterio.warp import reproject
 from shapely.geometry import box
 import geopandas as gpd
+from osgeo import gdal
 
 
 def match_raster_to_template(template_path, input_raster_path, resampling_method=Resampling.bilinear, num_threads=1):
@@ -101,4 +102,18 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
         data_raster.close()
 
 def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
-    pass
+    data_raster = rio.open(data_raster_filepath)
+    number_bands_new = len(list_of_bands)
+    idxs = [int(item.split("Band ")[1].split(":")[0]) for item in list_of_bands]
+    updated_descs = [item.split(": ")[1] for item in list_of_bands]
+    profile = data_raster.profile
+    profile.update(count=number_bands_new)
+    existing_array = data_raster.read()
+    data_raster.close()
+    updated_array = np.delete(existing_array, idxs, 0)
+    data_raster = rio.open(data_raster_filepath, 'w', **profile)
+    data_raster.write(updated_array)
+    for band, description in enumerate(updated_descs, 1):
+        data_raster.set_band_description(band, description)
+    data_raster.close()
+
