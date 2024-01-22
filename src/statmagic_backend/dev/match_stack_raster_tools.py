@@ -100,3 +100,5 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
             data_raster.set_band_description(band, description)
         data_raster.close()
 
+def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
+    pass
