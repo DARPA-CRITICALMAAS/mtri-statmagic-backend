@@ -1,0 +1,16 @@
+statmagic\_backend.geo\_chem package
+====================================
+
+.. automodule:: statmagic_backend.geo_chem
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.geo_chem.link_black_shales_db

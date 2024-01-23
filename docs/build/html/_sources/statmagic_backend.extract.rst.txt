@@ -1,0 +1,17 @@
+statmagic\_backend.extract package
+==================================
+
+.. automodule:: statmagic_backend.extract
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.extract.raster
+   statmagic_backend.extract.sciencebasetools

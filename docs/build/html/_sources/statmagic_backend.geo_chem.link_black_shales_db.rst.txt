@@ -1,0 +1,8 @@
+statmagic\_backend.geo\_chem.link\_black\_shales\_db module
+===========================================================
+
+.. automodule:: statmagic_backend.geo_chem.link_black_shales_db
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

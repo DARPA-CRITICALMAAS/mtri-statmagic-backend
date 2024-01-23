@@ -1,0 +1,8 @@
+statmagic\_backend.math.sampling module
+=======================================
+
+.. automodule:: statmagic_backend.math.sampling
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

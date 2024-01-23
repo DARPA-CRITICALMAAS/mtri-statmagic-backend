@@ -230,10 +230,28 @@ def process_tiles(tiles, tile_indices, outdir, layername, tilesize):
 
 
 
-# Function for returning tile XYZ for the given latitude, longitude, and zoom level
-# This seems to be agnostic of the particular tile server or layer, i.e. all
-# mapbox vector tile servers must use the exact same indexing coordinates.
 def get_tile_xyz_by_ll(lat,lon,zoom_level=7):
+    """
+    Returns tile XYZ for the given latitude, longitude, and zoom level
+
+    Parameters
+    ----------
+    lat : float
+        Latitude
+    lon : float
+        Longitude
+    zoom_level : int, optional
+        Zoom level
+
+    Returns
+    -------
+    mercantile.Tile
+
+    Notes
+    -----
+    This seems to be agnostic of the particular tile server or layer, i.e. all
+    mapbox vector tile servers must use the exact same indexing coordinates.
+    """
     return mercantile.tile(lon,lat,zoom_level)
 
 
@@ -241,24 +259,6 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
     """
     Takes in latitude and longitude bounds and returns a list of tiles (defined
     by [z,x,y] indices) for the provided zoom_level within those bounds.
-
-
-    *mercentile.tile* returns just a single tile by a point lat/lon, so in
-    order to get ALL tiles within a bounding box, we have to iterate searches
-    over a grid of lat/lon point within the bounds. Only the unique set of tiles
-    is retained. Grid size is determined by zoom_level:
-
-    ---------------------------------
-    Zoom level*| Tile size | Grid resolution
-    ---------------------------------
-    5 | 11 - 18 degrees | 10 degrees
-    6 |  5 -  9 degrees |  4 degrees
-    7 |  2 -  3 degrees |  1 degree (~100 km)
-    8 |  ? -  ? degrees |  0.25 degree (~25 km)
-    9 | | 0.0625 degrees (~6.25 km)
-   10 | | 0.016 degrees (~1.6 km)
-   11 | | 0.004 degrees (~400 m)
-    ---------------------------------
 
     n : float
         Latitude indicating northern bounds of BBOX used to clip features
@@ -277,11 +277,30 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
     tile_indices : list
         List of 3 element lists that define tile indices as (z,x,y) that can be
         fed into *download_tiles*, e.g.:
-            [
+
+            ```[
                 [7,42,42],
                 [7,42,43],
                 [7,42,44],
-            ]
+            ]```
+
+    Notes
+    -----
+    :meth:`mercantile.tile` returns just a single tile by a point lat/lon, so in
+    order to get ALL tiles within a bounding box, we have to iterate searches
+    over a grid of lat/lon point within the bounds. Only the unique set of tiles
+    is retained. Grid size is determined by ``zoom_level``:
+
+    | Zoom level | Tile size | Grid resolution |
+    | -----------|-----------|---------------- |
+    | 5 | 11 - 18 degrees | 10 degrees |
+    | 6 |  5 -  9 degrees |  4 degrees |
+    | 7 |  2 -  3 degrees |  1 degree (~100 km) |
+    | 8 |  ? -  ? degrees |  0.25 degree (~25 km) |
+    | 9 | | 0.0625 degrees (~6.25 km) |
+    | 10 | | 0.016 degrees (~1.6 km) |
+    | 11 | | 0.004 degrees (~400 m) |
+
     """
 
     # Default search grid resolution

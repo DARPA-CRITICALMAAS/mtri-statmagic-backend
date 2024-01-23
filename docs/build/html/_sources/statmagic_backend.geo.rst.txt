@@ -1,0 +1,16 @@
+statmagic\_backend.geo package
+==============================
+
+.. automodule:: statmagic_backend.geo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.geo.transform

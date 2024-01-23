@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.geo.transform &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../statmagic_backend.html">statmagic_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.geo.transform</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for statmagic_backend.geo.transform</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">shape</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">unary_union</span>
+<span class="kn">from</span> <span class="nn">shapely.validation</span> <span class="kn">import</span> <span class="n">make_valid</span>
+<span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">to_geojson</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Transformer</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urljoin</span>
+
+<span class="kn">import</span> <span class="nn">mapbox_vector_tile</span>
+<span class="kn">import</span> <span class="nn">mercantile</span> <span class="c1"># utility for converting between XYZ indices and lat/lon bounds</span>
+
+
+<div class="viewcode-block" id="boundingBoxToOffsets">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.boundingBoxToOffsets">[docs]</a>
+<span class="k">def</span> <span class="nf">boundingBoxToOffsets</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">geot</span><span class="p">):</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">geot</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">geot</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">geot</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">geot</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">row1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">geot</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">geot</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">row2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">geot</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">geot</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">,</span> <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="geotFromOffsets">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.geotFromOffsets">[docs]</a>
+<span class="k">def</span> <span class="nf">geotFromOffsets</span><span class="p">(</span><span class="n">row_offset</span><span class="p">,</span> <span class="n">col_offset</span><span class="p">,</span> <span class="n">geot</span><span class="p">):</span>
+    <span class="n">new_geot</span> <span class="o">=</span> <span class="p">[</span><span class="n">geot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">col_offset</span> <span class="o">*</span> <span class="n">geot</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">geot</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="mf">0.0</span><span class="p">,</span>
+                <span class="n">geot</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">row_offset</span> <span class="o">*</span> <span class="n">geot</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span>
+                <span class="mf">0.0</span><span class="p">,</span>
+                <span class="n">geot</span><span class="p">[</span><span class="mi">5</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">new_geot</span></div>
+
+
+
+<div class="viewcode-block" id="download_tiles">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.download_tiles">[docs]</a>
+<span class="k">def</span> <span class="nf">download_tiles</span><span class="p">(</span><span class="n">tile_indices</span><span class="p">,</span> <span class="n">tileserver</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download Mapbox tiles from a particular tile server. Defaults to Macrostrat</span>
+<span class="sd">    using the ``carto`` service.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tile_indices : array-like</span>
+<span class="sd">        Set of tile XYZ indices where, for each tile, the data is ordered</span>
+<span class="sd">        ``[z,x,y]`` where ``z`` is zoom; ``x``,``y`` are image indices.</span>
+<span class="sd">    tileserver : str</span>
+<span class="sd">        Tile server URL</span>
+<span class="sd">    service : str</span>
+<span class="sd">        Which tile service to use from the tile server</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mapbox_tiles : list</span>
+<span class="sd">        Raw (unprocessed) output from tileserver</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    In Macrostrat&#39;s tile server, the XYZ indices are specified in the URL</span>
+<span class="sd">    in this order: ``/{z}/{x}/{y}``</span>
+
+<span class="sd">    z = zoom level; x = tile x index; y = tile y index (starting at top)</span>
+
+<span class="sd">    Georegistration for now is done by pinning corners to the tile bounds (which</span>
+<span class="sd">    we can get from mercantile). Registration precision improves the further zoomed</span>
+<span class="sd">    in you are:</span>
+
+<span class="sd">    ---------------------------------</span>
+<span class="sd">    Zoom level*| Observed precision**</span>
+<span class="sd">    ---------------------------------</span>
+<span class="sd">    4 | 15-km</span>
+<span class="sd">    5 |  8-km</span>
+<span class="sd">    6 |  4-km</span>
+<span class="sd">    ---------------------------------</span>
+
+<span class="sd">    *  lower zoom level are more zoomed out</span>
+<span class="sd">    ** i.e. vertices can be off by this much at this zoom level</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mapbox_tiles</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">tileserver</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span>
+    <span class="k">for</span> <span class="n">tile_index</span> <span class="ow">in</span> <span class="n">tile_indices</span><span class="p">:</span>
+        <span class="n">tile_str</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tile_index</span><span class="p">]</span>
+
+        <span class="c1"># Set URL of the tile to be downloaded</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tile_str</span><span class="p">))</span>
+        <span class="c1"># TODO: use urllib instead of pathlib</span>
+
+        <span class="c1"># Retrieve tile from URL</span>
+        <span class="n">mapbox_tile</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">mapbox_tiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapbox_tile</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mapbox_tiles</span></div>
+
+
+
+<div class="viewcode-block" id="decode_protobuf_to_geojson_wgs84">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.decode_protobuf_to_geojson_wgs84">[docs]</a>
+<span class="k">def</span> <span class="nf">decode_protobuf_to_geojson_wgs84</span><span class="p">(</span><span class="n">tile</span><span class="p">,</span> <span class="n">layername</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tilesize</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decodes a Google protobuf binary object representing a vector tile return</span>
+<span class="sd">    from a MapBox tile server into a vector represented as a geoJSON dict in</span>
+<span class="sd">    EPSG 4326 (WGS 84) map projection.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tile : Google protobuf binary</span>
+<span class="sd">        Object returned from Mapbox vector tile server</span>
+<span class="sd">    layername : str</span>
+<span class="sd">        Name of the layer to pull out of response</span>
+<span class="sd">    bounds : Object returned by mercantile.bounds() function</span>
+<span class="sd">        Has north, south, east, west attributes indicating lat/lon bounds</span>
+<span class="sd">    tilesize : int</span>
+<span class="sd">        Size of the tile returned by the tile server in pixels</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : dict</span>
+<span class="sd">        Dict representing GeoJSON data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">process_coord_pair</span><span class="p">(</span><span class="n">coord_pair</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Scales relative coordinates to known lat/lon bounds. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">coord_pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">tilesize</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                        <span class="n">bounds</span><span class="o">.</span><span class="n">east</span> <span class="o">-</span> <span class="n">bounds</span><span class="o">.</span><span class="n">west</span><span class="p">)</span> <span class="o">+</span> <span class="n">bounds</span><span class="o">.</span><span class="n">west</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">coord_pair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">tilesize</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                        <span class="n">bounds</span><span class="o">.</span><span class="n">north</span> <span class="o">-</span> <span class="n">bounds</span><span class="o">.</span><span class="n">south</span><span class="p">)</span> <span class="o">+</span> <span class="n">bounds</span><span class="o">.</span><span class="n">south</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="c1"># Decode to dict and pull out the GeoJSON for the target layer</span>
+    <span class="n">data_decoded</span> <span class="o">=</span> <span class="n">mapbox_vector_tile</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+    <span class="c1">#print(list(data_decoded.keys()))</span>
+    <span class="k">if</span> <span class="n">layername</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_decoded</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">Layer name &quot;</span><span class="si">{</span><span class="n">layername</span><span class="si">}</span><span class="s1">&quot; not present in this data. Skipping...&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_decoded</span><span class="p">[</span><span class="n">layername</span><span class="p">]</span>
+
+    <span class="c1"># Unwrap the geometry and scale coordinates to the lat/lon bounds</span>
+    <span class="n">fnews</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]:</span>
+        <span class="n">fnew</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+        <span class="c1">#print(fnew)</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">fnew</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span>
+        <span class="n">coords_new</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Process coords for lines</span>
+        <span class="k">if</span> <span class="n">fnew</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;LineString&#39;</span><span class="p">:</span>
+            <span class="c1">#line_new = []</span>
+            <span class="k">for</span> <span class="n">coord_pair</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">:</span>
+                <span class="n">coords_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_coord_pair</span><span class="p">(</span><span class="n">coord_pair</span><span class="p">))</span>
+
+
+        <span class="c1"># Process coords for polygons</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">:</span>
+                <span class="n">poly_new</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">poly</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                        <span class="n">part_new</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">for</span> <span class="n">coord_pair</span> <span class="ow">in</span> <span class="n">part</span><span class="p">:</span>
+                            <span class="n">part_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_coord_pair</span><span class="p">(</span><span class="n">coord_pair</span><span class="p">))</span>
+                        <span class="n">poly_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part_new</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">poly_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_coord_pair</span><span class="p">(</span><span class="n">part</span><span class="p">))</span>
+                <span class="n">coords_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">poly_new</span><span class="p">)</span>
+
+        <span class="n">fnew</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coords_new</span>
+        <span class="n">fnews</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fnew</span><span class="p">)</span>
+
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fnews</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+<div class="viewcode-block" id="process_tiles">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.process_tiles">[docs]</a>
+<span class="k">def</span> <span class="nf">process_tiles</span><span class="p">(</span><span class="n">tiles</span><span class="p">,</span> <span class="n">tile_indices</span><span class="p">,</span> <span class="n">outdir</span><span class="p">,</span> <span class="n">layername</span><span class="p">,</span> <span class="n">tilesize</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert Mapbox tiles to a format that can be used by QGIS in standard</span>
+<span class="sd">    processing operations. This implementation converts to GeoJSON vector</span>
+<span class="sd">    format but other utilities can be used to convert it to raster instead.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tiles : list</span>
+<span class="sd">        Mapbox tile objects</span>
+<span class="sd">    tile_indices : array-like</span>
+<span class="sd">        Set of tile XYZ indices where, for each tile, the data is ordered</span>
+<span class="sd">        ``[z,x,y]`` where ``z`` is zoom; ``x``,``y`` are image indices.</span>
+<span class="sd">    outdir : str or Path</span>
+<span class="sd">        Directory in which to save outputs</span>
+<span class="sd">    layername : str</span>
+<span class="sd">        Name of the layer to pull out of response</span>
+<span class="sd">    tilesize : int</span>
+<span class="sd">        Size of the tile returned by the tile server in pixel</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    js_paths : list</span>
+<span class="sd">        List of str&#39;s representing output geojson file paths</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: could potentially be useful to return in-memory objects</span>
+    <span class="c1">#       instead of / in addition to writing the output to files</span>
+
+    <span class="n">js_paths</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Process each tile</span>
+    <span class="k">for</span> <span class="n">tile_index</span><span class="p">,</span> <span class="n">tile</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tile_indices</span><span class="p">,</span> <span class="n">tiles</span><span class="p">):</span>
+        <span class="n">tile_str</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tile_index</span><span class="p">]</span>
+
+        <span class="c1"># # Set paths to output files</span>
+        <span class="n">basename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">outdir</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tile_str</span><span class="p">))</span>
+        <span class="n">js_path</span> <span class="o">=</span> <span class="n">basename</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Get lat/lon bounds of a tile by [z,x,y] indices</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">mercantile</span><span class="o">.</span><span class="n">bounds</span><span class="p">((</span><span class="n">tile_index</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tile_index</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">tile_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="c1"># Convert to GeoJSON and georegister by scaling to tile bounds</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">decode_protobuf_to_geojson_wgs84</span><span class="p">(</span><span class="n">tile</span><span class="p">,</span> <span class="n">layername</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tilesize</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Save the GeoJSON to file</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">js_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">js_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">js_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+        <span class="n">js_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">js_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">js_paths</span></div>
+
+
+
+
+<div class="viewcode-block" id="get_tile_xyz_by_ll">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.get_tile_xyz_by_ll">[docs]</a>
+<span class="k">def</span> <span class="nf">get_tile_xyz_by_ll</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span><span class="n">lon</span><span class="p">,</span><span class="n">zoom_level</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns tile XYZ for the given latitude, longitude, and zoom level</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lat : float</span>
+<span class="sd">        Latitude</span>
+<span class="sd">    lon : float</span>
+<span class="sd">        Longitude</span>
+<span class="sd">    zoom_level : int, optional</span>
+<span class="sd">        Zoom level</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mercantile.Tile</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This seems to be agnostic of the particular tile server or layer, i.e. all</span>
+<span class="sd">    mapbox vector tile servers must use the exact same indexing coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mercantile</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">zoom_level</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="get_tiles_for_ll_bounds">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.get_tiles_for_ll_bounds">[docs]</a>
+<span class="k">def</span> <span class="nf">get_tiles_for_ll_bounds</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">zoom_level</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes in latitude and longitude bounds and returns a list of tiles (defined</span>
+<span class="sd">    by [z,x,y] indices) for the provided zoom_level within those bounds.</span>
+
+<span class="sd">    n : float</span>
+<span class="sd">        Latitude indicating northern bounds of BBOX used to clip features</span>
+<span class="sd">    s : float</span>
+<span class="sd">        Latitude indicating northern bounds of BBOX used to clip features</span>
+<span class="sd">    e : float</span>
+<span class="sd">        Longitude indicating eastern bounds of BBOX used to clip features</span>
+<span class="sd">    w : float</span>
+<span class="sd">        Longitude indicating western bounds of BBOX used to clip features</span>
+
+<span class="sd">    zoom_level : int</span>
+<span class="sd">        Vector tile server zoom level (higher = more zoomed in)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tile_indices : list</span>
+<span class="sd">        List of 3 element lists that define tile indices as (z,x,y) that can be</span>
+<span class="sd">        fed into *download_tiles*, e.g.:</span>
+
+<span class="sd">            ```[</span>
+<span class="sd">                [7,42,42],</span>
+<span class="sd">                [7,42,43],</span>
+<span class="sd">                [7,42,44],</span>
+<span class="sd">            ]```</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    :meth:`mercantile.tile` returns just a single tile by a point lat/lon, so in</span>
+<span class="sd">    order to get ALL tiles within a bounding box, we have to iterate searches</span>
+<span class="sd">    over a grid of lat/lon point within the bounds. Only the unique set of tiles</span>
+<span class="sd">    is retained. Grid size is determined by ``zoom_level``:</span>
+
+<span class="sd">    | Zoom level | Tile size | Grid resolution |</span>
+<span class="sd">    | -----------|-----------|---------------- |</span>
+<span class="sd">    | 5 | 11 - 18 degrees | 10 degrees |</span>
+<span class="sd">    | 6 |  5 -  9 degrees |  4 degrees |</span>
+<span class="sd">    | 7 |  2 -  3 degrees |  1 degree (~100 km) |</span>
+<span class="sd">    | 8 |  ? -  ? degrees |  0.25 degree (~25 km) |</span>
+<span class="sd">    | 9 | | 0.0625 degrees (~6.25 km) |</span>
+<span class="sd">    | 10 | | 0.016 degrees (~1.6 km) |</span>
+<span class="sd">    | 11 | | 0.004 degrees (~400 m) |</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Default search grid resolution</span>
+    <span class="n">grid_res_degrees</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="c1"># Dict mapping zoom level (int) to grid resolution (degrees)</span>
+    <span class="n">zoom_to_gridres</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="mf">0.0625</span><span class="p">,</span>
+        <span class="mi">10</span><span class="p">:</span> <span class="mf">0.016</span><span class="p">,</span>
+        <span class="mi">11</span><span class="p">:</span> <span class="mf">0.004</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">zoom_level</span> <span class="ow">in</span> <span class="n">zoom_to_gridres</span><span class="p">:</span>
+        <span class="n">grid_res_degrees</span> <span class="o">=</span> <span class="n">zoom_to_gridres</span><span class="p">[</span><span class="n">zoom_level</span><span class="p">]</span>
+
+    <span class="c1"># Gather tiles within the bounds</span>
+    <span class="n">tiles</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">lon</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">e</span><span class="o">+</span><span class="n">grid_res_degrees</span><span class="p">,</span><span class="n">grid_res_degrees</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="n">grid_res_degrees</span><span class="p">,</span><span class="n">grid_res_degrees</span><span class="p">):</span>
+            <span class="n">tiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_tile_xyz_by_ll</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span><span class="n">lon</span><span class="p">,</span><span class="n">zoom_level</span><span class="p">))</span>
+
+    <span class="c1"># Return the set (unique tiles), formatted for input to process_tiles</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">x</span><span class="o">.</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">tiles</span><span class="p">)]</span></div>
+
+
+
+
+<div class="viewcode-block" id="dissolve_vector_files_by_property">
+<a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.dissolve_vector_files_by_property">[docs]</a>
+<span class="k">def</span> <span class="nf">dissolve_vector_files_by_property</span><span class="p">(</span>
+        <span class="n">vector_files</span><span class="p">,</span>
+        <span class="n">property_name</span><span class="p">,</span>
+        <span class="n">valid_geom_types</span><span class="p">,</span>
+        <span class="n">output_file</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes in a list of geospatial vector files and outputs a single vector file</span>
+<span class="sd">    (same format as inputs) containing all features of the input files, with</span>
+<span class="sd">    boundaries between features of common property name dissolved.</span>
+
+<span class="sd">    Optional n,s,e,w parameters indicate lat/lon BBOX bounds by which to clip</span>
+<span class="sd">    features. If not included, features will not be clipped.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    vector_files : list</span>
+<span class="sd">        List of str&#39;s representing geojson file paths</span>
+<span class="sd">    property_name : str</span>
+<span class="sd">        Name of the feature property in the geoJSON to dissolve features by</span>
+<span class="sd">    valid_geom_types : list of str&#39;s</span>
+<span class="sd">        List of valid GeoJSON geometry types for the given layer</span>
+<span class="sd">    output_file : str</span>
+<span class="sd">        File path for the output file</span>
+<span class="sd">    n : (optional) float</span>
+<span class="sd">        Latitude indicating northern bounds of BBOX used to clip features</span>
+<span class="sd">    s : (optional) float</span>
+<span class="sd">        Latitude indicating northern bounds of BBOX used to clip features</span>
+<span class="sd">    e : (optional) float</span>
+<span class="sd">        Longitude indicating eastern bounds of BBOX used to clip features</span>
+<span class="sd">    w : (optional) float</span>
+<span class="sd">        Longitude indicating western bounds of BBOX used to clip features</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Returns nothing (output is written to file)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">vector_files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No vector data to dissolve, skipping...&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># If clip bounds are provided, create the bbox geometry to clip to</span>
+    <span class="n">bbox_geom</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">e</span> <span class="ow">and</span> <span class="n">w</span><span class="p">:</span>
+        <span class="n">bbox_geom</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">((</span>
+            <span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">s</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">s</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">n</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">),</span>
+        <span class="p">))</span>
+
+    <span class="c1"># Collect geometry features from all the input files</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">vector_file</span> <span class="ow">in</span> <span class="n">vector_files</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">vector_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">invector</span><span class="p">:</span>
+            <span class="n">meta</span> <span class="o">=</span> <span class="n">invector</span><span class="o">.</span><span class="n">meta</span>
+            <span class="n">features</span> <span class="o">+=</span> <span class="n">invector</span>
+
+    <span class="c1"># Sort the features by the property</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="n">property_name</span><span class="p">])</span>
+
+    <span class="c1"># Loop through and combine geometry features by group property</span>
+    <span class="n">features_new</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># var to store the dissolved features</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+            <span class="n">e</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="n">property_name</span><span class="p">]</span>
+        <span class="p">):</span>
+
+        <span class="n">properties</span><span class="p">,</span> <span class="n">geom</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
+            <span class="o">*</span><span class="p">[(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">],</span> <span class="n">make_valid</span><span class="p">(</span><span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])))</span>
+              <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">group</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># This function handles combining the coordinates into a single feature</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">(</span><span class="n">unary_union</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span>
+
+        <span class="c1"># Perform the clip here</span>
+        <span class="k">if</span> <span class="n">bbox_geom</span><span class="p">:</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">to_geojson</span><span class="p">(</span><span class="n">shape</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">bbox_geom</span><span class="p">)))</span>
+        <span class="c1">#print(g)</span>
+
+        <span class="c1"># Wrap non-collections to resemble a collection so we don&#39;t need</span>
+        <span class="c1"># multiple processing procedures for collections and non-collections</span>
+        <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;GeometryCollection&#39;</span><span class="p">:</span>
+           <span class="n">g</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;geometries&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">g</span><span class="p">]}</span>
+
+
+        <span class="k">for</span> <span class="n">g0</span> <span class="ow">in</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;geometries&#39;</span><span class="p">]:</span>
+
+            <span class="c1"># Skip empty features</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">g0</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">g0</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Skip lines and points</span>
+            <span class="k">if</span> <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_geom_types</span><span class="p">:</span><span class="c1">#(&#39;Polygon&#39;,&#39;MultiPolygon&#39;,&#39;LineString&#39;):</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Convert any Polygon feature types to MultiPolygon (output file will</span>
+            <span class="c1"># be MultiPolygon type; see below)</span>
+            <span class="k">if</span> <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Polygon&#39;</span><span class="p">:</span>
+                <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MultiPolygon&#39;</span>
+                <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">g0</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;LineString&#39;</span><span class="p">:</span>
+                <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MultiLineString&#39;</span>
+                <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">g0</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]]</span>
+
+            <span class="c1"># Store newly created dissolved features</span>
+            <span class="n">features_new</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">g0</span><span class="p">,</span>
+                <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="n">properties</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">})</span>
+
+            <span class="c1"># Store type for writing output</span>
+            <span class="n">gtype</span> <span class="o">=</span> <span class="n">g0</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Update the geometry type from Polygon to MultiPolygon so that it can</span>
+    <span class="c1"># handle cases where adjacent tile coords don&#39;t line up precisely</span>
+    <span class="n">gtype</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">valid_geom_types</span> <span class="k">if</span> <span class="s1">&#39;Multi&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;schema&#39;</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gtype</span><span class="c1">#&#39;MultiPolygon&#39;</span>
+    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">output</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features_new</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Processing directory to store output files</span>
+    <span class="n">processing_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;PROCESSING/macrostrat/&quot;</span>
+
+    <span class="c1"># Vector tile layers to download</span>
+    <span class="n">layers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="c1"># vv polygon map units</span>
+            <span class="s1">&#39;layername&#39;</span><span class="p">:</span> <span class="s1">&#39;units&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dissolve_by_property&#39;</span><span class="p">:</span> <span class="s1">&#39;map_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;valid_geom_types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Polygon&#39;</span><span class="p">,</span><span class="s1">&#39;MultiPolygon&#39;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="c1"># vv fault lines</span>
+            <span class="s1">&#39;layername&#39;</span><span class="p">:</span> <span class="s1">&#39;lines&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dissolve_by_property&#39;</span><span class="p">:</span> <span class="s1">&#39;line_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;valid_geom_types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;LineString&#39;</span><span class="p">,</span><span class="s1">&#39;MultiLineString&#39;</span><span class="p">]</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+
+
+    <span class="c1">########</span>
+    <span class="c1"># Two options for setting tile_indices to process:</span>
+
+    <span class="c1"># OPTION 1: manually define</span>
+    <span class="c1"># Set of tiles by XYZ indices; order is: z(zoom), x(x index), y(y index)</span>
+    <span class="n">tile_indices</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">42</span><span class="p">],</span><span class="c1"># z, x, y</span>
+        <span class="c1">#[9,600,300],</span>
+    <span class="p">)</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># # OPTION 2: set lat/lon bounds; tile list will be retrieved</span>
+    <span class="c1"># bounds = {</span>
+    <span class="c1">#     &#39;n&#39;: 43.0,</span>
+    <span class="c1">#     &#39;s&#39;: 40.9,</span>
+    <span class="c1">#     &#39;e&#39;: -59,</span>
+    <span class="c1">#     &#39;w&#39;: -62,</span>
+    <span class="c1"># }</span>
+    <span class="c1">#</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mf">42.4046340196102</span><span class="p">,</span>
+        <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mf">40.35045988370135</span><span class="p">,</span>
+        <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">93.39360118961542</span><span class="p">,</span>
+        <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">97.14894692014128</span>
+    <span class="p">}</span>
+
+    <span class="n">tile_indices</span> <span class="o">=</span> <span class="n">get_tiles_for_ll_bounds</span><span class="p">(</span><span class="o">**</span><span class="n">bounds</span><span class="p">,</span> <span class="n">zoom_level</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1">########</span>
+    <span class="c1"># Process tile list</span>
+
+    <span class="n">mapbox_tiles</span> <span class="o">=</span> <span class="n">download_tiles</span><span class="p">(</span><span class="n">tile_indices</span><span class="p">,</span> <span class="s2">&quot;https://dev.macrostrat.org/tiles/&quot;</span><span class="p">,</span> <span class="s2">&quot;carto&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">Processing layer: </span><span class="si">{</span><span class="n">layer</span><span class="p">[</span><span class="s2">&quot;layername&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">js_paths</span> <span class="o">=</span> <span class="n">process_tiles</span><span class="p">(</span>
+            <span class="n">mapbox_tiles</span><span class="p">,</span> <span class="n">tile_indices</span><span class="p">,</span> <span class="n">processing_dir</span><span class="p">,</span> <span class="n">layer</span><span class="p">[</span><span class="s1">&#39;layername&#39;</span><span class="p">],</span> <span class="mi">4096</span>
+        <span class="p">)</span>
+
+        <span class="n">dissolve_vector_files_by_property</span><span class="p">(</span>
+            <span class="n">js_paths</span><span class="p">,</span>
+            <span class="n">layer</span><span class="p">[</span><span class="s1">&#39;dissolve_by_property&#39;</span><span class="p">],</span>
+            <span class="n">layer</span><span class="p">[</span><span class="s1">&#39;valid_geom_types&#39;</span><span class="p">],</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">processing_dir</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;test_dissolve_</span><span class="si">{</span><span class="n">layer</span><span class="p">[</span><span class="s2">&quot;layername&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">.json&#39;</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">bounds</span>
+        <span class="p">)</span>
+    <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

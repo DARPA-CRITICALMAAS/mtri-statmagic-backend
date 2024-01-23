@@ -1,0 +1,21 @@
+statmagic\_backend.dev package
+==============================
+
+.. automodule:: statmagic_backend.dev
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.dev.match_stack_raster_tools
+   statmagic_backend.dev.proximity_raster
+   statmagic_backend.dev.rasterize_training_data
+   statmagic_backend.dev.simple_CT_point_interpolation
+   statmagic_backend.dev.template_raster_user_input
+   statmagic_backend.dev.threshold_inference

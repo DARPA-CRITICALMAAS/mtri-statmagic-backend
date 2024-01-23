@@ -1,0 +1,8 @@
+statmagic\_backend.extract.sciencebasetools module
+==================================================
+
+.. automodule:: statmagic_backend.extract.sciencebasetools
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

@@ -1,0 +1,8 @@
+statmagic\_backend.dev.rasterize\_training\_data module
+=======================================================
+
+.. automodule:: statmagic_backend.dev.rasterize_training_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

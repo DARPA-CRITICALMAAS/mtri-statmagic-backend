@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.dev.simple_CT_point_interpolation &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../statmagic_backend.html">statmagic_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.dev.simple_CT_point_interpolation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for statmagic_backend.dev.simple_CT_point_interpolation</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CloughTocher2DInterpolator</span>
+<span class="kn">import</span> <span class="nn">rasterio</span> <span class="k">as</span> <span class="nn">rio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<div class="viewcode-block" id="interpolate_gdf_value">
+<a class="viewcode-back" href="../../../statmagic_backend.dev.simple_CT_point_interpolation.html#statmagic_backend.dev.simple_CT_point_interpolation.interpolate_gdf_value">[docs]</a>
+<span class="k">def</span> <span class="nf">interpolate_gdf_value</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">z_column</span><span class="p">,</span> <span class="n">template_raster_path</span><span class="p">):</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">template_raster_path</span><span class="p">)</span>
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">bounds</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">grid_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">+</span> <span class="n">res</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+    <span class="c1"># This needs to be flipped vertically because it puts ymin values in the top left (latitude should be ymax in TL)</span>
+    <span class="n">grid_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">+</span> <span class="n">res</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">grid_x</span><span class="p">,</span> <span class="n">grid_y</span><span class="p">)</span>
+
+    <span class="c1"># Set up the Clough-Tocher Interpolator</span>
+    <span class="n">arg1</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="p">)]</span>
+    <span class="n">arg2</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">z_column</span><span class="p">]</span>
+    <span class="n">interp</span> <span class="o">=</span> <span class="n">CloughTocher2DInterpolator</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+    <span class="n">tfol</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>  <span class="c1"># maybe this should be done globally at the init??</span>
+    <span class="n">tfile</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">tfol</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.tif&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;interpolated_raster&#39;</span><span class="p">)</span>
+    <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">tfile</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;dtype&#39;</span><span class="p">:</span> <span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="s1">&#39;nodata&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write_band</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;raster saved to </span><span class="si">{</span><span class="n">output_file_path</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">return</span> <span class="n">output_file_path</span><span class="p">,</span> <span class="n">message</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

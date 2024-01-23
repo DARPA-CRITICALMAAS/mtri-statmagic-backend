@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.math.clustering &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../statmagic_backend.html">statmagic_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.math.clustering</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for statmagic_backend.math.clustering</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">MiniBatchKMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+
+<div class="viewcode-block" id="doPCA_kmeans">
+<a class="viewcode-back" href="../../../statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.doPCA_kmeans">[docs]</a>
+<span class="k">def</span> <span class="nf">doPCA_kmeans</span><span class="p">(</span><span class="n">pred_data</span><span class="p">,</span> <span class="n">bool_arr</span><span class="p">,</span> <span class="n">nclust</span><span class="p">,</span> <span class="n">varexp</span><span class="p">,</span> <span class="n">pca_bool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes PCA followed by kmeans clustering.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pred_data : array-like</span>
+<span class="sd">        Data on which PCA and clustering will be performed</span>
+<span class="sd">    bool_arr : array-like</span>
+<span class="sd">        Indicator function for data to omit from PCA and clustering</span>
+<span class="sd">    nclust : int</span>
+<span class="sd">        Number of clusters</span>
+<span class="sd">    varexp : int</span>
+<span class="sd">        Number of components to keep</span>
+<span class="sd">    pca_bool : bool</span>
+<span class="sd">        If ``False``, don&#39;t run PCA</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    labels : ndarray</span>
+<span class="sd">        Cluster member labels</span>
+<span class="sd">    km : sklearn.cluster.MiniBatchKMeans</span>
+<span class="sd">        Fitted model for k-means</span>
+<span class="sd">    pca : sklearn.decomposition.PCA</span>
+<span class="sd">        Fitted model for PCA</span>
+<span class="sd">    fitdat : ndarray</span>
+<span class="sd">        Fitted data according to PCA (if ``pca_bool`` is ``False``, this is just</span>
+<span class="sd">        the input data)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">nclust</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">101</span><span class="p">)</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">varexp</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">bool_arr</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pca_bool</span><span class="p">:</span>
+            <span class="n">standata</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pred_data</span><span class="p">)</span>
+            <span class="n">fitdat</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">standata</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PCA uses </span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">n_components_</span><span class="si">}</span><span class="s1"> to get to </span><span class="si">{</span><span class="n">varexp</span><span class="si">}</span><span class="s1"> variance explained&#39;</span><span class="p">)</span>
+            <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">fitdat</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fitdat</span> <span class="o">=</span> <span class="n">pred_data</span>
+            <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">fitdat</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pca_bool</span><span class="p">:</span>
+            <span class="n">idxr</span> <span class="o">=</span> <span class="n">bool_arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">pred_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">pstack</span> <span class="o">=</span> <span class="n">pred_data</span><span class="p">[</span><span class="n">idxr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">standata</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pstack</span><span class="p">)</span>
+            <span class="n">fitdat</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">standata</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PCA uses </span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">n_components_</span><span class="si">}</span><span class="s1"> to get to </span><span class="si">{</span><span class="n">varexp</span><span class="si">}</span><span class="s1"> variance explained&#39;</span><span class="p">)</span>
+            <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">fitdat</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">idxr</span> <span class="o">=</span> <span class="n">bool_arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">pred_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">fitdat</span> <span class="o">=</span> <span class="n">pred_data</span><span class="p">[</span><span class="n">idxr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">fitdat</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">labels</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">fitdat</span></div>
+
+
+
+<div class="viewcode-block" id="unpack_fullK">
+<a class="viewcode-back" href="../../../statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.unpack_fullK">[docs]</a>
+<span class="k">def</span> <span class="nf">unpack_fullK</span><span class="p">(</span><span class="n">Kdict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unpacks a dictionary according to a set of fixed expected keys.&quot;&quot;&quot;</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;km&#39;</span><span class="p">]</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;pca&#39;</span><span class="p">]</span>
+    <span class="n">ras_dict</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;ras_dict&#39;</span><span class="p">]</span>
+    <span class="n">bool_arr</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;bool_arr&#39;</span><span class="p">]</span>
+    <span class="n">fitdat</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;fitdat&#39;</span><span class="p">]</span>
+    <span class="n">rasBands</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;rasBands&#39;</span><span class="p">]</span>
+    <span class="n">nclust</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;nclust&#39;</span><span class="p">]</span>
+    <span class="c1"># Maybe look into making an unpack full, masked, and training for different needs</span>
+    <span class="k">if</span> <span class="s1">&#39;class_arr&#39;</span> <span class="ow">in</span> <span class="n">Kdict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">class_arr</span> <span class="o">=</span> <span class="n">Kdict</span><span class="p">[</span><span class="s1">&#39;class_arr&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">labels</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">ras_dict</span><span class="p">,</span> <span class="n">bool_arr</span><span class="p">,</span> <span class="n">fitdat</span><span class="p">,</span> <span class="n">rasBands</span><span class="p">,</span> <span class="n">nclust</span><span class="p">,</span> <span class="n">class_arr</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">labels</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">ras_dict</span><span class="p">,</span> <span class="n">bool_arr</span><span class="p">,</span> <span class="n">fitdat</span><span class="p">,</span> <span class="n">rasBands</span><span class="p">,</span> <span class="n">nclust</span></div>
+
+
+
+<div class="viewcode-block" id="clusterDataInMask">
+<a class="viewcode-back" href="../../../statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.clusterDataInMask">[docs]</a>
+<span class="k">def</span> <span class="nf">clusterDataInMask</span><span class="p">(</span><span class="n">pred_data</span><span class="p">,</span> <span class="n">class_data</span><span class="p">,</span> <span class="n">nodata_mask</span><span class="p">,</span> <span class="n">nclust</span><span class="p">,</span> <span class="n">varexp</span><span class="p">,</span> <span class="n">pca_bool</span><span class="p">,</span> <span class="n">clusclass</span><span class="p">):</span>
+    <span class="n">noncluster_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">class_data</span><span class="p">,</span> <span class="n">clusclass</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">bool_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">noncluster_mask</span><span class="p">,</span> <span class="n">nodata_mask</span><span class="p">)</span>
+    <span class="n">labels</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">fitdat</span> <span class="o">=</span> <span class="n">doPCA_kmeans</span><span class="p">(</span><span class="n">pred_data</span><span class="p">,</span> <span class="n">bool_arr</span><span class="p">,</span> <span class="n">nclust</span><span class="p">,</span> <span class="n">varexp</span><span class="p">,</span> <span class="n">pca_bool</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">labels</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">pca</span><span class="p">,</span> <span class="n">fitdat</span><span class="p">,</span> <span class="n">bool_arr</span></div>
+
+
+<div class="viewcode-block" id="soft_clustering_weights">
+<a class="viewcode-back" href="../../../statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.soft_clustering_weights">[docs]</a>
+<span class="k">def</span> <span class="nf">soft_clustering_weights</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cluster_centres</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">Nclusters</span> <span class="o">=</span> <span class="n">cluster_centres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Ndp</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Get distances from the cluster centres for each data point and each cluster</span>
+    <span class="n">EuclidDist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Ndp</span><span class="p">,</span> <span class="n">Nclusters</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nclusters</span><span class="p">):</span>
+        <span class="n">EuclidDist</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">data</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">matlib</span><span class="o">.</span><span class="n">repmat</span><span class="p">(</span><span class="n">cluster_centres</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Ndp</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Denominator of the weight from wikipedia:</span>
+    <span class="n">invWeight</span> <span class="o">=</span> <span class="n">EuclidDist</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matlib</span><span class="o">.</span><span class="n">repmat</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">EuclidDist</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Nclusters</span><span class="p">)</span>
+    <span class="n">Weight</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">invWeight</span>
+    <span class="k">return</span> <span class="n">Weight</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

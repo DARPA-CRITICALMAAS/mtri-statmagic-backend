@@ -10,14 +10,34 @@ from osgeo import gdal
 
 def match_raster_to_template(template_path, input_raster_path, resampling_method=Resampling.bilinear, num_threads=1):
     """
-    This function will clip and reproject an input raster to another rasters extent, crs, and affine transform.
-    There could still be some room to add in some subtle shifts to better match pixel edges
-    :param template_path: str, path to the template raster
-    :param input_raster_path: str, path to the input raster
-    :param resampling_method: Resampling method from rasterio.warp.Resampling. ['nearest', 'bilinear', 'cubic', 'cubic_spline',
-'lanczos', 'average', 'mode', and 'gauss']
-    :param num_threads: Number of threads to utilze for the resampling
-    :return: np.ndarray in the dimensions of the template raster
+    Clip and reproject an input raster to another rasters extent, crs,
+    and affine transform. There could still be some room to add in some subtle
+    shifts to better match pixel edges.
+
+    Parameters
+    ----------
+    template_path : str
+        Path to the template raster
+    input_raster_path : str
+        Path to the input raster
+    resampling_method : str
+        Resampling method. Must conform to :meth:`rasterio.warp.Resampling`,
+        i.e. be one of
+
+        .. code::
+
+            [
+                'nearest', 'bilinear', 'cubic', 'cubic_spline',
+                'lanczos', 'average', 'mode', 'gauss'
+            ]
+    num_threads : int
+        Number of threads to utilize for the resampling
+
+    Returns
+    -------
+    reproj_arr : ndarray
+        Array representing the dimensions of the template raster
+
     """
 
     # Establish properties from the template/base raster
@@ -53,12 +73,29 @@ def match_raster_to_template(template_path, input_raster_path, resampling_method
 
 def match_and_stack_rasters(template_path, input_raster_paths_list, resampling_method_list, num_threads=1):
     """
-    Function that serves as the backend of the add raster layers to the data stack tool. Lists should be
-    created coming from the QDialog and QListView. Is defaulting to float32 datatype
-    :param template_path: str. Path to the template raster
-    :param input_raster_paths_list: list. List of file paths (str) to input rasters
-    :param resampling_method_list: list. Resampling method to apply for resampling
-    :return: ndarray with dimensions of (number of input files, height and width of template)
+    Serves as the backend of the add raster layers to the data stack tool.
+    Lists should be created coming from the QDialog and QListView.
+
+    Parameters
+    ----------
+    template_path : str
+        Path to the template raster
+    input_raster_paths_list : list
+        List of file paths (str) to input rasters
+    resampling_method_list : list
+        Resampling method to apply
+    num_threads : int
+        Number of threads to utilize for the resampling
+
+    Returns
+    -------
+    array_stack : ndarray
+        Array with dimensions (number of input files, height and width of template)
+
+    Warnings
+    --------
+    Defaults to ``float32`` datatype.
+
     """
     reprojected_arrays = []
     for raster_path, rs_method in zip(input_raster_paths_list, resampling_method_list):
@@ -70,6 +107,23 @@ def match_and_stack_rasters(template_path, input_raster_paths_list, resampling_m
 
 
 def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, description_list):
+    """
+    Adds ``matched_arrays`` to the data raster along with their descriptions.
+
+    Parameters
+    ----------
+    data_raster_filepath : str
+        Path to the data raster
+    matched_arrays : ndarray
+        Array containing subarrays for each match
+    description_list : list
+        List of descriptions
+
+    Notes
+    -----
+    No return value. Writes directly to the raster file.
+
+    """
     data_raster = rio.open(data_raster_filepath)
     current_band_count = data_raster.count
     profile = data_raster.profile
@@ -102,6 +156,21 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
         data_raster.close()
 
 def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
+    """
+    Removes selected bands from the data raster.
+
+    Parameters
+    ----------
+    data_raster_filepath : str
+        Path to the data raster
+    list_of_bands : list
+        Bands to remove
+
+    Notes
+    -----
+    No return value. Overwrites the raster file.
+
+    """
     data_raster = rio.open(data_raster_filepath)
     number_bands_new = len(list_of_bands)
     idxs = [int(item.split("Band ")[1].split(":")[0]) for item in list_of_bands]

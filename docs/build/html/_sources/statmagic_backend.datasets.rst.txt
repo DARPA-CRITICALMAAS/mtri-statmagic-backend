@@ -1,0 +1,16 @@
+statmagic\_backend.datasets package
+===================================
+
+.. automodule:: statmagic_backend.datasets
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.datasets.download_mccafferty

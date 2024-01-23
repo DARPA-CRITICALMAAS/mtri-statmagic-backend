@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend package &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="statmagic_backend.data package" href="statmagic_backend.data.html" />
+    <link rel="prev" title="Welcome to statmagic_backend’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">statmagic_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">statmagic_backend package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/statmagic_backend.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-statmagic_backend">
+<span id="statmagic-backend-package"></span><h1>statmagic_backend package<a class="headerlink" href="#module-statmagic_backend" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.datasets.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.datasets.download_mccafferty.html">statmagic_backend.datasets.download_mccafferty module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.dev.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.match_stack_raster_tools.html">statmagic_backend.dev.match_stack_raster_tools module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster"><code class="docutils literal notranslate"><span class="pre">add_matched_arrays_to_data_raster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster"><code class="docutils literal notranslate"><span class="pre">drop_selected_layers_from_raster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.match_and_stack_rasters"><code class="docutils literal notranslate"><span class="pre">match_and_stack_rasters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template"><code class="docutils literal notranslate"><span class="pre">match_raster_to_template()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.proximity_raster.html">statmagic_backend.dev.proximity_raster module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.proximity_raster.html#statmagic_backend.dev.proximity_raster.qgs_features_to_gdf"><code class="docutils literal notranslate"><span class="pre">qgs_features_to_gdf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.proximity_raster.html#statmagic_backend.dev.proximity_raster.rasterize_vector"><code class="docutils literal notranslate"><span class="pre">rasterize_vector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.proximity_raster.html#statmagic_backend.dev.proximity_raster.vector_proximity_raster"><code class="docutils literal notranslate"><span class="pre">vector_proximity_raster()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.rasterize_training_data.html">statmagic_backend.dev.rasterize_training_data module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.rasterize_training_data.html#statmagic_backend.dev.rasterize_training_data.training_vector_rasterize"><code class="docutils literal notranslate"><span class="pre">training_vector_rasterize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.simple_CT_point_interpolation.html">statmagic_backend.dev.simple_CT_point_interpolation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.simple_CT_point_interpolation.html#statmagic_backend.dev.simple_CT_point_interpolation.interpolate_gdf_value"><code class="docutils literal notranslate"><span class="pre">interpolate_gdf_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.template_raster_user_input.html">statmagic_backend.dev.template_raster_user_input module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.template_raster_user_input.html#statmagic_backend.dev.template_raster_user_input.create_template_raster_from_bounds_and_resolution"><code class="docutils literal notranslate"><span class="pre">create_template_raster_from_bounds_and_resolution()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.template_raster_user_input.html#statmagic_backend.dev.template_raster_user_input.get_array_shape_from_bounds_and_res"><code class="docutils literal notranslate"><span class="pre">get_array_shape_from_bounds_and_res()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.template_raster_user_input.html#statmagic_backend.dev.template_raster_user_input.print_memory_allocation_from_resolution_bounds"><code class="docutils literal notranslate"><span class="pre">print_memory_allocation_from_resolution_bounds()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.threshold_inference.html">statmagic_backend.dev.threshold_inference module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.threshold_inference.html#statmagic_backend.dev.threshold_inference.return_raster_stats_in_shape"><code class="docutils literal notranslate"><span class="pre">return_raster_stats_in_shape()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.threshold_inference.html#statmagic_backend.dev.threshold_inference.threshold_inference"><code class="docutils literal notranslate"><span class="pre">threshold_inference()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.extract.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.extract.raster.html">statmagic_backend.extract.raster module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.MinMaxPop"><code class="docutils literal notranslate"><span class="pre">MinMaxPop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.RasBoreMatch"><code class="docutils literal notranslate"><span class="pre">RasBoreMatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.RasMatcha"><code class="docutils literal notranslate"><span class="pre">RasMatcha()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.calc_array_mode"><code class="docutils literal notranslate"><span class="pre">calc_array_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.extractBands"><code class="docutils literal notranslate"><span class="pre">extractBands()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.extractBandsInBounds"><code class="docutils literal notranslate"><span class="pre">extractBandsInBounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.getCanvasRasterDict"><code class="docutils literal notranslate"><span class="pre">getCanvasRasterDict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.getFullRasterDict"><code class="docutils literal notranslate"><span class="pre">getFullRasterDict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.nums3"><code class="docutils literal notranslate"><span class="pre">nums3()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.placeLabels_inRaster"><code class="docutils literal notranslate"><span class="pre">placeLabels_inRaster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.sdMatchSomeInStack"><code class="docutils literal notranslate"><span class="pre">sdMatchSomeInStack()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.raster.html#statmagic_backend.extract.raster.sdMatchStack"><code class="docutils literal notranslate"><span class="pre">sdMatchStack()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.extract.sciencebasetools.html">statmagic_backend.extract.sciencebasetools module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.sciencebasetools.html#statmagic_backend.extract.sciencebasetools.create_sciencebase_registry"><code class="docutils literal notranslate"><span class="pre">create_sciencebase_registry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.sciencebasetools.html#statmagic_backend.extract.sciencebasetools.fetch_sciencebase_files"><code class="docutils literal notranslate"><span class="pre">fetch_sciencebase_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.sciencebasetools.html#statmagic_backend.extract.sciencebasetools.recursive_download"><code class="docutils literal notranslate"><span class="pre">recursive_download()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.geo.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo.transform.html">statmagic_backend.geo.transform module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.boundingBoxToOffsets"><code class="docutils literal notranslate"><span class="pre">boundingBoxToOffsets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.decode_protobuf_to_geojson_wgs84"><code class="docutils literal notranslate"><span class="pre">decode_protobuf_to_geojson_wgs84()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.dissolve_vector_files_by_property"><code class="docutils literal notranslate"><span class="pre">dissolve_vector_files_by_property()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.download_tiles"><code class="docutils literal notranslate"><span class="pre">download_tiles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.geotFromOffsets"><code class="docutils literal notranslate"><span class="pre">geotFromOffsets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.get_tile_xyz_by_ll"><code class="docutils literal notranslate"><span class="pre">get_tile_xyz_by_ll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.get_tiles_for_ll_bounds"><code class="docutils literal notranslate"><span class="pre">get_tiles_for_ll_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.process_tiles"><code class="docutils literal notranslate"><span class="pre">process_tiles()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.geo_chem.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo_chem.link_black_shales_db.html">statmagic_backend.geo_chem.link_black_shales_db module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo_chem.link_black_shales_db.html#statmagic_backend.geo_chem.link_black_shales_db.prep_black_shales"><code class="docutils literal notranslate"><span class="pre">prep_black_shales()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.math.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.ai.html">statmagic_backend.math.ai module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.ai.html#statmagic_backend.math.ai.make_fullConfMat"><code class="docutils literal notranslate"><span class="pre">make_fullConfMat()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.clustering.html">statmagic_backend.math.clustering module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.clusterDataInMask"><code class="docutils literal notranslate"><span class="pre">clusterDataInMask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.doPCA_kmeans"><code class="docutils literal notranslate"><span class="pre">doPCA_kmeans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.soft_clustering_weights"><code class="docutils literal notranslate"><span class="pre">soft_clustering_weights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.clustering.html#statmagic_backend.math.clustering.unpack_fullK"><code class="docutils literal notranslate"><span class="pre">unpack_fullK()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.normalKLDiv.html">statmagic_backend.math.normalKLDiv module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.normalKLDiv.html#statmagic_backend.math.normalKLDiv.normalKLDiv"><code class="docutils literal notranslate"><span class="pre">normalKLDiv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.normalKLDiv.html#statmagic_backend.math.normalKLDiv.parse_theta"><code class="docutils literal notranslate"><span class="pre">parse_theta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.sampling.html">statmagic_backend.math.sampling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.sampling.html#statmagic_backend.math.sampling.balancedSamples"><code class="docutils literal notranslate"><span class="pre">balancedSamples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.sampling.html#statmagic_backend.math.sampling.dropSelectedBandsforSupClass"><code class="docutils literal notranslate"><span class="pre">dropSelectedBandsforSupClass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.sampling.html#statmagic_backend.math.sampling.label_count"><code class="docutils literal notranslate"><span class="pre">label_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.sampling.html#statmagic_backend.math.sampling.randomSample"><code class="docutils literal notranslate"><span class="pre">randomSample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.utils.html">statmagic_backend.math.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.utils.html#statmagic_backend.math.utils.hardenedLDivide"><code class="docutils literal notranslate"><span class="pre">hardenedLDivide()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.utils.html#statmagic_backend.math.utils.is_numeric"><code class="docutils literal notranslate"><span class="pre">is_numeric()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to statmagic_backend’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="statmagic_backend.data.html" class="btn btn-neutral float-right" title="statmagic_backend.data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

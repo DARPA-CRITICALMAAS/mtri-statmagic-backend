@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.geo.transform module &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="statmagic_backend.geo_chem package" href="statmagic_backend.geo_chem.html" />
+    <link rel="prev" title="statmagic_backend.geo package" href="statmagic_backend.geo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="statmagic_backend.html">statmagic_backend package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="statmagic_backend.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="statmagic_backend.geo.html">statmagic_backend.geo package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="statmagic_backend.html">statmagic_backend package</a></li>
+          <li class="breadcrumb-item"><a href="statmagic_backend.geo.html">statmagic_backend.geo package</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.geo.transform module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/statmagic_backend.geo.transform.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-statmagic_backend.geo.transform">
+<span id="statmagic-backend-geo-transform-module"></span><h1>statmagic_backend.geo.transform module<a class="headerlink" href="#module-statmagic_backend.geo.transform" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.boundingBoxToOffsets">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">boundingBoxToOffsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geot</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#boundingBoxToOffsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.boundingBoxToOffsets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.decode_protobuf_to_geojson_wgs84">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">decode_protobuf_to_geojson_wgs84</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layername</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilesize</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#decode_protobuf_to_geojson_wgs84"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.decode_protobuf_to_geojson_wgs84" title="Link to this definition"></a></dt>
+<dd><p>Decodes a Google protobuf binary object representing a vector tile return
+from a MapBox tile server into a vector represented as a geoJSON dict in
+EPSG 4326 (WGS 84) map projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tile</strong> (<em>Google protobuf binary</em>) – Object returned from Mapbox vector tile server</p></li>
+<li><p><strong>layername</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Name of the layer to pull out of response</p></li>
+<li><p><strong>bounds</strong> (<em>Object returned by mercantile.bounds</em><em>(</em><em>) </em><em>function</em>) – Has north, south, east, west attributes indicating lat/lon bounds</p></li>
+<li><p><strong>tilesize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Size of the tile returned by the tile server in pixels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data</strong> – Dict representing GeoJSON data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.dissolve_vector_files_by_property">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">dissolve_vector_files_by_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_geom_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#dissolve_vector_files_by_property"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.dissolve_vector_files_by_property" title="Link to this definition"></a></dt>
+<dd><p>Takes in a list of geospatial vector files and outputs a single vector file
+(same format as inputs) containing all features of the input files, with
+boundaries between features of common property name dissolved.</p>
+<p>Optional n,s,e,w parameters indicate lat/lon BBOX bounds by which to clip
+features. If not included, features will not be clipped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – List of str’s representing geojson file paths</p></li>
+<li><p><strong>property_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Name of the feature property in the geoJSON to dissolve features by</p></li>
+<li><p><strong>valid_geom_types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>str's</em>) – List of valid GeoJSON geometry types for the given layer</p></li>
+<li><p><strong>output_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – File path for the output file</p></li>
+<li><p><strong>n</strong> (<em>(</em><em>optional</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Latitude indicating northern bounds of BBOX used to clip features</p></li>
+<li><p><strong>s</strong> (<em>(</em><em>optional</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Latitude indicating northern bounds of BBOX used to clip features</p></li>
+<li><p><strong>e</strong> (<em>(</em><em>optional</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Longitude indicating eastern bounds of BBOX used to clip features</p></li>
+<li><p><strong>w</strong> (<em>(</em><em>optional</em><em>) </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Longitude indicating western bounds of BBOX used to clip features</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Returns nothing (output is written to file)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.download_tiles">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">download_tiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tileserver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#download_tiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.download_tiles" title="Link to this definition"></a></dt>
+<dd><p>Download Mapbox tiles from a particular tile server. Defaults to Macrostrat
+using the <code class="docutils literal notranslate"><span class="pre">carto</span></code> service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tile_indices</strong> (<em>array-like</em>) – Set of tile XYZ indices where, for each tile, the data is ordered
+<code class="docutils literal notranslate"><span class="pre">[z,x,y]</span></code> where <code class="docutils literal notranslate"><span class="pre">z</span></code> is zoom; <code class="docutils literal notranslate"><span class="pre">x</span></code>,``y`` are image indices.</p></li>
+<li><p><strong>tileserver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Tile server URL</p></li>
+<li><p><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Which tile service to use from the tile server</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mapbox_tiles</strong> – Raw (unprocessed) output from tileserver</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>In Macrostrat’s tile server, the XYZ indices are specified in the URL
+in this order: <code class="docutils literal notranslate"><span class="pre">/{z}/{x}/{y}</span></code></p>
+<p>z = zoom level; x = tile x index; y = tile y index (starting at top)</p>
+<p>Georegistration for now is done by pinning corners to the tile bounds (which
+we can get from mercantile). Registration precision improves the further zoomed
+in you are:</p>
+<section id="zoom-level-observed-precision">
+<h2>Zoom level*| Observed precision**<a class="headerlink" href="#zoom-level-observed-precision" title="Link to this heading"></a></h2>
+<p>4 | 15-km
+5 |  8-km
+6 |  4-km
+———————————</p>
+<ul class="simple">
+<li><p>lower zoom level are more zoomed out</p></li>
+</ul>
+<p>** i.e. vertices can be off by this much at this zoom level</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.geotFromOffsets">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">geotFromOffsets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geot</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#geotFromOffsets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.geotFromOffsets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.get_tile_xyz_by_ll">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">get_tile_xyz_by_ll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#get_tile_xyz_by_ll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.get_tile_xyz_by_ll" title="Link to this definition"></a></dt>
+<dd><p>Returns tile XYZ for the given latitude, longitude, and zoom level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Latitude</p></li>
+<li><p><strong>lon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Longitude</p></li>
+<li><p><strong>zoom_level</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>optional</em>) – Zoom level</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>mercantile.Tile</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This seems to be agnostic of the particular tile server or layer, i.e. all
+mapbox vector tile servers must use the exact same indexing coordinates.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.get_tiles_for_ll_bounds">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">get_tiles_for_ll_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#get_tiles_for_ll_bounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.get_tiles_for_ll_bounds" title="Link to this definition"></a></dt>
+<dd><p>Takes in latitude and longitude bounds and returns a list of tiles (defined
+by [z,x,y] indices) for the provided zoom_level within those bounds.</p>
+<dl class="simple">
+<dt>n<span class="classifier">float</span></dt><dd><p>Latitude indicating northern bounds of BBOX used to clip features</p>
+</dd>
+<dt>s<span class="classifier">float</span></dt><dd><p>Latitude indicating northern bounds of BBOX used to clip features</p>
+</dd>
+<dt>e<span class="classifier">float</span></dt><dd><p>Longitude indicating eastern bounds of BBOX used to clip features</p>
+</dd>
+<dt>w<span class="classifier">float</span></dt><dd><p>Longitude indicating western bounds of BBOX used to clip features</p>
+</dd>
+<dt>zoom_level<span class="classifier">int</span></dt><dd><p>Vector tile server zoom level (higher = more zoomed in)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p><strong>tile_indices</strong> – List of 3 element lists that define tile indices as (z,x,y) that can be
+fed into <em>download_tiles</em>, e.g.:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>[</dt><dd><p>[7,42,42],
+[7,42,43],
+[7,42,44],</p>
+</dd>
+</dl>
+<p>]```</p>
+</div></blockquote>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">mercantile.tile()</span></code> returns just a single tile by a point lat/lon, so in
+order to get ALL tiles within a bounding box, we have to iterate searches
+over a grid of lat/lon point within the bounds. Only the unique set of tiles
+is retained. Grid size is determined by <code class="docutils literal notranslate"><span class="pre">zoom_level</span></code>:</p>
+<div class="line-block">
+<div class="line">Zoom level | Tile size | Grid resolution |</div>
+<div class="line">———–<a href="#id5"><span class="problematic" id="id6">|-----------|</span></a>—————- |</div>
+<div class="line">5 | 11 - 18 degrees | 10 degrees |</div>
+<div class="line">6 |  5 -  9 degrees |  4 degrees |</div>
+<div class="line">7 |  2 -  3 degrees |  1 degree (~100 km) |</div>
+<div class="line">8 |  ? -  ? degrees |  0.25 degree (~25 km) |</div>
+<div class="line">9 | | 0.0625 degrees (~6.25 km) |</div>
+<div class="line">10 | | 0.016 degrees (~1.6 km) |</div>
+<div class="line">11 | | 0.004 degrees (~400 m) |</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.geo.transform.process_tiles">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.geo.transform.</span></span><span class="sig-name descname"><span class="pre">process_tiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tile_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layername</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilesize</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/geo/transform.html#process_tiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.geo.transform.process_tiles" title="Link to this definition"></a></dt>
+<dd><p>Convert Mapbox tiles to a format that can be used by QGIS in standard
+processing operations. This implementation converts to GeoJSON vector
+format but other utilities can be used to convert it to raster instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tiles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Mapbox tile objects</p></li>
+<li><p><strong>tile_indices</strong> (<em>array-like</em>) – Set of tile XYZ indices where, for each tile, the data is ordered
+<code class="docutils literal notranslate"><span class="pre">[z,x,y]</span></code> where <code class="docutils literal notranslate"><span class="pre">z</span></code> is zoom; <code class="docutils literal notranslate"><span class="pre">x</span></code>,``y`` are image indices.</p></li>
+<li><p><strong>outdir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>Path</em>) – Directory in which to save outputs</p></li>
+<li><p><strong>layername</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Name of the layer to pull out of response</p></li>
+<li><p><strong>tilesize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Size of the tile returned by the tile server in pixel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>js_paths</strong> – List of str’s representing output geojson file paths</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="statmagic_backend.geo.html" class="btn btn-neutral float-left" title="statmagic_backend.geo package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="statmagic_backend.geo_chem.html" class="btn btn-neutral float-right" title="statmagic_backend.geo_chem package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

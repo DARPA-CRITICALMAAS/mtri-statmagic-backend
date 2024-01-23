@@ -1,0 +1,8 @@
+statmagic\_backend.dev.proximity\_raster module
+===============================================
+
+.. automodule:: statmagic_backend.dev.proximity_raster
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

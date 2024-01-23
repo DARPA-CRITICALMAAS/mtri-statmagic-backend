@@ -5,6 +5,25 @@ from sklearn.metrics import confusion_matrix, balanced_accuracy_score, f1_score,
 
 
 def make_fullConfMat(actual, prediction, target_names):
+    """
+    Creates a dataframe containing a confusion matrix as well as summary
+    accuracy and F1 statistics.
+
+    Parameters
+    ----------
+    actual : array-like
+        True sample labels
+    prediction : array-like
+        Predicted sample labels
+    target_names : array-like
+        Collection of names corresponding to each numerical label
+
+    Returns
+    -------
+    df : pd.DataFrame
+        Dataframe containing result
+
+    """
     cnf_mat = confusion_matrix(actual, prediction)
     ovacc = accuracy_score(actual, prediction)
     balacc = balanced_accuracy_score(actual, prediction)

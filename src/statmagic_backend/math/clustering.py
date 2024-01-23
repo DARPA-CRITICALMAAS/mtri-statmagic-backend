@@ -5,6 +5,35 @@ from sklearn.preprocessing import StandardScaler
 
 
 def doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool):
+    """
+    Computes PCA followed by kmeans clustering.
+
+    Parameters
+    ----------
+    pred_data : array-like
+        Data on which PCA and clustering will be performed
+    bool_arr : array-like
+        Indicator function for data to omit from PCA and clustering
+    nclust : int
+        Number of clusters
+    varexp : int
+        Number of components to keep
+    pca_bool : bool
+        If ``False``, don't run PCA
+
+    Returns
+    -------
+    labels : ndarray
+        Cluster member labels
+    km : sklearn.cluster.MiniBatchKMeans
+        Fitted model for k-means
+    pca : sklearn.decomposition.PCA
+        Fitted model for PCA
+    fitdat : ndarray
+        Fitted data according to PCA (if ``pca_bool`` is ``False``, this is just
+        the input data)
+
+    """
     km = MiniBatchKMeans(n_clusters=nclust, init='k-means++', random_state=101)
     pca = PCA(n_components=varexp, svd_solver='full')
     if np.count_nonzero(bool_arr == 1) < 1:
@@ -36,6 +65,7 @@ def doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool):
 
 
 def unpack_fullK(Kdict):
+    """Unpacks a dictionary according to a set of fixed expected keys."""
     labels = Kdict['labels']
     km = Kdict['km']
     pca = Kdict['pca']
@@ -57,25 +87,6 @@ def clusterDataInMask(pred_data, class_data, nodata_mask, nclust, varexp, pca_bo
     bool_arr = np.logical_or(noncluster_mask, nodata_mask)
     labels, km, pca, fitdat = doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool)
     return labels, km, pca, fitdat, bool_arr
-
-
-def clusterDataInMask_OLD(pred_data, bool_arr, nclust, varexp, sizeY, sizeX):
-    idxr = bool_arr.reshape(pred_data.shape[0])
-    pstack = pred_data[idxr == 0, :]
-    standata = StandardScaler().fit_transform(pstack)
-    pca = PCA(n_components=varexp, svd_solver='full')
-    fitdat = pca.fit_transform(standata)
-    print(f'PCA uses {pca.n_components_} to get to 0.975 variance explained')
-    km = MiniBatchKMeans(n_clusters=nclust, init='k-means++', random_state=101)
-    km.fit_predict(fitdat)
-    labels1 = km.labels_ + 1
-    labels = np.zeros_like(bool_arr).astype('uint8')
-    labels[~bool_arr] = labels1
-    labels[bool_arr] = 0
-
-    preds = labels.reshape(sizeY, sizeX, 1)
-    classout = np.transpose(preds, (0, 1, 2))[:, :, 0]
-    return classout, fitdat, labels, km
 
 def soft_clustering_weights(data, cluster_centres, m):
     Nclusters = cluster_centres.shape[0]

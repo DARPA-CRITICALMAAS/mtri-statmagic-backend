@@ -3,6 +3,25 @@ import pandas as pd
 
 
 def randomSample(data_arr, keep_pct):
+    """
+    Randomly subsets ``data_arr`` according to the probability distribution
+    determined by ``keep_pct``.
+
+    Parameters
+    ----------
+    data_arr : ndarray
+        Array to subset
+    keep_pct : float
+        Percentage of data to keep [0-100].
+
+    Returns
+    -------
+    ndarray
+        Data kept
+    ndarray
+        Data removed
+
+    """
     keepflt = float(keep_pct/100)
     rand_mask = np.random.choice([True, False], len(data_arr), p=[keepflt, (1-keepflt)])
     return data_arr[rand_mask], data_arr[~rand_mask]
@@ -21,12 +40,24 @@ def balancedSamples(dataframe, take_min=False, n=2000):
 
 
 def dropSelectedBandsforSupClass(labeled_data, selectedBands, bandDescList):
-    '''
-    :param labeled_data: output from getTrainingDataFrom Features
-    :param selectedBands: the return of bandSelToList(self.docwidget.stats_table)
-    :param bandDescList: the return of rasterBandDescAslist(selectedRas.source())
-    :return:
-    '''
+    """
+    Drops selected bands for sup class.
+
+    Parameters
+    ----------
+    labeled_data : ndarray
+        output from getTrainingDataFrom Features
+    selectedBands : list
+        the return of bandSelToList
+    bandDescList : list
+        the return of rasterBandDescAslist
+
+    Returns
+    -------
+    cds
+    bands
+
+    """
     # bandList = bandSelToList(self.dockwidget.stats_table)
     selectedBands.insert(0, 0)
     cds = np.take(labeled_data, selectedBands, axis=1)
@@ -36,6 +67,21 @@ def dropSelectedBandsforSupClass(labeled_data, selectedBands, bandDescList):
 
 
 def label_count(arr):
+    """
+    Computes the relative frequency of each label in ``arr``.
+
+    Parameters
+    ----------
+    arr : ndarray
+        Input array containing labels
+
+    Returns
+    -------
+    df : pd.DataFrame
+        Dataframe containing, for each record, the Class, number of pixels,
+        and percent of labels.
+
+    """
     unis = np.unique(arr, return_counts=True)
     classes = unis[0].astype('uint8')
     counts = unis[1].astype('uint16')

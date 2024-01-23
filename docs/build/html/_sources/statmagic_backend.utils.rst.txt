@@ -1,0 +1,8 @@
+statmagic\_backend.utils module
+===============================
+
+.. automodule:: statmagic_backend.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

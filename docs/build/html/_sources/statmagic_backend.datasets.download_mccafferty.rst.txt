@@ -1,0 +1,8 @@
+statmagic\_backend.datasets.download\_mccafferty module
+=======================================================
+
+.. automodule:: statmagic_backend.datasets.download_mccafferty
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

@@ -1,0 +1,8 @@
+statmagic\_backend.dev.match\_stack\_raster\_tools module
+=========================================================
+
+.. automodule:: statmagic_backend.dev.match_stack_raster_tools
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

@@ -1,0 +1,8 @@
+statmagic\_backend.dev.simple\_CT\_point\_interpolation module
+==============================================================
+
+.. automodule:: statmagic_backend.dev.simple_CT_point_interpolation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

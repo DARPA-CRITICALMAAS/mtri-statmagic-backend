@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.dev.match_stack_raster_tools &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../statmagic_backend.html">statmagic_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.dev.match_stack_raster_tools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for statmagic_backend.dev.match_stack_raster_tools</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">rasterio</span> <span class="k">as</span> <span class="nn">rio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">rasterio.mask</span> <span class="kn">import</span> <span class="n">mask</span>
+<span class="kn">from</span> <span class="nn">rasterio.enums</span> <span class="kn">import</span> <span class="n">Resampling</span>
+<span class="kn">from</span> <span class="nn">rasterio.warp</span> <span class="kn">import</span> <span class="n">reproject</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+
+
+<div class="viewcode-block" id="match_raster_to_template">
+<a class="viewcode-back" href="../../../statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template">[docs]</a>
+<span class="k">def</span> <span class="nf">match_raster_to_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">input_raster_path</span><span class="p">,</span> <span class="n">resampling_method</span><span class="o">=</span><span class="n">Resampling</span><span class="o">.</span><span class="n">bilinear</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clip and reproject an input raster to another rasters extent, crs,</span>
+<span class="sd">    and affine transform. There could still be some room to add in some subtle</span>
+<span class="sd">    shifts to better match pixel edges.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    template_path : str</span>
+<span class="sd">        Path to the template raster</span>
+<span class="sd">    input_raster_path : str</span>
+<span class="sd">        Path to the input raster</span>
+<span class="sd">    resampling_method : str</span>
+<span class="sd">        Resampling method. Must conform to :meth:`rasterio.warp.Resampling`,</span>
+<span class="sd">        i.e. be one of</span>
+
+<span class="sd">        .. code::</span>
+
+<span class="sd">            [</span>
+<span class="sd">                &#39;nearest&#39;, &#39;bilinear&#39;, &#39;cubic&#39;, &#39;cubic_spline&#39;,</span>
+<span class="sd">                &#39;lanczos&#39;, &#39;average&#39;, &#39;mode&#39;, &#39;gauss&#39;</span>
+<span class="sd">            ]</span>
+<span class="sd">    num_threads : int</span>
+<span class="sd">        Number of threads to utilize for the resampling</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    reproj_arr : ndarray</span>
+<span class="sd">        Array representing the dimensions of the template raster</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Establish properties from the template/base raster</span>
+    <span class="n">base_raster</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">template_path</span><span class="p">)</span>
+    <span class="n">base_raster_bounds</span> <span class="o">=</span> <span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">base_raster</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+    <span class="n">base_crs</span> <span class="o">=</span> <span class="n">base_raster</span><span class="o">.</span><span class="n">crs</span>
+    <span class="n">base_nodata</span> <span class="o">=</span> <span class="n">base_raster</span><span class="o">.</span><span class="n">nodata</span>
+    <span class="n">base_shape</span> <span class="o">=</span> <span class="n">base_raster</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">base_transform</span> <span class="o">=</span> <span class="n">base_raster</span><span class="o">.</span><span class="n">transform</span>
+
+    <span class="c1"># Get the CRS from the input raster</span>
+    <span class="n">input_crs</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">input_raster_path</span><span class="p">)</span><span class="o">.</span><span class="n">crs</span>
+
+    <span class="c1"># Create a clipping object from the geometry of the base raster bounds and reproj to input CRS</span>
+    <span class="n">clipping_object</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">base_raster_bounds</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">base_crs</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">input_crs</span><span class="p">)</span>
+    <span class="n">clipping_shape</span> <span class="o">=</span> <span class="n">clipping_object</span><span class="o">.</span><span class="n">geometry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># open the input raster within the clipping geometry and crop to the shape</span>
+    <span class="c1"># set the values of the elements outside the shape to NaN to not have them included in the reproj</span>
+    <span class="n">open_rast</span><span class="p">,</span> <span class="n">src_aff</span> <span class="o">=</span> <span class="n">mask</span><span class="p">(</span><span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">input_raster_path</span><span class="p">),</span> <span class="n">shapes</span><span class="o">=</span><span class="p">[</span><span class="n">clipping_shape</span><span class="p">],</span> <span class="n">all_touched</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">nodata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Create an array in the shape of the template to reproject into and execute reprojections</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">open_rast</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">base_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">base_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">reproj_arr</span> <span class="o">=</span> <span class="n">reproject</span><span class="p">(</span><span class="n">open_rast</span><span class="p">,</span> <span class="n">new_ds</span><span class="p">,</span> <span class="n">src_transform</span><span class="o">=</span><span class="n">src_aff</span><span class="p">,</span> <span class="n">dst_transform</span><span class="o">=</span><span class="n">base_transform</span><span class="p">,</span>
+                           <span class="n">src_crs</span><span class="o">=</span><span class="n">input_crs</span><span class="p">,</span> <span class="n">dst_crs</span><span class="o">=</span><span class="n">base_crs</span><span class="p">,</span> <span class="n">resampling</span><span class="o">=</span><span class="n">resampling_method</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Reset the NaN values to match the nodata values of the base raster</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">reproj_arr</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="n">base_nodata</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">reproj_arr</span></div>
+
+
+
+<div class="viewcode-block" id="match_and_stack_rasters">
+<a class="viewcode-back" href="../../../statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.match_and_stack_rasters">[docs]</a>
+<span class="k">def</span> <span class="nf">match_and_stack_rasters</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">input_raster_paths_list</span><span class="p">,</span> <span class="n">resampling_method_list</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Serves as the backend of the add raster layers to the data stack tool.</span>
+<span class="sd">    Lists should be created coming from the QDialog and QListView.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    template_path : str</span>
+<span class="sd">        Path to the template raster</span>
+<span class="sd">    input_raster_paths_list : list</span>
+<span class="sd">        List of file paths (str) to input rasters</span>
+<span class="sd">    resampling_method_list : list</span>
+<span class="sd">        Resampling method to apply</span>
+<span class="sd">    num_threads : int</span>
+<span class="sd">        Number of threads to utilize for the resampling</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    array_stack : ndarray</span>
+<span class="sd">        Array with dimensions (number of input files, height and width of template)</span>
+
+<span class="sd">    Warnings</span>
+<span class="sd">    --------</span>
+<span class="sd">    Defaults to ``float32`` datatype.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reprojected_arrays</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">raster_path</span><span class="p">,</span> <span class="n">rs_method</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">input_raster_paths_list</span><span class="p">,</span> <span class="n">resampling_method_list</span><span class="p">):</span>
+        <span class="n">reprojected_array</span> <span class="o">=</span> <span class="n">match_raster_to_template</span><span class="p">(</span><span class="n">template_path</span><span class="p">,</span> <span class="n">raster_path</span><span class="p">,</span> <span class="n">rs_method</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">)</span>
+        <span class="n">reprojected_arrays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reprojected_array</span><span class="p">)</span>
+    <span class="n">array_stack</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">reprojected_arrays</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">array_stack</span></div>
+
+
+
+<div class="viewcode-block" id="add_matched_arrays_to_data_raster">
+<a class="viewcode-back" href="../../../statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster">[docs]</a>
+<span class="k">def</span> <span class="nf">add_matched_arrays_to_data_raster</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">,</span> <span class="n">matched_arrays</span><span class="p">,</span> <span class="n">description_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds ``matched_arrays`` to the data raster along with their descriptions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_raster_filepath : str</span>
+<span class="sd">        Path to the data raster</span>
+<span class="sd">    matched_arrays : ndarray</span>
+<span class="sd">        Array containing subarrays for each match</span>
+<span class="sd">    description_list : list</span>
+<span class="sd">        List of descriptions</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    No return value. Writes directly to the raster file.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_raster</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">)</span>
+    <span class="n">current_band_count</span> <span class="o">=</span> <span class="n">data_raster</span><span class="o">.</span><span class="n">count</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">data_raster</span><span class="o">.</span><span class="n">profile</span>
+    <span class="n">number_new_bands</span> <span class="o">=</span> <span class="n">matched_arrays</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data_raster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># Check that if there is only one layer in the raster (eg. just got built) then to remove it</span>
+    <span class="k">if</span> <span class="n">current_band_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Then the raster has not been populated yet and the only layer is the np zeroes</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;updating raster layers for the first time&#39;</span><span class="p">)</span>
+        <span class="n">profile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">number_new_bands</span><span class="p">)</span>
+        <span class="n">data_raster</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">profile</span><span class="p">)</span>
+        <span class="n">data_raster</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">matched_arrays</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">band</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">description_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">data_raster</span><span class="o">.</span><span class="n">set_band_description</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="n">data_raster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Raster already has layers added and just needs more added to it</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;adding raster layers to current data raster&#39;</span><span class="p">)</span>
+        <span class="n">profile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="p">(</span><span class="n">current_band_count</span> <span class="o">+</span> <span class="n">number_new_bands</span><span class="p">))</span>
+        <span class="c1"># Get the existing numpy array and add the new layers along the axis</span>
+        <span class="n">existing_array</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="c1"># get the existing band descriptions as a list</span>
+        <span class="n">current_descriptions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">)</span><span class="o">.</span><span class="n">descriptions</span><span class="p">)</span>
+        <span class="n">full_descriptions</span> <span class="o">=</span> <span class="n">current_descriptions</span> <span class="o">+</span> <span class="n">description_list</span>
+        <span class="n">full_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">existing_array</span><span class="p">,</span> <span class="n">matched_arrays</span><span class="p">])</span>
+        <span class="n">data_raster</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">profile</span><span class="p">)</span>
+        <span class="n">data_raster</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">full_array</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">band</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">full_descriptions</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">data_raster</span><span class="o">.</span><span class="n">set_band_description</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="n">data_raster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="drop_selected_layers_from_raster">
+<a class="viewcode-back" href="../../../statmagic_backend.dev.match_stack_raster_tools.html#statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster">[docs]</a>
+<span class="k">def</span> <span class="nf">drop_selected_layers_from_raster</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">,</span> <span class="n">list_of_bands</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Removes selected bands from the data raster.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_raster_filepath : str</span>
+<span class="sd">        Path to the data raster</span>
+<span class="sd">    list_of_bands : list</span>
+<span class="sd">        Bands to remove</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    No return value. Overwrites the raster file.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_raster</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">)</span>
+    <span class="n">number_bands_new</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_of_bands</span><span class="p">)</span>
+    <span class="n">idxs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;Band &quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">list_of_bands</span><span class="p">]</span>
+    <span class="n">updated_descs</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">list_of_bands</span><span class="p">]</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">data_raster</span><span class="o">.</span><span class="n">profile</span>
+    <span class="n">profile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">number_bands_new</span><span class="p">)</span>
+    <span class="n">existing_array</span> <span class="o">=</span> <span class="n">data_raster</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">data_raster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">del</span> <span class="n">data_raster</span>
+    <span class="n">updated_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">existing_array</span><span class="p">,</span> <span class="n">idxs</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">data_raster</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_raster_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">profile</span><span class="p">)</span>
+    <span class="n">data_raster</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">updated_array</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">band</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">updated_descs</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">data_raster</span><span class="o">.</span><span class="n">set_band_description</span><span class="p">(</span><span class="n">band</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+    <span class="n">data_raster</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

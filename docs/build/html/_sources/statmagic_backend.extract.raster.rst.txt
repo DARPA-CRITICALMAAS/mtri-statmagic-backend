@@ -1,0 +1,8 @@
+statmagic\_backend.extract.raster module
+========================================
+
+.. automodule:: statmagic_backend.extract.raster
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

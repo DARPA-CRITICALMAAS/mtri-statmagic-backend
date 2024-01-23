@@ -1,0 +1,30 @@
+statmagic\_backend package
+==========================
+
+.. automodule:: statmagic_backend
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.data
+   statmagic_backend.datasets
+   statmagic_backend.dev
+   statmagic_backend.extract
+   statmagic_backend.geo
+   statmagic_backend.geo_chem
+   statmagic_backend.math
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.utils

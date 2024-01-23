@@ -1,0 +1,20 @@
+statmagic\_backend.math package
+===============================
+
+.. automodule:: statmagic_backend.math
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   statmagic_backend.math.ai
+   statmagic_backend.math.clustering
+   statmagic_backend.math.normalKLDiv
+   statmagic_backend.math.sampling
+   statmagic_backend.math.utils

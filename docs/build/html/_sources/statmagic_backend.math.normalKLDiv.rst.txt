@@ -1,0 +1,8 @@
+statmagic\_backend.math.normalKLDiv module
+==========================================
+
+.. automodule:: statmagic_backend.math.normalKLDiv
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

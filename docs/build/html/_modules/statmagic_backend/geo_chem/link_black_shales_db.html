@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.geo_chem.link_black_shales_db &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../statmagic_backend.html">statmagic_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.dev.html">statmagic_backend.dev package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.geo_chem.link_black_shales_db</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for statmagic_backend.geo_chem.link_black_shales_db</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">rasterio</span> <span class="k">as</span> <span class="nn">rio</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
+
+<span class="c1"># template_raster_path = &#39;/home/jagraham/Documents/Local_work/statMagic/devtest/CMA_Lithium/Lithium_template_raster.tif&#39;</span>
+<span class="c1"># element = &#39;Ag&#39;</span>
+
+<span class="c1"># This should return the paths for the geometry and database</span>
+
+
+<span class="n">wdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/home/jagraham/Documents/Local_work/statMagic/McCafferty_Zn-Pb_Data&#39;</span><span class="p">)</span>
+<span class="n">geochemdir</span> <span class="o">=</span> <span class="n">wdir</span> <span class="o">/</span> <span class="s1">&#39;[Geological Data] Global geochemical database for critical metals in black shales/GlobalGeochemic&#39;</span>
+<span class="n">geom_path</span> <span class="o">=</span> <span class="n">geochemdir</span> <span class="o">/</span> <span class="s1">&#39;CMIBS_SplLocs/CMIBS_SplLocs.shp&#39;</span>
+<span class="c1"># This will need a logical string sorter to find whether to use Ag-Mo, or Na-Zr</span>
+<span class="n">chem_path</span> <span class="o">=</span> <span class="n">geochemdir</span> <span class="o">/</span> <span class="s1">&#39;BestValue_Ag_Mo.txt&#39;</span>
+
+<span class="c1"># Setting up for the structure of the Black shales data</span>
+<span class="n">join_col</span> <span class="o">=</span> <span class="s1">&#39;CMIBS_ID&#39;</span>
+
+<div class="viewcode-block" id="prep_black_shales">
+<a class="viewcode-back" href="../../../statmagic_backend.geo_chem.link_black_shales_db.html#statmagic_backend.geo_chem.link_black_shales_db.prep_black_shales">[docs]</a>
+<span class="k">def</span> <span class="nf">prep_black_shales</span><span class="p">(</span><span class="n">template_raster_path</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">element_col</span> <span class="o">=</span> <span class="n">element</span> <span class="o">+</span> <span class="s2">&quot;_ppm&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">chem_path</span><span class="p">,</span> <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="n">join_col</span><span class="p">,</span> <span class="n">element_col</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">element_col</span> <span class="o">=</span> <span class="n">element</span> <span class="o">+</span> <span class="s2">&quot;_pct&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">chem_path</span><span class="p">,</span> <span class="n">delim_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="n">join_col</span><span class="p">,</span> <span class="n">element_col</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element_col</span><span class="p">)</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">template_raster_path</span><span class="p">)</span>
+    <span class="n">bounding_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">template</span><span class="o">.</span><span class="n">bounds</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="n">template</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="c1"># Using a gdf with a crs lets geopandas internally handle the masking between CRS</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">geom_path</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">bounding_gdf</span><span class="p">)</span>
+    <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="n">join_col</span><span class="p">,</span> <span class="n">lsuffix</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Drop rows that don&#39;t have a value</span>
+    <span class="n">gdf</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">element_col</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Drop duplicate geometries. Seems to have quite a few of these</span>
+    <span class="n">gdf</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># negative values are where the concentration was less than sensitivity. Drop those too</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">          &gt;4) Qualifiers: A qualifier such as &quot;N&quot; or &quot;&lt;&quot; (less than the lower limit of determination for the analytical method) or &quot;G&quot; or &quot;&gt;&quot; (greater than the upper limit of determination for the analytical method) accompanied some analytical data values in their source files and databases. These qualifiers are defined as follows:</span>
+<span class="sd">            &quot;L&quot; = the element was detected by the technique but at a level below the lower limit of determination for the method. The value of the lower limit of determination as a negative number is given as the analytical value.</span>
+<span class="sd">            &quot;N&quot; = the element was not detected at concentrations above the lower limit of determination for the method. The value of the lower limit of determination as a negative number is given as the analytical value.</span>
+<span class="sd">            &quot;&lt;&quot; = the element concentration was determined to be less than the lower limit of determination for the method for this element. The value of the lower limit of determination as a negative number is given as the analytical value.</span>
+<span class="sd">            &quot;G&quot; or &quot;&gt;&quot; = the element was measured at a concentration greater than the upper determination limit for the method. The upper limit of determination plus 0.11111 appended to it is given as the analytical value.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="p">[</span><span class="n">element_col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">element_col</span></div>
+
+
+
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

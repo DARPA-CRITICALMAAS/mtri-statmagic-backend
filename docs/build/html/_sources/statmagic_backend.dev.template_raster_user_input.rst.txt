@@ -1,0 +1,8 @@
+statmagic\_backend.dev.template\_raster\_user\_input module
+===========================================================
+
+.. automodule:: statmagic_backend.dev.template_raster_user_input
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

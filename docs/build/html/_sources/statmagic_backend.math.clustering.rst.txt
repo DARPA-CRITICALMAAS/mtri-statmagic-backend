@@ -1,0 +1,8 @@
+statmagic\_backend.math.clustering module
+=========================================
+
+.. automodule:: statmagic_backend.math.clustering
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

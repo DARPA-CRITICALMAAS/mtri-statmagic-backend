@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>statmagic_backend.dev.match_stack_raster_tools module &mdash; statmagic_backend 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="statmagic_backend.dev.proximity_raster module" href="statmagic_backend.dev.proximity_raster.html" />
+    <link rel="prev" title="statmagic_backend.dev package" href="statmagic_backend.dev.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            statmagic_backend
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="statmagic_backend.html">statmagic_backend package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="statmagic_backend.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.data.html">statmagic_backend.data package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.datasets.html">statmagic_backend.datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.datasets.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="statmagic_backend.dev.html">statmagic_backend.dev package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="statmagic_backend.dev.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.extract.html">statmagic_backend.extract package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.extract.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo.html">statmagic_backend.geo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.geo_chem.html">statmagic_backend.geo_chem package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.geo_chem.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.math.html">statmagic_backend.math package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.math.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="statmagic_backend.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">statmagic_backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="statmagic_backend.html">statmagic_backend package</a></li>
+          <li class="breadcrumb-item"><a href="statmagic_backend.dev.html">statmagic_backend.dev package</a></li>
+      <li class="breadcrumb-item active">statmagic_backend.dev.match_stack_raster_tools module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/statmagic_backend.dev.match_stack_raster_tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-statmagic_backend.dev.match_stack_raster_tools">
+<span id="statmagic-backend-dev-match-stack-raster-tools-module"></span><h1>statmagic_backend.dev.match_stack_raster_tools module<a class="headerlink" href="#module-statmagic_backend.dev.match_stack_raster_tools" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">add_matched_arrays_to_data_raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raster_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matched_arrays</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#add_matched_arrays_to_data_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster" title="Link to this definition"></a></dt>
+<dd><p>Adds <code class="docutils literal notranslate"><span class="pre">matched_arrays</span></code> to the data raster along with their descriptions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_raster_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the data raster</p></li>
+<li><p><strong>matched_arrays</strong> (<em>ndarray</em>) – Array containing subarrays for each match</p></li>
+<li><p><strong>description_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – List of descriptions</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>No return value. Writes directly to the raster file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">drop_selected_layers_from_raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raster_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_bands</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#drop_selected_layers_from_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster" title="Link to this definition"></a></dt>
+<dd><p>Removes selected bands from the data raster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_raster_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the data raster</p></li>
+<li><p><strong>list_of_bands</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Bands to remove</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>No return value. Overwrites the raster file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.match_and_stack_rasters">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">match_and_stack_rasters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_raster_paths_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_method_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#match_and_stack_rasters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.match_and_stack_rasters" title="Link to this definition"></a></dt>
+<dd><p>Serves as the backend of the add raster layers to the data stack tool.
+Lists should be created coming from the QDialog and QListView.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the template raster</p></li>
+<li><p><strong>input_raster_paths_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – List of file paths (str) to input rasters</p></li>
+<li><p><strong>resampling_method_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Resampling method to apply</p></li>
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of threads to utilize for the resampling</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>array_stack</strong> – Array with dimensions (number of input files, height and width of template)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">float32</span></code> datatype.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">match_raster_to_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_raster_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Resampling.bilinear</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#match_raster_to_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template" title="Link to this definition"></a></dt>
+<dd><p>Clip and reproject an input raster to another rasters extent, crs,
+and affine transform. There could still be some room to add in some subtle
+shifts to better match pixel edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the template raster</p></li>
+<li><p><strong>input_raster_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the input raster</p></li>
+<li><p><strong>resampling_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – <p>Resampling method. Must conform to <code class="xref py py-meth docutils literal notranslate"><span class="pre">rasterio.warp.Resampling()</span></code>,
+i.e. be one of</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="s1">&#39;bilinear&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic_spline&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lanczos&#39;</span><span class="p">,</span> <span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of threads to utilize for the resampling</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>reproj_arr</strong> – Array representing the dimensions of the template raster</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="statmagic_backend.dev.html" class="btn btn-neutral float-left" title="statmagic_backend.dev package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="statmagic_backend.dev.proximity_raster.html" class="btn btn-neutral float-right" title="statmagic_backend.dev.proximity_raster module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Michigan Tech Research Institute.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
