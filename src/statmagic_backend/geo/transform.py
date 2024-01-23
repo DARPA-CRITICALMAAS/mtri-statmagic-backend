@@ -36,7 +36,7 @@ def geotFromOffsets(row_offset, col_offset, geot):
 
 
 def download_tiles(tile_indices, tileserver, service):
-    """
+    r"""
     Download Mapbox tiles from a particular tile server. Defaults to Macrostrat
     using the ``carto`` service.
 
@@ -44,7 +44,7 @@ def download_tiles(tile_indices, tileserver, service):
     ----------
     tile_indices : array-like
         Set of tile XYZ indices where, for each tile, the data is ordered
-        ``[z,x,y]`` where ``z`` is zoom; ``x``,``y`` are image indices.
+        ``[z,x,y]`` where ``z`` is zoom; ``x``, ``y`` are image indices.
     tileserver : str
         Tile server URL
     service : str
@@ -58,21 +58,21 @@ def download_tiles(tile_indices, tileserver, service):
     Notes
     -----
     In Macrostrat's tile server, the XYZ indices are specified in the URL
-    in this order: ``/{z}/{x}/{y}``
+    in this order: ``/{z}/{x}/{y}``, where
 
-    z = zoom level; x = tile x index; y = tile y index (starting at top)
+        ``z`` = zoom level
+        ``x`` = tile x index
+        ``y`` = tile y index (starting at top)
 
     Georegistration for now is done by pinning corners to the tile bounds (which
     we can get from mercantile). Registration precision improves the further zoomed
     in you are:
 
-    ---------------------------------
-    Zoom level*| Observed precision**
-    ---------------------------------
-    4 | 15-km
-    5 |  8-km
-    6 |  4-km
-    ---------------------------------
+        | Zoom level | Observed precision |
+        | -----------|------------------- |
+        | 4          | 15-km              |
+        | 5          |  8-km              |
+        | 6          |  4-km              |
 
     *  lower zoom level are more zoomed out
     ** i.e. vertices can be off by this much at this zoom level
@@ -355,13 +355,13 @@ def dissolve_vector_files_by_property(
         List of valid GeoJSON geometry types for the given layer
     output_file : str
         File path for the output file
-    n : (optional) float
+    n : float, optional
         Latitude indicating northern bounds of BBOX used to clip features
-    s : (optional) float
+    s : float, optional
         Latitude indicating northern bounds of BBOX used to clip features
-    e : (optional) float
+    e : float, optional
         Longitude indicating eastern bounds of BBOX used to clip features
-    w : (optional) float
+    w : float, optional
         Longitude indicating western bounds of BBOX used to clip features
 
     Notes

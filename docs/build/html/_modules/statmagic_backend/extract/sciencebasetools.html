@@ -77,8 +77,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -124,6 +124,22 @@
 <div class="viewcode-block" id="create_sciencebase_registry">
 <a class="viewcode-back" href="../../../statmagic_backend.extract.sciencebasetools.html#statmagic_backend.extract.sciencebasetools.create_sciencebase_registry">[docs]</a>
 <span class="k">def</span> <span class="nf">create_sciencebase_registry</span><span class="p">(</span><span class="n">item_json</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates dictionaries mapping filenames to hashes and URLs</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    item_json : dict</span>
+<span class="sd">        Dictionary containing a list of filenames under the key ``&#39;files&#39;``</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    registry_dict : dict</span>
+<span class="sd">        Dictionary mapping filenames to hashes</span>
+<span class="sd">    urls_dict : dict</span>
+<span class="sd">        Dictionary mapping filenames to URLs</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get names, hashes, and URLS</span>
     <span class="n">list_of_files</span> <span class="o">=</span> <span class="n">item_json</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
 
@@ -140,6 +156,26 @@
 <div class="viewcode-block" id="fetch_sciencebase_files">
 <a class="viewcode-back" href="../../../statmagic_backend.extract.sciencebasetools.html#statmagic_backend.extract.sciencebasetools.fetch_sciencebase_files">[docs]</a>
 <span class="k">def</span> <span class="nf">fetch_sciencebase_files</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">sciencebase_session</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">write_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursively fetches the file hashes from sciencebase.org and stores them</span>
+<span class="sd">    in the ``pooch`` registry.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    id : str</span>
+<span class="sd">        The ID of the item to fetch from ScienceBase</span>
+<span class="sd">    sciencebase_session : sciencebasepy.SbSession, optional</span>
+<span class="sd">        ScienceBase session object (only used inside recursive calls)</span>
+<span class="sd">    write_path : str</span>
+<span class="sd">        Path to store ``pooch`` registry.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    puppy_dict : dict</span>
+<span class="sd">        Dictionary containing ``pooch`` objects, to be parsed by</span>
+<span class="sd">        :func:`recursive_download`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">sciencebase_session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">sciencebase_session</span> <span class="o">=</span> <span class="n">sciencebasepy</span><span class="o">.</span><span class="n">SbSession</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
@@ -194,6 +230,22 @@
 <div class="viewcode-block" id="recursive_download">
 <a class="viewcode-back" href="../../../statmagic_backend.extract.sciencebasetools.html#statmagic_backend.extract.sciencebasetools.recursive_download">[docs]</a>
 <span class="k">def</span> <span class="nf">recursive_download</span><span class="p">(</span><span class="n">pooch_tree</span><span class="p">,</span> <span class="n">print_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursively downloads the actual files from sciencebase.org if they aren&#39;t</span>
+<span class="sd">    already cached in the pooch registry</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pooch_tree : dict</span>
+<span class="sd">        Output of :func:`fetch_sciencebase_files`</span>
+<span class="sd">    print_only : bool, optional</span>
+<span class="sd">        If ``True``, dry run (just print paths without downloading anything).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    No return value. Writes directly to disk.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pooch_colletion</span> <span class="o">=</span> <span class="n">pooch_tree</span><span class="p">[</span><span class="s2">&quot;pooch&quot;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pooch_colletion</span><span class="o">.</span><span class="n">registry</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">print_only</span><span class="p">:</span>

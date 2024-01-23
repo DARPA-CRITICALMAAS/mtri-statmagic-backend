@@ -11,7 +11,9 @@ Submodules
 ----------
 
 .. toctree::
+   :includehidden:
    :maxdepth: 4
+   :glob:
 
    statmagic_backend.dev.match_stack_raster_tools
    statmagic_backend.dev.proximity_raster

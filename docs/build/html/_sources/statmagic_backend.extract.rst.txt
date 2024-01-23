@@ -11,7 +11,9 @@ Submodules
 ----------
 
 .. toctree::
+   :includehidden:
    :maxdepth: 4
+   :glob:
 
    statmagic_backend.extract.raster
    statmagic_backend.extract.sciencebasetools

@@ -11,7 +11,9 @@ Subpackages
 -----------
 
 .. toctree::
+   :includehidden:
    :maxdepth: 4
+   :glob:
 
    statmagic_backend.data
    statmagic_backend.datasets
@@ -25,6 +27,8 @@ Submodules
 ----------
 
 .. toctree::
+   :includehidden:
    :maxdepth: 4
+   :glob:
 
    statmagic_backend.utils

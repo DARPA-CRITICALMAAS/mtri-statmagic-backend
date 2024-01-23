@@ -80,8 +80,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="statmagic_backend.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -118,6 +118,28 @@
              
   <section id="module-statmagic_backend.math.sampling">
 <span id="statmagic-backend-math-sampling-module"></span><h1>statmagic_backend.math.sampling module<a class="headerlink" href="#module-statmagic_backend.math.sampling" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.math.sampling.randomSample">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.sampling.</span></span><span class="sig-name descname"><span class="pre">randomSample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_pct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/sampling.html#randomSample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.sampling.randomSample" title="Link to this definition"></a></dt>
+<dd><p>Randomly subsets <code class="docutils literal notranslate"><span class="pre">data_arr</span></code> according to the probability distribution
+determined by <code class="docutils literal notranslate"><span class="pre">keep_pct</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_arr</strong> (<em>ndarray</em>) – Array to subset</p></li>
+<li><p><strong>keep_pct</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Percentage of data to keep [0-100].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>ndarray</em> – Data kept</p></li>
+<li><p><em>ndarray</em> – Data removed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="statmagic_backend.math.sampling.balancedSamples">
 <span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.sampling.</span></span><span class="sig-name descname"><span class="pre">balancedSamples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">take_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/sampling.html#balancedSamples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.sampling.balancedSamples" title="Link to this definition"></a></dt>
@@ -159,28 +181,6 @@ and percent of labels.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="statmagic_backend.math.sampling.randomSample">
-<span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.sampling.</span></span><span class="sig-name descname"><span class="pre">randomSample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_pct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/sampling.html#randomSample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.sampling.randomSample" title="Link to this definition"></a></dt>
-<dd><p>Randomly subsets <code class="docutils literal notranslate"><span class="pre">data_arr</span></code> according to the probability distribution
-determined by <code class="docutils literal notranslate"><span class="pre">keep_pct</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_arr</strong> (<em>ndarray</em>) – Array to subset</p></li>
-<li><p><strong>keep_pct</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Percentage of data to keep [0-100].</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>ndarray</em> – Data kept</p></li>
-<li><p><em>ndarray</em> – Data removed</p></li>
-</ul>
-</p>
 </dd>
 </dl>
 </dd></dl>

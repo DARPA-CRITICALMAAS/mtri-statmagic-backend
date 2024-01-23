@@ -8,6 +8,22 @@ sleep_time = 1.0
 
 
 def create_sciencebase_registry(item_json):
+    """
+    Creates dictionaries mapping filenames to hashes and URLs
+
+    Parameters
+    ----------
+    item_json : dict
+        Dictionary containing a list of filenames under the key ``'files'``
+
+    Returns
+    -------
+    registry_dict : dict
+        Dictionary mapping filenames to hashes
+    urls_dict : dict
+        Dictionary mapping filenames to URLs
+
+    """
     # Get names, hashes, and URLS
     list_of_files = item_json['files']
 
@@ -21,6 +37,26 @@ def create_sciencebase_registry(item_json):
     return registry_dict, urls_dict
 
 def fetch_sciencebase_files(id, sciencebase_session = None, write_path=None):
+    """
+    Recursively fetches the file hashes from sciencebase.org and stores them
+    in the ``pooch`` registry.
+
+    Parameters
+    ----------
+    id : str
+        The ID of the item to fetch from ScienceBase
+    sciencebase_session : sciencebasepy.SbSession, optional
+        ScienceBase session object (only used inside recursive calls)
+    write_path : str
+        Path to store ``pooch`` registry.
+
+    Returns
+    -------
+    puppy_dict : dict
+        Dictionary containing ``pooch`` objects, to be parsed by
+        :func:`recursive_download`
+
+    """
     if sciencebase_session is None:
         sciencebase_session = sciencebasepy.SbSession()
         time.sleep(sleep_time)
@@ -72,6 +108,22 @@ def fetch_sciencebase_files(id, sciencebase_session = None, write_path=None):
 
 
 def recursive_download(pooch_tree, print_only = False):
+    """
+    Recursively downloads the actual files from sciencebase.org if they aren't
+    already cached in the pooch registry
+
+    Parameters
+    ----------
+    pooch_tree : dict
+        Output of :func:`fetch_sciencebase_files`
+    print_only : bool, optional
+        If ``True``, dry run (just print paths without downloading anything).
+
+    Notes
+    -----
+    No return value. Writes directly to disk.
+
+    """
     pooch_colletion = pooch_tree["pooch"]
     for item in pooch_colletion.registry:
         if print_only:

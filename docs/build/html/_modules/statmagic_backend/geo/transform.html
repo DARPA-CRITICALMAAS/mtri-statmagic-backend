@@ -77,8 +77,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../statmagic_backend.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +158,7 @@
 <div class="viewcode-block" id="download_tiles">
 <a class="viewcode-back" href="../../../statmagic_backend.geo.transform.html#statmagic_backend.geo.transform.download_tiles">[docs]</a>
 <span class="k">def</span> <span class="nf">download_tiles</span><span class="p">(</span><span class="n">tile_indices</span><span class="p">,</span> <span class="n">tileserver</span><span class="p">,</span> <span class="n">service</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Download Mapbox tiles from a particular tile server. Defaults to Macrostrat</span>
 <span class="sd">    using the ``carto`` service.</span>
 
@@ -166,7 +166,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    tile_indices : array-like</span>
 <span class="sd">        Set of tile XYZ indices where, for each tile, the data is ordered</span>
-<span class="sd">        ``[z,x,y]`` where ``z`` is zoom; ``x``,``y`` are image indices.</span>
+<span class="sd">        ``[z,x,y]`` where ``z`` is zoom; ``x``, ``y`` are image indices.</span>
 <span class="sd">    tileserver : str</span>
 <span class="sd">        Tile server URL</span>
 <span class="sd">    service : str</span>
@@ -180,21 +180,21 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    In Macrostrat&#39;s tile server, the XYZ indices are specified in the URL</span>
-<span class="sd">    in this order: ``/{z}/{x}/{y}``</span>
+<span class="sd">    in this order: ``/{z}/{x}/{y}``, where</span>
 
-<span class="sd">    z = zoom level; x = tile x index; y = tile y index (starting at top)</span>
+<span class="sd">        ``z`` = zoom level</span>
+<span class="sd">        ``x`` = tile x index</span>
+<span class="sd">        ``y`` = tile y index (starting at top)</span>
 
 <span class="sd">    Georegistration for now is done by pinning corners to the tile bounds (which</span>
 <span class="sd">    we can get from mercantile). Registration precision improves the further zoomed</span>
 <span class="sd">    in you are:</span>
 
-<span class="sd">    ---------------------------------</span>
-<span class="sd">    Zoom level*| Observed precision**</span>
-<span class="sd">    ---------------------------------</span>
-<span class="sd">    4 | 15-km</span>
-<span class="sd">    5 |  8-km</span>
-<span class="sd">    6 |  4-km</span>
-<span class="sd">    ---------------------------------</span>
+<span class="sd">        | Zoom level | Observed precision |</span>
+<span class="sd">        | -----------|------------------- |</span>
+<span class="sd">        | 4          | 15-km              |</span>
+<span class="sd">        | 5          |  8-km              |</span>
+<span class="sd">        | 6          |  4-km              |</span>
 
 <span class="sd">    *  lower zoom level are more zoomed out</span>
 <span class="sd">    ** i.e. vertices can be off by this much at this zoom level</span>
@@ -492,13 +492,13 @@
 <span class="sd">        List of valid GeoJSON geometry types for the given layer</span>
 <span class="sd">    output_file : str</span>
 <span class="sd">        File path for the output file</span>
-<span class="sd">    n : (optional) float</span>
+<span class="sd">    n : float, optional</span>
 <span class="sd">        Latitude indicating northern bounds of BBOX used to clip features</span>
-<span class="sd">    s : (optional) float</span>
+<span class="sd">    s : float, optional</span>
 <span class="sd">        Latitude indicating northern bounds of BBOX used to clip features</span>
-<span class="sd">    e : (optional) float</span>
+<span class="sd">    e : float, optional</span>
 <span class="sd">        Longitude indicating eastern bounds of BBOX used to clip features</span>
-<span class="sd">    w : (optional) float</span>
+<span class="sd">    w : float, optional</span>
 <span class="sd">        Longitude indicating western bounds of BBOX used to clip features</span>
 
 <span class="sd">    Notes</span>

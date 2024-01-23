@@ -80,8 +80,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="statmagic_backend.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -119,36 +119,35 @@
   <section id="module-statmagic_backend.dev.match_stack_raster_tools">
 <span id="statmagic-backend-dev-match-stack-raster-tools-module"></span><h1>statmagic_backend.dev.match_stack_raster_tools module<a class="headerlink" href="#module-statmagic_backend.dev.match_stack_raster_tools" title="Link to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster">
-<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">add_matched_arrays_to_data_raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raster_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matched_arrays</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#add_matched_arrays_to_data_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster" title="Link to this definition"></a></dt>
-<dd><p>Adds <code class="docutils literal notranslate"><span class="pre">matched_arrays</span></code> to the data raster along with their descriptions.</p>
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">match_raster_to_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_raster_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Resampling.bilinear</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#match_raster_to_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template" title="Link to this definition"></a></dt>
+<dd><p>Clip and reproject an input raster to another rasters extent, crs,
+and affine transform. There could still be some room to add in some subtle
+shifts to better match pixel edges.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_raster_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the data raster</p></li>
-<li><p><strong>matched_arrays</strong> (<em>ndarray</em>) – Array containing subarrays for each match</p></li>
-<li><p><strong>description_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – List of descriptions</p></li>
+<li><p><strong>template_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the template raster</p></li>
+<li><p><strong>input_raster_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the input raster</p></li>
+<li><p><strong>resampling_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – <p>Resampling method. Must conform to <code class="xref py py-meth docutils literal notranslate"><span class="pre">rasterio.warp.Resampling()</span></code>,
+i.e. be one of</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="s1">&#39;bilinear&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic_spline&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lanczos&#39;</span><span class="p">,</span> <span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of threads to utilize for the resampling</p></li>
 </ul>
 </dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>No return value. Writes directly to the raster file.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster">
-<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">drop_selected_layers_from_raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raster_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_bands</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#drop_selected_layers_from_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster" title="Link to this definition"></a></dt>
-<dd><p>Removes selected bands from the data raster.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_raster_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the data raster</p></li>
-<li><p><strong>list_of_bands</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Bands to remove</p></li>
-</ul>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>reproj_arr</strong> – Array representing the dimensions of the template raster</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>No return value. Overwrites the raster file.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -179,35 +178,36 @@ Lists should be created coming from the QDialog and QListView.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template">
-<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">match_raster_to_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_raster_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Resampling.bilinear</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#match_raster_to_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.match_raster_to_template" title="Link to this definition"></a></dt>
-<dd><p>Clip and reproject an input raster to another rasters extent, crs,
-and affine transform. There could still be some room to add in some subtle
-shifts to better match pixel edges.</p>
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">add_matched_arrays_to_data_raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raster_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matched_arrays</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#add_matched_arrays_to_data_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.add_matched_arrays_to_data_raster" title="Link to this definition"></a></dt>
+<dd><p>Adds <code class="docutils literal notranslate"><span class="pre">matched_arrays</span></code> to the data raster along with their descriptions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>template_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the template raster</p></li>
-<li><p><strong>input_raster_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the input raster</p></li>
-<li><p><strong>resampling_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – <p>Resampling method. Must conform to <code class="xref py py-meth docutils literal notranslate"><span class="pre">rasterio.warp.Resampling()</span></code>,
-i.e. be one of</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
-    <span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="s1">&#39;bilinear&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic&#39;</span><span class="p">,</span> <span class="s1">&#39;cubic_spline&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;lanczos&#39;</span><span class="p">,</span> <span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;gauss&#39;</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of threads to utilize for the resampling</p></li>
+<li><p><strong>data_raster_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the data raster</p></li>
+<li><p><strong>matched_arrays</strong> (<em>ndarray</em>) – Array containing subarrays for each match</p></li>
+<li><p><strong>description_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – List of descriptions</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>reproj_arr</strong> – Array representing the dimensions of the template raster</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ndarray</p>
+</dl>
+<p class="rubric">Notes</p>
+<p>No return value. Writes directly to the raster file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.dev.match_stack_raster_tools.</span></span><span class="sig-name descname"><span class="pre">drop_selected_layers_from_raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raster_filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_bands</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/dev/match_stack_raster_tools.html#drop_selected_layers_from_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.dev.match_stack_raster_tools.drop_selected_layers_from_raster" title="Link to this definition"></a></dt>
+<dd><p>Removes selected bands from the data raster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_raster_filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Path to the data raster</p></li>
+<li><p><strong>list_of_bands</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – Bands to remove</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>No return value. Overwrites the raster file.</p>
 </dd></dl>
 
 </section>

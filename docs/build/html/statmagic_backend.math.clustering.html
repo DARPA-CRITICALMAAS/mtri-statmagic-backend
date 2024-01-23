@@ -80,8 +80,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="statmagic_backend.html#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="statmagic_backend.utils.html">statmagic_backend.utils module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.recursive_hardlink"><code class="docutils literal notranslate"><span class="pre">recursive_hardlink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="statmagic_backend.utils.html#statmagic_backend.utils.polytextreplace"><code class="docutils literal notranslate"><span class="pre">polytextreplace()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -119,11 +119,6 @@
   <section id="module-statmagic_backend.math.clustering">
 <span id="statmagic-backend-math-clustering-module"></span><h1>statmagic_backend.math.clustering module<a class="headerlink" href="#module-statmagic_backend.math.clustering" title="Link to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="statmagic_backend.math.clustering.clusterDataInMask">
-<span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.clustering.</span></span><span class="sig-name descname"><span class="pre">clusterDataInMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodata_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nclust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varexp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pca_bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusclass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/clustering.html#clusterDataInMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.clustering.clusterDataInMask" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="statmagic_backend.math.clustering.doPCA_kmeans">
 <span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.clustering.</span></span><span class="sig-name descname"><span class="pre">doPCA_kmeans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bool_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nclust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varexp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pca_bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/clustering.html#doPCA_kmeans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.clustering.doPCA_kmeans" title="Link to this definition"></a></dt>
 <dd><p>Computes PCA followed by kmeans clustering.</p>
@@ -151,15 +146,20 @@ the input data)</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="statmagic_backend.math.clustering.soft_clustering_weights">
-<span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.clustering.</span></span><span class="sig-name descname"><span class="pre">soft_clustering_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_centres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/clustering.html#soft_clustering_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.clustering.soft_clustering_weights" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="statmagic_backend.math.clustering.unpack_fullK">
 <span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.clustering.</span></span><span class="sig-name descname"><span class="pre">unpack_fullK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Kdict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/clustering.html#unpack_fullK"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.clustering.unpack_fullK" title="Link to this definition"></a></dt>
 <dd><p>Unpacks a dictionary according to a set of fixed expected keys.</p>
 </dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.math.clustering.clusterDataInMask">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.clustering.</span></span><span class="sig-name descname"><span class="pre">clusterDataInMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodata_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nclust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varexp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pca_bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusclass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/clustering.html#clusterDataInMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.clustering.clusterDataInMask" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="statmagic_backend.math.clustering.soft_clustering_weights">
+<span class="sig-prename descclassname"><span class="pre">statmagic_backend.math.clustering.</span></span><span class="sig-name descname"><span class="pre">soft_clustering_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_centres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/statmagic_backend/math/clustering.html#soft_clustering_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#statmagic_backend.math.clustering.soft_clustering_weights" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </section>
 

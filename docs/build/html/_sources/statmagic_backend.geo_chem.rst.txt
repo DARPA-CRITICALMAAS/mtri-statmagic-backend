@@ -11,6 +11,8 @@ Submodules
 ----------
 
 .. toctree::
+   :includehidden:
    :maxdepth: 4
+   :glob:
 
    statmagic_backend.geo_chem.link_black_shales_db

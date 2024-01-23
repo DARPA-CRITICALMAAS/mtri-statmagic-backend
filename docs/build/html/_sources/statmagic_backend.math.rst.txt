@@ -11,7 +11,9 @@ Submodules
 ----------
 
 .. toctree::
+   :includehidden:
    :maxdepth: 4
+   :glob:
 
    statmagic_backend.math.ai
    statmagic_backend.math.clustering
