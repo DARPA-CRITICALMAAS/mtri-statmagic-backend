@@ -110,6 +110,7 @@ def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
     profile.update(count=number_bands_new)
     existing_array = data_raster.read()
     data_raster.close()
+    del data_raster
     updated_array = np.delete(existing_array, idxs, 0)
     data_raster = rio.open(data_raster_filepath, 'w', **profile)
     data_raster.write(updated_array)
