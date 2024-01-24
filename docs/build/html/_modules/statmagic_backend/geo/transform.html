@@ -190,11 +190,15 @@
 <span class="sd">    we can get from mercantile). Registration precision improves the further zoomed</span>
 <span class="sd">    in you are:</span>
 
-<span class="sd">        | Zoom level | Observed precision |</span>
-<span class="sd">        | -----------|------------------- |</span>
-<span class="sd">        | 4          | 15-km              |</span>
-<span class="sd">        | 5          |  8-km              |</span>
-<span class="sd">        | 6          |  4-km              |</span>
+<span class="sd">    .. table::</span>
+
+<span class="sd">        ==========  ==================</span>
+<span class="sd">        Zoom level  Observed precision</span>
+<span class="sd">        ==========  ==================</span>
+<span class="sd">        4           15-km</span>
+<span class="sd">        5           8-km</span>
+<span class="sd">        6           4-km</span>
+<span class="sd">        ==========  ==================</span>
 
 <span class="sd">    *  lower zoom level are more zoomed out</span>
 <span class="sd">    ** i.e. vertices can be off by this much at this zoom level</span>
@@ -412,11 +416,13 @@
 <span class="sd">        List of 3 element lists that define tile indices as (z,x,y) that can be</span>
 <span class="sd">        fed into *download_tiles*, e.g.:</span>
 
-<span class="sd">            ```[</span>
+<span class="sd">        .. code::</span>
+
+<span class="sd">            [</span>
 <span class="sd">                [7,42,42],</span>
 <span class="sd">                [7,42,43],</span>
 <span class="sd">                [7,42,44],</span>
-<span class="sd">            ]```</span>
+<span class="sd">            ]</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -425,15 +431,19 @@
 <span class="sd">    over a grid of lat/lon point within the bounds. Only the unique set of tiles</span>
 <span class="sd">    is retained. Grid size is determined by ``zoom_level``:</span>
 
-<span class="sd">    | Zoom level | Tile size | Grid resolution |</span>
-<span class="sd">    | -----------|-----------|---------------- |</span>
-<span class="sd">    | 5 | 11 - 18 degrees | 10 degrees |</span>
-<span class="sd">    | 6 |  5 -  9 degrees |  4 degrees |</span>
-<span class="sd">    | 7 |  2 -  3 degrees |  1 degree (~100 km) |</span>
-<span class="sd">    | 8 |  ? -  ? degrees |  0.25 degree (~25 km) |</span>
-<span class="sd">    | 9 | | 0.0625 degrees (~6.25 km) |</span>
-<span class="sd">    | 10 | | 0.016 degrees (~1.6 km) |</span>
-<span class="sd">    | 11 | | 0.004 degrees (~400 m) |</span>
+<span class="sd">    .. table::</span>
+
+<span class="sd">        ==========  ===============  =========================</span>
+<span class="sd">        Zoom level  Tile size        Grid resolution</span>
+<span class="sd">        ==========  ===============  =========================</span>
+<span class="sd">        5           11 - 18 degrees  10 degrees</span>
+<span class="sd">        6           5 -  9 degrees   4 degrees</span>
+<span class="sd">        7           2 -  3 degrees   1 degree (~100 km)</span>
+<span class="sd">        8           ? -  ? degrees   0.25 degree (~25 km)</span>
+<span class="sd">        9                            0.0625 degrees (~6.25 km)</span>
+<span class="sd">        10                           0.016 degrees (~1.6 km)</span>
+<span class="sd">        11                           0.004 degrees (~400 m)</span>
+<span class="sd">        ==========  ===============  =========================</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 

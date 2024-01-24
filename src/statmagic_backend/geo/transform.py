@@ -68,11 +68,15 @@ def download_tiles(tile_indices, tileserver, service):
     we can get from mercantile). Registration precision improves the further zoomed
     in you are:
 
-        | Zoom level | Observed precision |
-        | -----------|------------------- |
-        | 4          | 15-km              |
-        | 5          |  8-km              |
-        | 6          |  4-km              |
+    .. table::
+
+        ==========  ==================
+        Zoom level  Observed precision
+        ==========  ==================
+        4           15-km
+        5           8-km
+        6           4-km
+        ==========  ==================
 
     *  lower zoom level are more zoomed out
     ** i.e. vertices can be off by this much at this zoom level
@@ -278,11 +282,13 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
         List of 3 element lists that define tile indices as (z,x,y) that can be
         fed into *download_tiles*, e.g.:
 
-            ```[
+        .. code::
+
+            [
                 [7,42,42],
                 [7,42,43],
                 [7,42,44],
-            ]```
+            ]
 
     Notes
     -----
@@ -291,15 +297,19 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
     over a grid of lat/lon point within the bounds. Only the unique set of tiles
     is retained. Grid size is determined by ``zoom_level``:
 
-    | Zoom level | Tile size | Grid resolution |
-    | -----------|-----------|---------------- |
-    | 5 | 11 - 18 degrees | 10 degrees |
-    | 6 |  5 -  9 degrees |  4 degrees |
-    | 7 |  2 -  3 degrees |  1 degree (~100 km) |
-    | 8 |  ? -  ? degrees |  0.25 degree (~25 km) |
-    | 9 | | 0.0625 degrees (~6.25 km) |
-    | 10 | | 0.016 degrees (~1.6 km) |
-    | 11 | | 0.004 degrees (~400 m) |
+    .. table::
+
+        ==========  ===============  =========================
+        Zoom level  Tile size        Grid resolution
+        ==========  ===============  =========================
+        5           11 - 18 degrees  10 degrees
+        6           5 -  9 degrees   4 degrees
+        7           2 -  3 degrees   1 degree (~100 km)
+        8           ? -  ? degrees   0.25 degree (~25 km)
+        9                            0.0625 degrees (~6.25 km)
+        10                           0.016 degrees (~1.6 km)
+        11                           0.004 degrees (~400 m)
+        ==========  ===============  =========================
 
     """
 
