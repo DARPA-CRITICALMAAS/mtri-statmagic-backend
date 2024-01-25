@@ -172,15 +172,18 @@ def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
 
     """
     data_raster = rio.open(data_raster_filepath)
+    num_bands_current = data_raster.count
     number_bands_new = len(list_of_bands)
+    full_idx = [x+1 for x in range(num_bands_current)]
     idxs = [int(item.split("Band ")[1].split(":")[0]) for item in list_of_bands]
+    drop_idxs = [x -1 for x in full_idx if x not in idxs]
     updated_descs = [item.split(": ")[1] for item in list_of_bands]
     profile = data_raster.profile
     profile.update(count=number_bands_new)
     existing_array = data_raster.read()
     data_raster.close()
     del data_raster
-    updated_array = np.delete(existing_array, idxs, 0)
+    updated_array = np.delete(existing_array, drop_idxs, 0)
     data_raster = rio.open(data_raster_filepath, 'w', **profile)
     data_raster.write(updated_array)
     for band, description in enumerate(updated_descs, 1):
