@@ -36,7 +36,7 @@ If the first option
 
 def get_array_shape_from_bounds_and_res(bounds: np.ndarray, pixel_size: Number):
 
-    # upack the bounding box to match eis input
+    # upack the bounding box
     coord_west, coord_south, coord_east, coord_north = bounds[0], bounds[1], bounds[2], bounds[3]
 
     # Need to get the array shape from resolution
@@ -77,6 +77,7 @@ def print_memory_allocation_from_resolution_bounds(bounds, pixel_size, bit=4):
     bytesize = ht * wid * bit
     statement = f"Each layer will be approximately {round(bytesize * 0.000001, 2)} MB"
     print(statement)
+    print(f'height: {ht}, wid: {wid}')
     return statement
 
 
