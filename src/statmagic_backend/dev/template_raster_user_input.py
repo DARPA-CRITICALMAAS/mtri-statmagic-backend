@@ -3,36 +3,9 @@ from numbers import Number
 import numpy as np
 import rasterio as rio
 from rasterio.transform import from_origin
+from rasterio.features import rasterize
 import geopandas as gpd
-
-#
-# selected_layer_file_path = '/home/jagraham/Documents/Local_work/rodmap/ROMOMAP/extents/grand_mesa_GEE.shp'
-#
-# # out_put_path should default to a folder where the project metadata is being stored?
-# output_path = '/home/jagraham/Documents/Local_work/statMagic/devtest/template_raster.tif'
-#
-# # QGIS Inputs
-# pixel_size = 50  # User selects in GUI
-
-# CRS could be chosen in current GUI options or derived from an existing layer
-'''Potential ways user may select the extent
-1) From an exisiting vector data geometry
-2) Drawing a bounding box in QGIS
-3) From Canvas extent
-
-If 2 or 3 then it's pretty straightforwad
-- convert bounding box coords to chosen CRS
-- run the template raster 
-
-If the first option
-- convert shape to chosen crs
-- calculate total bounds
-- 
-'''
-
-# crs = gpd.read_file(selected_layer_file_path).crs
-# bounds = gpd.read_file(selected_layer_file_path).total_bounds
-
+from typing import Optional
 
 def get_array_shape_from_bounds_and_res(bounds: np.ndarray, pixel_size: Number):
 
@@ -46,17 +19,17 @@ def get_array_shape_from_bounds_and_res(bounds: np.ndarray, pixel_size: Number):
     return raster_width, raster_height, coord_west, coord_north
 
 
-def create_template_raster_from_bounds_and_resolution(
-        bounds: np.ndarray,
-        target_crs: rio.crs.CRS,
-        pixel_size: int,
-        output_path: str):
+def create_template_raster_from_bounds_and_resolution(bounds, target_crs, pixel_size, output_path, clipping_gdf):
 
     raster_width, raster_height, coord_west, coord_north = get_array_shape_from_bounds_and_res(bounds, pixel_size)
-    out_array = np.full((1, raster_height, raster_width), 0.0, dtype=np.float32)
+    out_array = np.full((1, raster_height, raster_width), 0, dtype=np.float32)
     out_transform = from_origin(coord_west, coord_north, pixel_size, pixel_size)
-
-    # CRS may be wkt, epsg
+    # TODO: Figure out how to make the clipping gdf and if it is a geodataframe, then if indent the next three lines
+    # This should really only get done if the polygon != bounds
+    shapes = ((geom) for geom in clipping_gdf.geometry)
+    # This fill parameter doesn't seem to be working as I expect
+    masking_array = rasterize(shapes=shapes, fill=np.finfo('float32').min, out=out_array, transform=out_transform, default_value=1)
+    out_array = np.where(masking_array == 1, 1, 0).astype(np.float32)
 
     out_meta = {
         "width": raster_width,
@@ -72,6 +45,35 @@ def create_template_raster_from_bounds_and_resolution(
     new_dataset.write(out_array)
     new_dataset.close()
 
+# def create_template_raster_from_bounds_and_resolution(
+#         bounds: np.ndarray,
+#         target_crs: rio.crs.CRS,
+#         pixel_size: int,
+#         output_path: str,
+#         clipping_gdf: gpd.GeoDataFrame):
+#
+#     raster_width, raster_height, coord_west, coord_north = get_array_shape_from_bounds_and_res(bounds, pixel_size)
+#     out_array = np.full((1, raster_height, raster_width), 1, dtype=np.float32)
+#     out_transform = from_origin(coord_west, coord_north, pixel_size, pixel_size)
+#     # TODO: Figure out how to make the clipping gdf and if it is a geodataframe, then if indent the next three lines
+#     masking_shape = clipping_gdf.geometry[0]
+#     masking_array = rio.features.rasterize((masking_shape, 1), fill=0, out=out_array.copy(), transform=out_transform)
+#     out_array = np.where(masking_array == 1, 1, 0)
+#
+#     out_meta = {
+#         "width": raster_width,
+#         "height": raster_height,
+#         "count": 1,
+#         "dtype": out_array.dtype,
+#         "crs": target_crs,
+#         "transform": out_transform,
+#         "nodata": np.finfo('float32').min,
+#     }
+#
+#     new_dataset = rio.open(output_path, 'w', driver='GTiff', **out_meta)
+#     new_dataset.write(out_array)
+#     new_dataset.close()
+
 def print_memory_allocation_from_resolution_bounds(bounds, pixel_size, bit=4):
     ht, wid = get_array_shape_from_bounds_and_res(bounds, pixel_size)[0:2]
     bytesize = ht * wid * bit
@@ -79,6 +81,3 @@ def print_memory_allocation_from_resolution_bounds(bounds, pixel_size, bit=4):
     print(statement)
     print(f'height: {ht}, wid: {wid}')
     return statement
-
-
-# create_template_raster_from_bounds_and_resolution(bounds=bounds, target_crs=crs, pixel_size=pixel_size, output_path=output_path)

@@ -64,7 +64,7 @@ def vector_proximity_raster(gdf, template_file_path):
 
 def rasterize_vector(gdf, template_file_path, field=None):
     tfol = tempfile.mkdtemp()  # maybe this should be done globally at the init??
-    tfile = tempfile.mkstemp(dir=tfol, suffix='.tif', prefix='proximity_raster')
+    tfile = tempfile.mkstemp(dir=tfol, suffix='.tif', prefix='rasterized_')
 
     output_file_path = tfile[1]
 
@@ -75,6 +75,8 @@ def rasterize_vector(gdf, template_file_path, field=None):
     # Note - This may be upgraded in the future to account for distance from geometries outside the project but may
     # influence the calculations
     gdf = gdf.clip(raster.bounds)
+    gdf[field] = pd.to_numeric(gdf[field], errors='coerce')
+    gdf.dropna(subset=[field], inplace=True)
 
     meta = raster.meta.copy()
     meta.update({'dtype': 'float32', 'nodata': np.finfo('float32').min, 'count': 1})

@@ -82,7 +82,7 @@ jQuery.fn.highlightText = function(text, className) {
                 }
             }
         }
-        else if (!jQuery(node).is("button, select, textarea")) {
+        else if (!jQuery(node).is("addMSbutton, select, textarea")) {
             jQuery.each(node.childNodes, function() {
                 highlight(this, addItems);
             });

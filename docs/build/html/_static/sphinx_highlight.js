@@ -57,7 +57,7 @@ const _highlight = (node, addItems, text, className) => {
         addItems.push({ parent: parent, target: rect });
       }
     }
-  } else if (node.matches && !node.matches("button, select, textarea")) {
+  } else if (node.matches && !node.matches("addMSbutton, select, textarea")) {
     node.childNodes.forEach((el) => _highlight(el, addItems, text, className));
   }
 };

@@ -45,7 +45,7 @@ proj_name=$(basename $currentdir) # Project name generated from the parent folde
     sphinx-build -b html `# -b build in this format:html` \
      -D html_theme="sphinx_rtd_theme" `# Sets theme to readthedocs, looks significantly better than alabaster` \
      -D html_theme_options.sticky_navigation=True `# Pins navigation so it stays on page when scrolling` \
-     -D html_theme_options.collapse_navigation=False `# Allows expandable branch button in TOC when navigating ` \
+     -D html_theme_options.collapse_navigation=False `# Allows expandable branch addMSbutton in TOC when navigating ` \
      `#-D numfig=False -D math_numfig=False -D math_number_all=False # numfig, math_numfig, math_number_all work together to enable equation labeling` \
      source/ build/html/
      
