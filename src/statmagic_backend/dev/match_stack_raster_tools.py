@@ -250,11 +250,14 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, s
     profile = data_raster.profile
     # Does updating the profile here work the way it should?
     if len(existing_band_descs) > 0:
+        print('already has bands')
         profile.update(count=data_raster.count + number_bands_new)
         existing_array = data_raster.read()
         data_raster_array_updated = np.vstack([existing_array, reproj_arr])
-        updated_descs = existing_band_descs.extend(new_descs)
+        existing_band_descs.extend(new_descs)
+        updated_descs = existing_band_descs.copy()
     else:
+        print('first addition of bands')
         data_raster_array_updated = reproj_arr
         profile.update(count=number_bands_new)
         updated_descs = new_descs
@@ -262,6 +265,7 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, s
     data_raster.close()
     del data_raster
 
+    print(f'updated descs: {updated_descs}')
     data_raster = rio.open(data_raster_filepath, 'w', **profile)
     data_raster.write(data_raster_array_updated)
     for band, description in enumerate(updated_descs, 1):
