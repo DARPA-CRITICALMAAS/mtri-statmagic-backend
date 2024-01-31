@@ -5,7 +5,7 @@ from rasterio.enums import Resampling
 from rasterio.warp import reproject
 from shapely.geometry import box
 import geopandas as gpd
-from osgeo import gdal
+
 
 
 def match_raster_to_template(template_path, input_raster_path, resampling_method=Resampling.bilinear, num_threads=1):
@@ -186,6 +186,84 @@ def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
     updated_array = np.delete(existing_array, drop_idxs, 0)
     data_raster = rio.open(data_raster_filepath, 'w', **profile)
     data_raster.write(updated_array)
+    for band, description in enumerate(updated_descs, 1):
+        data_raster.set_band_description(band, description)
+    data_raster.close()
+
+def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, source_raster_filepath, list_of_bands,
+                                                         resampling_method=Resampling.bilinear, num_threads=1):
+
+    # Todo: Fix resampling to convert the string to the appropriate Resampling.xxxx call. Hardcoded for demo
+    # resampling_method = Resampling.bilinear
+    # # Establish properties from the template/base raster
+    data_raster = rio.open(data_raster_filepath)
+    data_raster_bounds = box(*data_raster.bounds)
+    data_crs = data_raster.crs
+    data_nodata = data_raster.nodata
+    data_shape = data_raster.shape
+    data_transform = data_raster.transform
+
+    # Get the CRS from the input raster
+    input_crs = rio.open(source_raster_filepath).crs
+
+    # Create a clipping object from the geometry of the base raster bounds and reproj to input CRS
+    clipping_object = gpd.GeoDataFrame(data=None, geometry=[data_raster_bounds], crs=data_crs).to_crs(input_crs)
+    clipping_shape = clipping_object.geometry[0]
+
+    # Get existing descriptions from teh current datacube
+    existing_band_descs = list(data_raster.descriptions)
+    print(len(existing_band_descs))
+    print(f'first element is : {existing_band_descs[0]}')
+    print(f'exiting band descs {existing_band_descs}')
+    if existing_band_descs[0] is None:
+        print('no bands ')
+        existing_band_descs = []
+
+    print(existing_band_descs)
+
+    # Here figure out which bands will be kept from the source raster
+    source_raster = rio.open(source_raster_filepath)
+    num_bands_current = source_raster.count
+    source_raster.close()
+    number_bands_new = len(list_of_bands)
+    full_idx = [x + 1 for x in range(num_bands_current)]
+    idxs = [int(item.split("Band ")[1].split(":")[0]) for item in list_of_bands]
+    drop_idxs = [x - 1 for x in full_idx if x not in idxs]
+    new_descs = [item.split(": ")[1] for item in list_of_bands]
+    print(f'new descs: {new_descs}')
+
+    # open the input raster within the clipping geometry and crop to the shape
+    # set the values of the elements outside the shape to NaN to not have them included in the reproj
+    src_rast, src_aff = mask(rio.open(source_raster_filepath), shapes=[clipping_shape], all_touched=False,
+                             nodata=np.nan, crop=True)
+    # Here drop out the bands not wanted. Be nice to have this without the initial read via mask
+    updated_rast = np.delete(src_rast, drop_idxs, 0)
+
+    # Create an array in the shape of the template to reproject into and execute reprojections
+    new_ds = np.empty(shape=(updated_rast.shape[0], data_shape[0], data_shape[1]))
+    reproj_arr = reproject(updated_rast, new_ds, src_transform=src_aff, dst_transform=data_transform,
+                           src_crs=input_crs, dst_crs=data_crs, resampling_method=resampling_method, num_threads=num_threads)[0]
+
+    # Reset the NaN values to match the nodata values of the base raster
+    np.nan_to_num(reproj_arr, copy=False, nan=data_nodata)
+
+    profile = data_raster.profile
+    # Does updating the profile here work the way it should?
+    if len(existing_band_descs) > 0:
+        profile.update(count=data_raster.count + number_bands_new)
+        existing_array = data_raster.read()
+        data_raster_array_updated = np.vstack([existing_array, reproj_arr])
+        updated_descs = existing_band_descs.extend(new_descs)
+    else:
+        data_raster_array_updated = reproj_arr
+        profile.update(count=number_bands_new)
+        updated_descs = new_descs
+
+    data_raster.close()
+    del data_raster
+
+    data_raster = rio.open(data_raster_filepath, 'w', **profile)
+    data_raster.write(data_raster_array_updated)
     for band, description in enumerate(updated_descs, 1):
         data_raster.set_band_description(band, description)
     data_raster.close()

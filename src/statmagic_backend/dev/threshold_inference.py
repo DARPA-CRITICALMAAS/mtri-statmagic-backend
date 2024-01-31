@@ -9,6 +9,8 @@ from skimage.morphology import binary_opening
 def return_raster_stats_in_shape(raster_values_path, geometry, ndval_value):
     value_array = np.ravel(mask(rio.open(raster_values_path), shapes=geometry, crop=True)[0])
     values = np.delete(value_array, np.where(value_array == ndval_value))
+    if np.isnan(values).any():
+        values = values[~np.isnan(values)]
     mean_val, std_val = round(np.mean(values), 2), round(np.std(values), 2)
     return float(mean_val), float(std_val)
 
