@@ -1,5 +1,54 @@
+import inspect
 import os
+import sys
 from pathlib import Path
+
+
+def prettyPrintDict(d):
+    """
+    Returns string representation of ``d`` with ``name=value`` for each item,
+    on separate lines.
+
+    Parameters
+    ----------
+    d : dict
+        Dictionary to parse
+
+    Returns
+    -------
+    parsedString : str
+        String representation of ``d``
+    """
+    parsedString = ""
+    for key, value in d.items():
+        parsedString += f"\n{key}={value}"
+    return parsedString
+
+
+def loggingDecorator(func):
+    """
+    Logs what arguments ``func`` got called with and what it returned.
+
+    Parameters
+    ----------
+    func : function
+        Function to log arguments for
+
+    Returns
+    -------
+    loggedFunc : function
+        ``func`` modified to log its inputs and outputs
+    """
+    def decoratedFunc(*args, **kwargs):
+        numPosArgs = len(args)
+        posArgNames = func.__code__.co_varnames[:numPosArgs]
+        posArgsDict = {posArgNames[i]: args[i] for i in range(numPosArgs)}
+        argsDict = {**posArgsDict, **kwargs}
+        logEntry = f"{func.__name__} called with arguments {prettyPrintDict(argsDict)}"
+        result = func(*args, **kwargs)
+        logEntry += f", returned {result}"
+        print(logEntry)
+    return decoratedFunc
 
 
 def recursive_hardlink(local_path, qgis_path):
@@ -32,6 +81,7 @@ def recursive_hardlink(local_path, qgis_path):
             (local_path / relative_path).hardlink_to(entry)
 
 
+@loggingDecorator
 def polytextreplace(poly_text):
     ptype = poly_text.split(" ")[0]
 
@@ -41,3 +91,8 @@ def polytextreplace(poly_text):
         for r in (('MultiPolygonZ', 'POLYGON', 1), ("(", "", 1), (")", "", 1)):
             poly_text = poly_text.replace(*r)
     return poly_text
+
+
+
+if __name__ == "__main__":
+    polytextreplace("Polygon")

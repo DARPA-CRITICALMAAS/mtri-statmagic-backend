@@ -12,7 +12,7 @@ def hardenedLDivide(A, B, brief=True):
         “Coefficient” matrix.
     B : (N, 1) ndarray
         Ordinate or “dependent variable” values. If ``B`` is two-dimensional,
-        the least squares solution is calculated for each of the :math:`K`
+        the least squares solution is calculated for each of the :maths:`K`
         columns of ``B``.
     brief : bool, optional
 
@@ -24,10 +24,10 @@ def hardenedLDivide(A, B, brief=True):
     -------
     xHat : {(N,), (N, K)} ndarray
         Least-squares solution. If ``B`` is two-dimensional, the solutions
-        are in the :math:`K` columns of ``x``.
+        are in the :maths:`K` columns of ``x``.
     resid : {(1,), (K,), (0,)} ndarray
         Sums of squared residuals: Squared Euclidean 2-norm for each column in
-        ``B - A @ xHat``. If the rank of ``A`` :math:`< N` or :math:`M <= N`,
+        ``B - A @ xHat``. If the rank of ``A`` :maths:`< N` or :maths:`M <= N`,
         this is an empty array. If ``B`` is 1-dimensional, this is a ``(1,)``
         shape array. Otherwise the shape is ``(K,)``.
     rank : int

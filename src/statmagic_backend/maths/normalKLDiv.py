@@ -1,6 +1,6 @@
 import numpy as np
 
-from statmagic_backend.math.utils import hardenedLDivide, is_numeric
+from statmagic_backend.maths.utils import hardenedLDivide, is_numeric
 
 
 def normalKLDiv(mu1=None, sigma1=None, mu2=None, sigma2=None, theta1=None, theta2=None):
@@ -8,9 +8,9 @@ def normalKLDiv(mu1=None, sigma1=None, mu2=None, sigma2=None, theta1=None, theta
     Computes the Kullback-Leibler divergence of the normal distribution
     described by parameter vector ``theta1`` from the normal distribution
     described by parameter vector ``theta2``. In common notation one would
-    write :math:`D_{KL}(P(\theta_1) || Q(\theta_2))`, where
+    write :maths:`D_{KL}(P(\theta_1) || Q(\theta_2))`, where
 
-    .. math::
+    .. maths::
 
         D_{KL}(P||Q) = \int{p(x)\cdot \log\left({\dfrac{p(x)}{q(x)}}\right)}dx
 
@@ -22,19 +22,19 @@ def normalKLDiv(mu1=None, sigma1=None, mu2=None, sigma2=None, theta1=None, theta
     Parameters
     ----------
     mu1 : ndarray, optional
-        Mean :math:`\mu_1` of normal distribution :math:`P`.
+        Mean :maths:`\mu_1` of normal distribution :maths:`P`.
     sigma1 : ndarray, optional
-        Covariance :math:`\Sigma_1` of normal distribution :math:`P`.
+        Covariance :maths:`\Sigma_1` of normal distribution :maths:`P`.
     mu2 : ndarray, optional
-        Mean :math:`\mu_2` of normal distribution :math:`Q`.
+        Mean :maths:`\mu_2` of normal distribution :maths:`Q`.
     sigma2 : ndarray, optional
-        Covariance :math:`\Sigma_2` of normal distribution :math:`Q`.
+        Covariance :maths:`\Sigma_2` of normal distribution :maths:`Q`.
     theta1 : ndarray, optional
         Lexicographic concatenation of ``mu1`` and ``Sigma1``, i.e.
-        :math:`\theta_1=\begin{bmatrix}\mu_1^T \\ \Sigma_1 \end{bmatrix}`
+        :maths:`\theta_1=\begin{bmatrix}\mu_1^T \\ \Sigma_1 \end{bmatrix}`
     theta2 : ndarray, optional
         Lexicographic concatenation of ``mu2`` and ``Sigma2``, i.e.
-        :math:`\theta_2=\begin{bmatrix}\mu_2^T \\ \Sigma_2 \end{bmatrix}`
+        :maths:`\theta_2=\begin{bmatrix}\mu_2^T \\ \Sigma_2 \end{bmatrix}`
 
     Returns
     -------

@@ -11,7 +11,7 @@ a test in the suite both fails before the fix, and passes after it.
 import pytest
 import numpy as np
 
-from statmagic_backend.math.normalKLDiv import normalKLDiv
+from statmagic_backend.maths.normalKLDiv import normalKLDiv
 
 
 # class normalKLDivTests:
