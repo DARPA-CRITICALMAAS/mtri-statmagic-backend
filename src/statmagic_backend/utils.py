@@ -48,6 +48,7 @@ def loggingDecorator(func):
         result = func(*args, **kwargs)
         logEntry += f", returned {result}"
         print(logEntry)
+        return result
     return decoratedFunc
 
 
