@@ -7,6 +7,9 @@ from rasterio.features import rasterize
 import geopandas as gpd
 from typing import Optional
 
+from statmagic_backend.utils import loggingDecorator
+
+
 def get_array_shape_from_bounds_and_res(bounds: np.ndarray, pixel_size: Number):
 
     # upack the bounding box
@@ -74,6 +77,7 @@ def create_template_raster_from_bounds_and_resolution(bounds, target_crs, pixel_
 #     new_dataset.write(out_array)
 #     new_dataset.close()
 
+@loggingDecorator
 def print_memory_allocation_from_resolution_bounds(bounds, pixel_size, bit=4):
     ht, wid = get_array_shape_from_bounds_and_res(bounds, pixel_size)[0:2]
     bytesize = ht * wid * bit

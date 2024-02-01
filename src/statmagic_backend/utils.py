@@ -1,6 +1,7 @@
 import inspect
 import os
 import sys
+import datetime
 from pathlib import Path
 
 
@@ -39,15 +40,32 @@ def loggingDecorator(func):
     loggedFunc : function
         ``func`` modified to log its inputs and outputs
     """
+    funcName = f"{func.__module__}.{func.__name__}"
     def decoratedFunc(*args, **kwargs):
+        # parse argument names / values into a printable format
         numPosArgs = len(args)
         posArgNames = func.__code__.co_varnames[:numPosArgs]
         posArgsDict = {posArgNames[i]: args[i] for i in range(numPosArgs)}
         argsDict = {**posArgsDict, **kwargs}
-        logEntry = f"{func.__name__} called with arguments {prettyPrintDict(argsDict)}"
+        argsString = prettyPrintDict(argsDict)
+
+        # print the arguments
+        if argsDict:
+            logEntry = f"At {datetime.datetime.now()}, " \
+                       f"{funcName} was called with: {argsString}\n"
+        else:
+            logEntry = f"At {datetime.datetime.now()}, " \
+                       f"{funcName} was called with no arguments.\n"
+
+        # actually call the function
         result = func(*args, **kwargs)
-        logEntry += f", returned {result}"
-        print(logEntry)
+
+        # print what it returned
+        logEntry += f"At {datetime.datetime.now()}, " \
+                    f"{funcName} returned {result}."
+        print(logEntry)     # TODO: write to file instead
+
+        # return what the function returned so the function can be a black box
         return result
     return decoratedFunc
 
