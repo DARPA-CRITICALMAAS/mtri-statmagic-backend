@@ -49,7 +49,6 @@ def getCanvasRasterDict(raster_dict, canvas_bounds):
 
     return canvas_dict
 
-
 def calc_array_mode(pred_list):
     clstack = np.stack(pred_list)
 
