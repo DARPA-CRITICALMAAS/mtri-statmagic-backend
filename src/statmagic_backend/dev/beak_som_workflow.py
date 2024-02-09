@@ -1,11 +1,14 @@
 import sys
+from pathlib import Path
 
 from beak.methods.som.nextsomcore.nextsomcore import NxtSomCore
 import pickle
 
 import beak.methods.som.argsSOM as asom
-
-args = asom.Args()
+import beak.methods.som.argsPlot
+import beak.methods.som.move_to_subfolder as mts
+import beak.methods.som.plot_som_results as plot
+import beak.methods.som.do_nextsomcore_save_results as dnsr
 
 if sys.version_info < (3, 9):
     from importlib_resources import files
@@ -13,109 +16,192 @@ else:
     from importlib.resources import files
 
 
-BASE_PATH = (files("beak.data") / "LAWLEY22-EXPORT" / "EPSG_3857_RES_5000" / "CLIPPED_USC")
+def get_input_filenames(*args):
+    """
+    Given an arbitrary number of path globs, return a list of specific paths
+    fitting those glob patterns.
+    
+    Parameters
+    ----------
+    *args:
+        Each positional argument should be a path glob.
 
-PATH_NUMERICAL = BASE_PATH / "NUMERICAL_IMPUTED_SCALED_STANDARD" / "*.tif"
-PATH_CATEGORICAL = BASE_PATH / "CATEGORICAL" / "**/*.tif"
+    Returns
+    -------
+    input_filenames : list
+        List of str where each element is a specific file path
+    """
+    globs = [arg for arg in args if arg]
+    input_filenames = asom.Args().create_list_from_pattern("", globs)
+    return input_filenames
 
-file_patterns = [str(PATH_NUMERICAL), str(PATH_CATEGORICAL)]
 
-#---------------
-args.input_file = args.create_list_from_pattern("", file_patterns)
-args.geotiff_input=args.input_file      # geotiff_input files, separated by komma
+def prepare_args(numerical_path, categorical_path, output_folder):
+    """
+    Set up basic path arguments needed by both the SOM workflow and the plots.
 
-args.output_folder=str(files("beak.data") / "output")         # Folder to save som dictionary and cluster dictionary
-args.output_file_somspace= args.output_folder+"/result_som.txt"   # DO NOT CHANGE! Text file that will contain calculated values: som_x som_y b_data1 b_data2 b_dataN umatrix cluster in geospace.
+    Parameters
+    ----------
+    numerical_path : str | Path | Traversable
+        Path to the numerical data (can include a glob like ``*.tif``)
+    categorical_path : str | Path | Traversable
+        Path to the categorical data (can include a glob like ``*.tif``)
+    output_folder : str
+        Path to where the user wants to save the outputs from SOM
 
-args.som_x = 30                # X dimension of generated SOM
-args.som_y = 30               # Y dimension of generated SOM
-args.epochs = 10               # Number of epochs to run
+    Returns
+    -------
+    input_files : list
+        Result of expanding out ``numerical_path`` and ``categorical_path``.
+    output_file_somspace : str
+        Path to text file that will contain calculated values
 
-# Base parameters required for som calculation.
-# Additional optional parameters below:
-args.outgeofile= args.output_folder+"/result_geo.txt"             # DO NOT CHANGE!
-args.output_file_geospace=args.outgeofile   # Text file that will contain calculated values: {X Y Z} data1 data2 dataN som_x som_y cluster b_data1 b_data2 b_dataN in geospace.
+        .. code::
 
-args.kmeans="true"          # Run k-means clustering (true, false)
-args.kmeans_init = 5           # Number of initializations
-args.kmeans_min = 11            # Minimum number of k-mean clusters
-args.kmeans_max = 12           # Maximum number of k-mean clusters
+            som_x
+            som_y
+            b_data1
+            b_data2
+            b_dataN
+            umatrix
 
-args.neighborhood = 'gaussian'     # Shape of the neighborhood function. gaussian or bubble
-args.std_coeff = 0.5               # Coefficient in the Gaussian neighborhood function
-args.maptype = 'toroid'            # Type of SOM (sheet, toroid)
-args.initialcodebook = None        # File path of initial codebook, 2D numpy.array of float32.
-args.radius0 = 0                   # Initial size of the neighborhood
-args.radiusN = 1                   # Final size of the neighborhood
-args.radiuscooling = 'linear'      # Function that defines the decrease in the neighborhood size as the training proceeds (linear, exponential)
-args.scalecooling = 'linear'       # Function that defines the decrease in the learning scale as the training proceeds (linear, exponential)
-args.scale0 = 0.1                  # Initial learning rate
-args.scaleN = 0.01                 # Final learning rate
-args.initialization = 'random'     # Type of SOM initialization (random, pca)
-args.gridtype = 'rectangular'      # Type of SOM grid (hexagonal, rectangular)
-#args.xmlfile="none"              # SOM inputs as an xml file
+        clustered in geospace.
+    outgeofile : str
+        Path to text file that will contain calculated values:
 
-args.minN = 0                  # Minimum value for normalization
-args.maxN = 1                  # Maximum value for normalization
-args.label = None              # Whether data contains label column, true or false
+        .. code::
 
-import beak.methods.som.do_nextsomcore_save_results as dnsr
-import beak.methods.som.move_to_subfolder as mts
+            {X Y Z}
+            data1
+            data2
+            ...
+            dataN
+            som_x
+            som_y
+            cluster
+            b_data1
+            b_data2
+            ...
+            b_dataN
 
-# move existing SOM output files from previous runs into subfolder
-mts.move_som_results(args.output_folder, "old_results")
+        in geospace.
+    """
+    input_files = get_input_filenames(numerical_path, categorical_path)
+    output_file_somspace = str(Path(output_folder) / "result_som.txt")
+    outgeofile = str(Path(output_folder) / "result_geo.txt")
 
-# run SOM
-dnsr.run_SOM(args)
+    return input_files, output_file_somspace, outgeofile
 
-import beak.methods.som.plot_som_results as plot
-from IPython.display import Image, display, clear_output
 
-# Load cluster dictionary
-loaded_cluster_list = plot.load_cluster_dictionary(args.output_folder)
-# Plot and save the Davies-Bouldin Index vs Number of Clusters
-plot.plot_davies_bouldin(loaded_cluster_list, args.output_folder)
+def beak_som_workflow(som_args):
+    """
+    Runs Beak's Self-Organizing Maps workflow.
 
-import beak.methods.som.argsPlot
-import beak.methods.som.plot_som_results as plot
-import beak.methods.som.move_to_subfolder as mts
+    Parameters
+    ----------
+    som_args : dict
+        Arguments passed to the internal SOM call
 
-argsP = beak.methods.som.argsPlot.Args()
+    Notes
+    -----
+    No return value. Creates output files in ``output_folder``.
+    """
+    # create instance of Args
+    args = asom.Args()
+    #---------------
 
-argsP.outsomfile= args.output_file_somspace   # som calculation somspace output text file
-argsP.som_x= args.som_x         # som x dimension
-argsP.som_y= args.som_y         # som y dimension
-argsP.input_file= args.input_file   # Input file(*.lrn)
-argsP.dir= args.output_folder            # Input file(*.lrn) or directory where som.dictionary was safet to (/output/som.dictionary)
-argsP.grid_type= 'rectangular' # grid type (square or hexa), (rectangular or hexagonal)
-argsP.redraw='true'       # whether to draw all plots, or only those required for clustering (true: draw all. false:draw only for clustering).
-argsP.outgeofile=args.output_file_geospace     # som geospace results txt file
-argsP.dataType='grid'       # Data type (scatter or grid)
-argsP.noDataValue='-9999'    # noData value
+    # populate args with the values passed via dictionary
+    for key, value in som_args.items():
+        setattr(args, key, value)
 
-plot.run_plotting_script(argsP)
+    # move existing SOM output files from previous runs into subfolder
+    mts.move_som_results(args.output_folder, "old_results")
 
-subfolder_name = "plots"
-images, labels = mts.move_figures(args.output_folder, subfolder_name)
+    # run SOM
+    dnsr.run_SOM(args)
 
-# import matplotlib.pyplot as plt
-# from IPython.display import clear_output
-# import ipyplot
-#
-# # Clear Matplotlib cache
-# plt.close('all')
-#
-# # Clear output
-# clear_output(wait=True)
-#
-# tabs = [image.split('_')[-2] for image in labels]
-#
-# print("List of figures:")
-# print(labels)
-# #print(tabs)
-#
-# # Plot the images
-# #ipyplot.plot_images(images, max_images=50, img_width=250)
-# ipyplot.plot_class_representations(images,  labels, img_width=200, show_url=False)
-# ipyplot.plot_class_tabs(images, tabs, max_imgs_per_tab=50, img_width=400)
-pass
+
+def plot_som_results(plot_args):
+    """
+    Plots the results of Beak's Self Organizing Maps workflow.
+
+    Parameters
+    ----------
+    plot_args : dict
+        Arguments passed to the Beak plotting utilities
+
+    Notes
+    -----
+    No return value. Creates output files in ``output_folder``.
+    """
+    output_folder = plot_args["dir"]
+
+    # Load cluster dictionary
+    loaded_cluster_list = plot.load_cluster_dictionary(output_folder)
+
+    # Plot and save the Davies-Bouldin Index vs Number of Clusters
+    plot.plot_davies_bouldin(loaded_cluster_list, output_folder)
+
+    argsP = beak.methods.som.argsPlot.Args()
+
+    for key, value in plot_args.items():
+        setattr(argsP, key, value)
+
+    plot.run_plotting_script(argsP)
+
+    subfolder_name = "plots"
+    images, labels = mts.move_figures(output_folder, subfolder_name)
+
+
+if __name__ == "__main__":
+    BASE_PATH = (files("beak.data") / "LAWLEY22-EXPORT" / "EPSG_3857_RES_5000" / "CLIPPED_USC")
+
+    numerical_path = BASE_PATH / "NUMERICAL_IMPUTED_SCALED_STANDARD" / "*.tif"
+    categorical_path = BASE_PATH / "CATEGORICAL" / "**/*.tif"
+
+    output_folder = str(files("beak.data") / "output")
+
+    input_files, output_file_somspace, outgeofile = prepare_args(numerical_path, categorical_path, output_folder)
+
+    som_args = {
+        "input_file": input_files,
+        "geotiff_input": input_files,      # geotiff_input files, separated by comma
+        "som_x": 30,
+        "som_y": 30,
+        "epochs": 10,
+        "kmeans": "true",
+        "kmeans_init": 5,
+        "kmeans_min": 11,
+        "kmeans_max": 12,
+        "neighborhood": "gaussian",
+        "std_coeff": 0.5,
+        "maptype": "toroid",
+        # "initialcodebook": None,
+        "radius0": 0,
+        "radiusN": 1,
+        "radiuscooling": "linear",
+        "scalecooling": "linear",
+        "scale0": 0.1,
+        "scaleN": 0.01,
+        "initialization": "random",
+        "gridtype": "hexagonal",
+        "output_file_somspace": output_file_somspace,
+        # Additional optional parameters below:
+        "outgeofile": outgeofile,
+        "output_file_geospace": outgeofile
+    }
+    plot_args = {
+        "som_x": som_args["som_x"],
+        "som_y": som_args["som_y"],
+        "input_file": input_files,
+        "outsomfile": output_file_somspace,
+        "dir": output_folder,
+        "grid_type": 'rectangular',  # grid type (square or hexa), (rectangular or hexagonal)
+        "redraw": 'true',  # whether to draw all plots, or only those required for clustering (true: draw all. false:draw only for clustering).
+        "outgeofile": outgeofile,
+        "dataType": 'grid',  # Data type (scatter or grid)
+        "noDataValue": '-9999'  # noData value
+    }
+
+    beak_som_workflow(som_args)
+    plot_som_results(plot_args)
