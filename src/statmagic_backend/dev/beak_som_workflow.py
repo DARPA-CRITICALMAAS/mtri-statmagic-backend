@@ -1,9 +1,8 @@
 import sys
 from pathlib import Path
-
-from beak.methods.som.nextsomcore.nextsomcore import NxtSomCore
 import pickle
 
+from beak.methods.som.nextsomcore.nextsomcore import NxtSomCore
 import beak.methods.som.argsSOM as asom
 import beak.methods.som.argsPlot
 import beak.methods.som.move_to_subfolder as mts
