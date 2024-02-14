@@ -5,6 +5,8 @@ from rasterio.enums import Resampling
 from rasterio.warp import reproject
 from shapely.geometry import box
 import geopandas as gpd
+from pathlib import Path
+from sklearn.preprocessing import StandardScaler
 
 
 
@@ -272,3 +274,34 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, s
         data_raster.set_band_description(band, description)
     data_raster.close()
 
+
+def split_cube(fp, standardize=False):
+    fp = Path(fp)
+    newdir = fp.parent / 'single_band_tiffs'
+    if newdir.exists():
+        singlebandtiffs = [str(x) for x in list(newdir.glob("*.tif"))]
+        return singlebandtiffs
+
+    newdir.mkdir()
+    raster = rio.open(fp)
+    file_list = []
+    for idx in range(raster.count):
+        meta = raster.profile.copy()
+        meta.update(count=1)
+        band_name = raster.descriptions[idx]
+        filename = band_name.replace(" ", "_")
+        path_out = (newdir / filename).with_suffix('.tif')
+        arr = raster.read(idx + 1)
+        if standardize:
+            nodata = raster.nodata
+            arr = np.where(arr == nodata, np.nan, arr)
+            arr = StandardScaler().fit_transform(arr)
+            arr = np.nan_to_num(arr, nan=nodata)
+        arr1 = np.expand_dims(arr, axis=0)
+        data_raster = rio.open(path_out, 'w', **meta)
+        data_raster.write(arr1)
+        data_raster.set_band_description(1, band_name)
+        data_raster.close()
+        file_list.append(str(path_out))
+
+    return file_list

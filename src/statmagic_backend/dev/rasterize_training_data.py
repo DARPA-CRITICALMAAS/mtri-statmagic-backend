@@ -15,8 +15,12 @@ import geopandas as gpd
 def training_vector_rasterize(training_gdf, template_file_path, output_file_path, extra_buffer_width, col=None):
 
     raster = rio.open(template_file_path)
-    res = raster.res[0]
-    buffwidth = res + extra_buffer_width
+    if training_gdf.geom_type[0] == 'Point':
+        res = raster.res[0]
+        buffwidth = res + extra_buffer_width
+    else:
+        buffwidth = extra_buffer_width
+
     training_gdf.to_crs(raster.crs, inplace=True)
 
     meta = raster.meta.copy()
