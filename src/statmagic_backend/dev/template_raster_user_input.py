@@ -31,8 +31,10 @@ def create_template_raster_from_bounds_and_resolution(bounds, target_crs, pixel_
     # This should really only get done if the polygon != bounds
     shapes = ((geom) for geom in clipping_gdf.geometry)
     # This fill parameter doesn't seem to be working as I expect
-    masking_array = rasterize(shapes=shapes, fill=np.finfo('float32').min, out=out_array, transform=out_transform, default_value=1)
-    out_array = np.where(masking_array == 1, 1, 0).astype(np.float32)
+    # masking_array = rasterize(shapes=shapes, fill=np.finfo('float32').min, out=out_array, transform=out_transform, default_value=1)
+    masking_array = rasterize(shapes=shapes, fill=np.finfo('float32').min, out=out_array, transform=out_transform,
+                              default_value=1)
+    out_array = np.where(masking_array == 1, 1, np.finfo('float32').min).astype(np.float32)
 
     out_meta = {
         "width": raster_width,
