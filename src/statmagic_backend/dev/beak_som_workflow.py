@@ -1,7 +1,11 @@
 import sys
+from importlib import import_module
 from pathlib import Path
 import pickle
+from pkgutil import iter_modules
 
+from beak.models import *
+from beak.utilities.io import load_model
 from beak.methods.som.nextsomcore.nextsomcore import NxtSomCore
 import beak.methods.som.argsSOM as asom
 import beak.methods.som.argsPlot
@@ -13,6 +17,15 @@ if sys.version_info < (3, 9):
     from importlib_resources import files
 else:
     from importlib.resources import files
+
+
+def parse_beak_models():
+    models = {}
+    model_modules = sys.modules["beak.models"]
+    for submodule in iter_modules(model_modules.__path__):
+        imported_submodule = import_module(f"beak.models.{submodule.name}")
+        models.update(imported_submodule.models)
+    pass
 
 
 def get_input_filenames(*args):
@@ -153,6 +166,7 @@ def plot_som_results(plot_args):
 
 
 if __name__ == "__main__":
+    parse_beak_models()
     BASE_PATH = (files("beak.data") / "LAWLEY22-EXPORT" / "EPSG_3857_RES_5000" / "CLIPPED_USC")
 
     numerical_path = BASE_PATH / "NUMERICAL_IMPUTED_SCALED_STANDARD" / "*.tif"
