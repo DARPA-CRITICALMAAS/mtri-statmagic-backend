@@ -3,6 +3,8 @@ import numpy as np
 from rasterio.warp import reproject
 from pathlib import Path
 from sklearn.preprocessing import StandardScaler
+import rioxarray
+import concurrent.futures
 
 def match_raster_to_template(template_path, input_raster_path, resampling_method, num_threads=1):
     """
@@ -86,19 +88,19 @@ def match_and_stack_rasters(template_path, input_raster_paths_list, resampling_m
     Defaults to ``float32`` datatype.
 
     """
-    reprojected_arrays = []
-    # reprojected_metas = []
-    for raster_path, rs_method in zip(input_raster_paths_list, resampling_method_list):
-        # reprojected_array, reprojected_meta = _unify_raster_grids(template_path, raster_path, rs_method, True, True, num_threads=num_threads)
-        reprojected_array = match_raster_to_template(template_path, raster_path, rs_method, num_threads=num_threads)
-        reprojected_arrays.append(reprojected_array)
-        # reprojected_metas.append(reprojected_meta)
-
-    print(len(reprojected_arrays))
+    # reprojected_arrays = []
+    # for raster_path, rs_method in zip(input_raster_paths_list, resampling_method_list):
+    #     reprojected_array = match_raster_to_template(template_path, raster_path, rs_method, num_threads=num_threads)
+    #     reprojected_arrays.append(reprojected_array)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+        reprojected_arrays = list(executor.map(lambda args: match_raster_to_template(*args),
+                                               zip([template_path] * len(input_raster_paths_list),
+                                                   input_raster_paths_list,
+                                                   resampling_method_list,
+                                                   [num_threads] * len(input_raster_paths_list))))
     array_stack = np.vstack(reprojected_arrays).astype('float32')
 
     return array_stack
-    # return reprojected_arrays
 
 
 def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, description_list):
@@ -125,7 +127,7 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
     number_new_bands = matched_arrays.shape[0]
     data_raster.close()
     # Check that if there is only one layer in the raster (eg. just got built) then to remove it
-    # TODO: Find a better way to do this. A user might just add one band first, and then another
+    # Todo: Find a better way to do this. A user might just add one band first, and then another
     # Maybe if np.unique(is just 1 or nodata) then do it
     if current_band_count == 1:
         # Then the raster has not been populated yet and the only layer is the np zeroes
@@ -258,6 +260,66 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, i
     for band, description in enumerate(updated_descs, 1):
         data_raster.set_band_description(band, description)
     data_raster.close()
+
+
+# def match_cogList_to_template_andStack(template_path: str, cog_paths: list, rs_list: list) -> np.ndarray:
+#     """
+#     Function to match a list of COG arrays to a template using rasterio, rioxarray, and numpy operations.
+#
+#     Parameters:
+#     - template_path: str, path to the template COG file
+#     - cog_paths: list, list of paths to the COG files to match
+#     - rs_list: list, list of resampling methods for reprojection
+#
+#     Returns:
+#     - out_arr: np.ndarray, matched and stacked array with nodata masking applied
+#     """
+#     template_ds = rioxarray.open_rasterio(template_path)
+#     matched_arrays = []
+#     for ras_url, method in zip(cog_paths, rs_list):
+#         print(ras_url)
+#         ds = rioxarray.open_rasterio(ras_url)
+#         ds_matched = ds.rio.reproject_match(template_ds, resampling=method).to_numpy()
+#         matched_arrays.append(ds_matched)
+#     array_stack = np.vstack(matched_arrays).astype('float32')
+#     # Apply nodata masking
+#     template_array = template_ds.to_numpy()
+#     out_arr = np.where(template_array == template_ds._FillValue, template_ds._FillValue, array_stack)
+#
+#     return out_arr
+#
+
+
+
+def match_cogList_to_template_andStack(template_path: str, cog_paths: list, rs_list: list) -> np.ndarray:
+    """
+    Function to match a list of COG arrays to a template using rasterio, rioxarray, and numpy operations.
+
+    Parameters:
+    - template_path: str, path to the template COG file
+    - cog_paths: list, list of paths to the COG files to match
+    - rs_list: list, list of resampling methods for reprojection
+
+    Returns:
+    - out_arr: np.ndarray, matched and stacked array with nodata masking applied
+    """
+    template_ds = rioxarray.open_rasterio(template_path)
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        matched_arrays = list(executor.map(_process_cog, cog_paths, rs_list, [template_ds] * len(cog_paths)))
+
+    array_stack = np.vstack(matched_arrays).astype('float32')
+    # Apply nodata masking
+    template_array = template_ds.to_numpy()
+    out_arr = np.where(template_array == template_ds._FillValue, template_ds._FillValue, array_stack)
+
+    return out_arr
+
+
+def _process_cog(ras_url, method, template_ds):
+    ds = rioxarray.open_rasterio(ras_url)
+    ds_matched = ds.rio.reproject_match(template_ds, resampling=method).to_numpy()
+    return ds_matched
 
 
 def split_cube(fp, standardize=False):
