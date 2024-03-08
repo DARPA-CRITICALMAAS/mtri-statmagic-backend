@@ -100,3 +100,9 @@ def soft_clustering_weights(data, cluster_centres, m):
         np.sum((1. / EuclidDist) ** (2 / (m - 1)), axis=1).reshape(-1, 1), 1, Nclusters)
     Weight = 1. / invWeight
     return Weight
+
+
+def kmeans_fit_predict(data_array, num_clusters):
+    km = MiniBatchKMeans(n_clusters=num_clusters, init='k-means++', n_init='auto', random_state=101)
+    km.fit_predict(data_array)
+    return km
