@@ -125,12 +125,17 @@ def recursive_download(pooch_tree, print_only = False):
 
     """
     pooch_colletion = pooch_tree["pooch"]
+    items = []
     for item in pooch_colletion.registry:
         if print_only:
-            print(item + '->' + str(pooch_colletion.path))
+            # print(item + '->' + str(pooch_colletion.path))
+            print(item)
+            items.append(item)
         else:
             print(f"Sleeping for {sleep_time} seconds")
             time.sleep(sleep_time)
             pooch_colletion.fetch(item)
     for puppy in pooch_tree["puppies"]:
-        recursive_download(puppy, print_only=print_only)
+        items = items + recursive_download(puppy, print_only=print_only)
+
+    return items
