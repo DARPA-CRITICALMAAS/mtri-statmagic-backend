@@ -155,7 +155,7 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
         data_raster.close()
 
 
-def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
+def drop_selected_layers_from_raster(data_raster_filepath, drop_idxs):
     """
     Removes selected bands from the data raster.
 
@@ -163,7 +163,7 @@ def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
     ----------
     data_raster_filepath : str
         Path to the data raster
-    list_of_bands : list
+    drop_idxs : list
         Bands to remove
 
     Notes
@@ -172,12 +172,12 @@ def drop_selected_layers_from_raster(data_raster_filepath, list_of_bands):
 
     """
     data_raster = rio.open(data_raster_filepath)
-    num_bands_current = data_raster.count
-    number_bands_new = len(list_of_bands)
-    full_idx = [x+1 for x in range(num_bands_current)]
-    idxs = [int(item.split("Band ")[1].split(":")[0]) for item in list_of_bands]
-    drop_idxs = [x-1 for x in full_idx if x not in idxs]
-    updated_descs = [item.split(": ")[1] for item in list_of_bands]
+    num_bands_current = data_raster.count  # The number of bands in the current raster
+    number_bands_new = num_bands_current - len(drop_idxs)  # The number of bands that will be kept (list of bands is actually list of keepers)
+    current_descriptions = list(data_raster.descriptions)  # The current band descriptions
+    full_idx = [x for x in range(num_bands_current)]
+    keep_idxs = [x for x in full_idx if x not in drop_idxs]
+    updated_descs = [current_descriptions[i] for i in keep_idxs]
     profile = data_raster.profile
     profile.update(count=number_bands_new)
     existing_array = data_raster.read()
