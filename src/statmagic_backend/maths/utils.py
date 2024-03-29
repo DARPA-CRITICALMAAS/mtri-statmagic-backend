@@ -1,5 +1,7 @@
 import numpy as np
 
+from statmagic_backend.utils import logger
+
 
 def hardenedLDivide(A, B, brief=True):
     r"""

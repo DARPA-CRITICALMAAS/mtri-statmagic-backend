@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+from statmagic_backend.utils import logger
+
 
 def randomSample(data_arr, keep_pct):
     """

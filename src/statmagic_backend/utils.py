@@ -4,6 +4,10 @@ import sys
 import datetime
 from pathlib import Path
 
+import logging
+logger = logging.getLogger()
+logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", level=logging.DEBUG)
+
 
 def prettyPrintDict(d):
     """
@@ -63,7 +67,7 @@ def loggingDecorator(func):
         # print what it returned
         logEntry += f"At {datetime.datetime.now()}, " \
                     f"{funcName} returned {result}."
-        print(logEntry)     # TODO: write to file instead
+        logger.info(logEntry)     # TODO: write to file instead
 
         # return what the function returned so the function can be a black box
         return result

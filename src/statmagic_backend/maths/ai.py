@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import confusion_matrix, balanced_accuracy_score, f1_score, accuracy_score
 
+from statmagic_backend.utils import logger
+
 
 def make_fullConfMat(actual, prediction, target_names):
     """

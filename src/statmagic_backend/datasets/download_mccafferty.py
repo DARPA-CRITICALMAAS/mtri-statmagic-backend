@@ -1,5 +1,7 @@
 from statmagic_backend.extract.sciencebasetools import fetch_sciencebase_files, recursive_download
 
+from statmagic_backend.utils import logger
+
 if __name__ == "__main__":
     
     db_id = "6193e9f3d34eb622f68f13a5"

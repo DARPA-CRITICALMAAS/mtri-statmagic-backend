@@ -115,9 +115,11 @@ setup(
         "matplotlib",
         "numpy",
         "pandas",
+        "pooch",
         "pydantic",
         "pygraphviz",
         "pytest",
+        "sciencebasepy",
         "scikit-image",
         "scikit-learn",
         "scipy"

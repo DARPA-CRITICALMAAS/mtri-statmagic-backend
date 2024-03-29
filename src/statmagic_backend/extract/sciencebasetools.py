@@ -4,6 +4,8 @@ from pathlib import Path
 import pooch
 import sciencebasepy
 
+from statmagic_backend.utils import logger
+
 sleep_time = 1.0
 
 

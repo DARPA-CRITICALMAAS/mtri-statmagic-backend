@@ -3,6 +3,8 @@ from sklearn.cluster import MiniBatchKMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+from statmagic_backend.utils import logger
+
 
 def doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool):
     """

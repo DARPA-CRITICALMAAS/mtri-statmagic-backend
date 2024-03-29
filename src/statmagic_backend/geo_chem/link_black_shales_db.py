@@ -4,6 +4,8 @@ import geopandas as gpd
 import rasterio as rio
 from shapely.geometry import box
 
+from statmagic_backend.utils import logger
+
 # template_raster_path = '/home/jagraham/Documents/Local_work/statMagic/devtest/CMA_Lithium/Lithium_template_raster.tif'
 # element = 'Ag'
 

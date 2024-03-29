@@ -2,6 +2,8 @@ import rasterio as rio
 import rasterio.features
 import geopandas as gpd
 
+from statmagic_backend.utils import logger
+
 #
 #
 #

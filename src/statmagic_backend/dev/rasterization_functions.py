@@ -6,6 +6,8 @@ import rasterio.features
 from scipy.ndimage import distance_transform_edt as sdist
 import tempfile
 
+from statmagic_backend.utils import logger
+
 
 # gdf = dill('/home/jagraham/Documents/Local_work/statMagic/devtest/gdf')
 # template_file_path = '/home/jagraham/Documents/Local_work/statMagic/devtest/CMA_Lithium/Lithium_template_raster.tif'

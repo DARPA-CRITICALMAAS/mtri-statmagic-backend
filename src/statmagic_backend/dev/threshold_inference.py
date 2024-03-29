@@ -6,6 +6,8 @@ from rasterio.mask import mask
 from shapely.geometry import shape
 from skimage.morphology import binary_opening
 
+from statmagic_backend.utils import logger
+
 def return_raster_stats_in_shape(raster_values_path, geometry, ndval_value):
     value_array = np.ravel(mask(rio.open(raster_values_path), shapes=geometry, crop=True)[0])
     values = np.delete(value_array, np.where(value_array == ndval_value))

@@ -1,5 +1,7 @@
 import numpy as np
+
 from statmagic_backend.geo.transform import geotFromOffsets, boundingBoxToOffsets
+from statmagic_backend.utils import logger
 
 
 def extractBands(bands2KeepList, RasterDataSet):

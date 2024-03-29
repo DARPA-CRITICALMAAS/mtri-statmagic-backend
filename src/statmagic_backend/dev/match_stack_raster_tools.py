@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler
 import rioxarray
 import concurrent.futures
 
+from statmagic_backend.utils import logger
+
 
 def match_raster_to_template(template_path, input_raster_path, resampling_method, band, num_threads=1):
     """

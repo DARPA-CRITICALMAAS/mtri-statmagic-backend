@@ -16,6 +16,8 @@ from urllib.parse import urljoin
 import mapbox_vector_tile
 import mercantile # utility for converting between XYZ indices and lat/lon bounds
 
+from statmagic_backend.utils import logger
+
 
 def boundingBoxToOffsets(bbox, geot):
     col1 = int((bbox[0] - geot[0]) / geot[1])

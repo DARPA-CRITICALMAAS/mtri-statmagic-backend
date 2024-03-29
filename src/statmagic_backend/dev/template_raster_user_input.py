@@ -8,6 +8,7 @@ import geopandas as gpd
 from typing import Optional
 
 from statmagic_backend.utils import loggingDecorator
+from statmagic_backend.utils import logger
 
 
 def get_array_shape_from_bounds_and_res(bounds: np.ndarray, pixel_size: Number):
