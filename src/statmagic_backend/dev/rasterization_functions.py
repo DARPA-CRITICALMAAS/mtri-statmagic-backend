@@ -6,7 +6,8 @@ import rasterio.features
 from scipy.ndimage import distance_transform_edt as sdist
 import tempfile
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 # gdf = dill('/home/jagraham/Documents/Local_work/statMagic/devtest/gdf')

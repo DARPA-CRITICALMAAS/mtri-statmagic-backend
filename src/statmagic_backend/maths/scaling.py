@@ -1,7 +1,8 @@
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 def standardScale_and_PCA(data_array, var):
     scaler = StandardScaler()

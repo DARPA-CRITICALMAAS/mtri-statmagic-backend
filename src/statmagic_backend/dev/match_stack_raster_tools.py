@@ -6,7 +6,8 @@ from sklearn.preprocessing import StandardScaler
 import rioxarray
 import concurrent.futures
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 def match_raster_to_template(template_path, input_raster_path, resampling_method, band, num_threads=1):
@@ -50,16 +51,16 @@ def match_raster_to_template(template_path, input_raster_path, resampling_method
     template_array = base_raster.read()
 
     in_raster = rio.open(input_raster_path)
-    print(f'read {input_raster_path}')
-    print(f"count: {in_raster.count}")
+    logger.debug(f'read {input_raster_path}')
+    logger.debug(f"count: {in_raster.count}")
 
     if band == "all":
-        print('reading full')
+        logger.debug('reading full')
         in_array = in_raster.read()
     else:
-        print(f'reading band {band}')
+        logger.debug(f'reading band {band}')
         in_array = np.expand_dims(in_raster.read(band+1), 0)
-    print(f'shape: {in_array.shape}')
+    logger.debug(f'shape: {in_array.shape}')
 
     # Create an array in the shape of the template to reproject into and execute reprojections
     new_ds = np.empty(shape=(in_array.shape[0], base_shape[0], base_shape[1]))
@@ -152,7 +153,7 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
     # Todo: Find a better way to do this. A user might just add one band first, and then another
     # if current_band_count == 1:
     if isAltered:
-        print('updating raster layers for the first time')
+        logger.debug('updating raster layers for the first time')
         profile.update(count=number_new_bands)
         data_raster = rio.open(data_raster_filepath, 'w', **profile)
         data_raster.write(matched_arrays)
@@ -161,7 +162,7 @@ def add_matched_arrays_to_data_raster(data_raster_filepath, matched_arrays, desc
         data_raster.close()
     else:
         # Raster already has layers added and just needs more added to it
-        print('adding raster layers to current data raster')
+        logger.debug('adding raster layers to current data raster')
         profile.update(count=(current_band_count + number_new_bands))
         # Get the existing numpy array and add the new layers along the axis
         existing_array = rio.open(data_raster_filepath).read()
@@ -224,14 +225,14 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, i
     base_array = data_raster.read()[0:1, :, :]
 
     existing_band_descs = list(data_raster.descriptions)
-    print(len(existing_band_descs))
-    print(f'first element is : {existing_band_descs[0]}')
-    print(f'exiting band descs {existing_band_descs}')
+    logger.debug(len(existing_band_descs))
+    logger.debug(f'first element is : {existing_band_descs[0]}')
+    logger.debug(f'exiting band descs {existing_band_descs}')
     if existing_band_descs[0] is None:
-        print('no bands ')
+        logger.debug('no bands ')
         existing_band_descs = []
 
-    print(existing_band_descs)
+    logger.debug(existing_band_descs)
 
     # Here figure out which bands will be kept from the source raster
     input_raster = rio.open(input_raster_filepath)
@@ -241,7 +242,7 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, i
     idxs = [int(item.split("Band ")[1].split(":")[0]) for item in list_of_bands]
     drop_idxs = [x - 1 for x in full_idx if x not in idxs]
     new_descs = [item.split(": ")[1] for item in list_of_bands]
-    print(f'new descs: {new_descs}')
+    logger.debug(f'new descs: {new_descs}')
     # Read the input array and drop the unneeded bands
     in_array = input_raster.read()
     updated_rast = np.delete(in_array, drop_idxs, 0)
@@ -260,14 +261,14 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, i
     profile = data_raster.profile
     # Does updating the profile here work the way it should?
     if len(existing_band_descs) > 0:
-        print('already has bands')
+        logger.debug('already has bands')
         profile.update(count=data_raster.count + number_bands_new)
         existing_array = data_raster.read()
         data_raster_array_updated = np.vstack([existing_array, out_arr])
         existing_band_descs.extend(new_descs)
         updated_descs = existing_band_descs.copy()
     else:
-        print('first addition of bands')
+        logger.debug('first addition of bands')
         data_raster_array_updated = out_arr
         profile.update(count=number_bands_new)
         updated_descs = new_descs
@@ -275,7 +276,7 @@ def add_selected_bands_from_source_raster_to_data_raster(data_raster_filepath, i
     data_raster.close()
     del data_raster
 
-    print(f'updated descs: {updated_descs}')
+    logger.debug(f'updated descs: {updated_descs}')
     data_raster = rio.open(data_raster_filepath, 'w', **profile)
     data_raster.write(data_raster_array_updated)
     for band, description in enumerate(updated_descs, 1):
@@ -331,26 +332,26 @@ def parse_raster_processing_table_elements(raster_paths, source_list, method_lis
         # 1) a list of cog_paths and methods to pass to match_cogList_to_template_andStack
         # 2) a list of local paths  to pass to match and stack rasters
         # Would end up with 2 3d ndarrays that would need to get shuffled and stacked accordingly
-        print('---------------')
-        print(idx)
-        print(path)
-        print(source)
-        # print(description_list[idx])
+        logger.debug('---------------')
+        logger.debug(idx)
+        logger.debug(path)
+        logger.debug(source)
+        # logger.debug(description_list[idx])
         if source == 'Qgs':
-            print('process local')
+            logger.debug('process local')
             local_paths.append(path)
             local_methods.append(method_list[idx])
             local_bands.append('all')
             local_order.append(idx)
             # local_descs.append(description_list[idx])
         elif source == 'CloudFront':
-            print('cog rioxarray')
+            logger.debug('cog rioxarray')
             cog_paths.append(path)
             cog_methods.append(method_list[idx])
             cog_order.append(idx)
             # cog_descs.append(description_list[idx])
         else:
-            print('parse file path and process local')
+            logger.debug('parse file path and process local')
             band_str = path.split('_')[-1]
             band_idx = int(band_str)
             p = path[0:-(len(band_str)+1)]
@@ -370,20 +371,20 @@ def parse_raster_processing_table_elements(raster_paths, source_list, method_lis
 def reorder_array_lists_to_stack(local_array_list, cog_array_list, order):
     full_array_list = []
     for x in order['full']:
-        print("----------------------------------------")
-        print(x)
+        logger.debug("----------------------------------------")
+        logger.debug(x)
         if x in order['local']:
-            print(f"local: {order['local']}")
+            logger.debug(f"local: {order['local']}")
             idx = order['local'].index(x)
-            print(idx)
+            logger.debug(idx)
             full_array_list.append(local_array_list[idx])
         elif x in order['cog']:
-            print(f"cog: {order['cog']}")
+            logger.debug(f"cog: {order['cog']}")
             idx = order['cog'].index(x)
-            print(idx)
+            logger.debug(idx)
             full_array_list.append(cog_array_list[idx])
         else:
-            print('somethign wrong')
+            logger.debug('somethign wrong')
     array_stack = np.vstack(full_array_list).astype('float32')
     return array_stack
 

@@ -4,7 +4,8 @@ from pathlib import Path
 import pooch
 import sciencebasepy
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 sleep_time = 1.0
 
@@ -67,7 +68,7 @@ def fetch_sciencebase_files(id, sciencebase_session = None, write_path=None):
 
     if isinstance(id, str):
 
-        print(f"Sleeping for {sleep_time} seconds")
+        logger.debug(f"Sleeping for {sleep_time} seconds")
         time.sleep(sleep_time)
         # create registry
         item_json = sciencebase_session.get_item(id)
@@ -81,12 +82,12 @@ def fetch_sciencebase_files(id, sciencebase_session = None, write_path=None):
 
     puppies = []
     if item_json['hasChildren']:
-        print(f"Sleeping for {sleep_time} seconds")
+        logger.debug(f"Sleeping for {sleep_time} seconds")
         time.sleep(sleep_time)
 
         childIds = sciencebase_session.get_child_ids(id)
         for childId in childIds:
-            print(f"Sleeping for {sleep_time} seconds")
+            logger.debug(f"Sleeping for {sleep_time} seconds")
             time.sleep(sleep_time)
             childItem = sciencebase_session.get_item(childId)
             childWritePath = write_path / Path(childItem["title"])
@@ -130,11 +131,11 @@ def recursive_download(pooch_tree, print_only = False):
     items = []
     for item in pooch_colletion.registry:
         if print_only:
-            # print(item + '->' + str(pooch_colletion.path))
-            print(item)
+            # logger.debug(item + '->' + str(pooch_colletion.path))
+            logger.debug(item)
             items.append(item)
         else:
-            print(f"Sleeping for {sleep_time} seconds")
+            logger.debug(f"Sleeping for {sleep_time} seconds")
             time.sleep(sleep_time)
             pooch_colletion.fetch(item)
     for puppy in pooch_tree["puppies"]:

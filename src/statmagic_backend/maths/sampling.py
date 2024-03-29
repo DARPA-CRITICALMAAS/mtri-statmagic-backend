@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 def randomSample(data_arr, keep_pct):
@@ -36,8 +37,8 @@ def balancedSamples(dataframe, take_min=False, n=2000):
         sampled = dataframe.groupby([0]).apply(lambda x: x.sample(n)).reset_index(drop=True)
     else:
         sampled = dataframe.groupby([0]).apply(lambda x: x.sample(min(n, len(x)))).reset_index(drop=True)
-    print("Samples Taken per class")
-    print(sampled[0].value_counts())
+    logger.debug("Samples Taken per class")
+    logger.debug(sampled[0].value_counts())
     return sampled.to_numpy()
 
 

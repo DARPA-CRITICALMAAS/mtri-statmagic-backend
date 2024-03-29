@@ -5,8 +5,7 @@ import datetime
 from pathlib import Path
 
 import logging
-logger = logging.getLogger()
-logging.basicConfig(format="%(asctime)s %(levelname)s: %(message)s", level=logging.DEBUG)
+logger = logging.getLogger("statmagic_backend")
 
 
 def prettyPrintDict(d):

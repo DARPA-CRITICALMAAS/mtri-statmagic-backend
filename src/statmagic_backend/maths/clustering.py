@@ -3,7 +3,8 @@ from sklearn.cluster import MiniBatchKMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 def doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool):
@@ -42,7 +43,7 @@ def doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool):
         if pca_bool:
             standata = StandardScaler().fit_transform(pred_data)
             fitdat = pca.fit_transform(standata)
-            print(f'PCA uses {pca.n_components_} to get to {varexp} variance explained')
+            logger.debug(f'PCA uses {pca.n_components_} to get to {varexp} variance explained')
             km.fit_predict(fitdat)
             labels = km.labels_ + 1
         else:
@@ -55,7 +56,7 @@ def doPCA_kmeans(pred_data, bool_arr, nclust, varexp, pca_bool):
             pstack = pred_data[idxr == 0, :]
             standata = StandardScaler().fit_transform(pstack)
             fitdat = pca.fit_transform(standata)
-            print(f'PCA uses {pca.n_components_} to get to {varexp} variance explained')
+            logger.debug(f'PCA uses {pca.n_components_} to get to {varexp} variance explained')
             km.fit_predict(fitdat)
             labels = km.labels_ + 1
         else:

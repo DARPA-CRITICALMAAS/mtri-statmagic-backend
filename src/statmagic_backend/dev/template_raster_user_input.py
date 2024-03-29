@@ -8,7 +8,8 @@ import geopandas as gpd
 from typing import Optional
 
 from statmagic_backend.utils import loggingDecorator
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 def get_array_shape_from_bounds_and_res(bounds: np.ndarray, pixel_size: Number):
@@ -85,6 +86,6 @@ def print_memory_allocation_from_resolution_bounds(bounds, pixel_size, bit=4):
     ht, wid = get_array_shape_from_bounds_and_res(bounds, pixel_size)[0:2]
     bytesize = ht * wid * bit
     statement = f"Each layer will be approximately {round(bytesize * 0.000001, 2)} MB"
-    print(statement)
-    print(f'height: {ht}, wid: {wid}')
+    logger.debug(statement)
+    logger.debug(f'height: {ht}, wid: {wid}')
     return statement

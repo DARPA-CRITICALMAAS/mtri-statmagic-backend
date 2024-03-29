@@ -3,7 +3,8 @@ import rasterio as rio
 import numpy as np
 import tempfile
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 def interpolate_gdf_value(gdf, z_column, template_raster_path):
 

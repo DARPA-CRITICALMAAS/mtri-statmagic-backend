@@ -4,7 +4,8 @@ import geopandas as gpd
 import rasterio as rio
 from shapely.geometry import box
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 # template_raster_path = '/home/jagraham/Documents/Local_work/statMagic/devtest/CMA_Lithium/Lithium_template_raster.tif'
 # element = 'Ag'
@@ -28,7 +29,7 @@ def prep_black_shales(template_raster_path, element):
     except ValueError:
         element_col = element + "_pct"
         df = pd.read_csv(chem_path, delim_whitespace=True, usecols=[join_col, element_col])
-    print(element_col)
+    logger.debug(element_col)
 
     template = rio.open(template_raster_path)
     bounding_gdf = gpd.GeoDataFrame(geometry=[box(*template.bounds)], crs=template.crs)

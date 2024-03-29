@@ -16,7 +16,8 @@ from urllib.parse import urljoin
 import mapbox_vector_tile
 import mercantile # utility for converting between XYZ indices and lat/lon bounds
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 def boundingBoxToOffsets(bbox, geot):
@@ -133,9 +134,9 @@ def decode_protobuf_to_geojson_wgs84(tile, layername, bounds, tilesize):
 
     # Decode to dict and pull out the GeoJSON for the target layer
     data_decoded = mapbox_vector_tile.decode(tile)
-    #print(list(data_decoded.keys()))
+    #logger.debug(list(data_decoded.keys()))
     if layername not in data_decoded:
-        print(f'\t\tLayer name "{layername}" not present in this data. Skipping...')
+        logger.debug(f'\t\tLayer name "{layername}" not present in this data. Skipping...')
         return None
 
     data = data_decoded[layername]
@@ -144,7 +145,7 @@ def decode_protobuf_to_geojson_wgs84(tile, layername, bounds, tilesize):
     fnews = []
     for feature in data['features']:
         fnew = copy.deepcopy(feature)
-        #print(fnew)
+        #logger.debug(fnew)
         coords = fnew['geometry']['coordinates']
         coords_new = []
 
@@ -314,6 +315,7 @@ def get_tiles_for_ll_bounds(n,s,e,w,zoom_level=7):
         ==========  ===============  =========================
 
     """
+    logger.debug("testing the log")
 
     # Default search grid resolution
     grid_res_degrees = 10
@@ -383,7 +385,7 @@ def dissolve_vector_files_by_property(
     """
 
     if not vector_files:
-        print('No vector data to dissolve, skipping...')
+        logger.debug('No vector data to dissolve, skipping...')
         return
 
     # If clip bounds are provided, create the bbox geometry to clip to
@@ -424,7 +426,7 @@ def dissolve_vector_files_by_property(
         # Perform the clip here
         if bbox_geom:
             g = json.loads(to_geojson(shape(g).intersection(bbox_geom)))
-        #print(g)
+        #logger.debug(g)
 
         # Wrap non-collections to resemble a collection so we don't need
         # multiple processing procedures for collections and non-collections
@@ -523,7 +525,7 @@ if __name__ == "__main__":
     mapbox_tiles = download_tiles(tile_indices, "https://dev.macrostrat.org/tiles/", "carto")
 
     for layer in layers:
-        print(f'\n\tProcessing layer: {layer["layername"]}')
+        logger.debug(f'\n\tProcessing layer: {layer["layername"]}')
 
         js_paths = process_tiles(
             mapbox_tiles, tile_indices, processing_dir, layer['layername'], 4096

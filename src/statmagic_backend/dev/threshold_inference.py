@@ -6,7 +6,8 @@ from rasterio.mask import mask
 from shapely.geometry import shape
 from skimage.morphology import binary_opening
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 def return_raster_stats_in_shape(raster_values_path, geometry, ndval_value):
     value_array = np.ravel(mask(rio.open(raster_values_path), shapes=geometry, crop=True)[0])
@@ -28,15 +29,15 @@ def threshold_inference(predictions_path, uncertainty_path, pred_cut, cert_cut, 
     cert = cert_rast.read()
 
     retain_pixels = np.logical_and(np.where(preds > pred_cut, 1, 0), np.where(cert < cert_cut, 1, 0)).astype('uint8')
-    print('1', retain_pixels.shape)
+    logger.debug('1', retain_pixels.shape)
     if not remove_hanging:
-        print('removing hanging with opening')
+        logger.debug('removing hanging with opening')
         retain_pixels = binary_opening(retain_pixels).astype('uint8')
-        print('2', retain_pixels.shape)
+        logger.debug('2', retain_pixels.shape)
 
     if not to_polygon:
-        print('returning early')
-        print('3', retain_pixels.shape)
+        logger.debug('returning early')
+        logger.debug('3', retain_pixels.shape)
         return retain_pixels, None
 
     features_shapes = list(shapes(retain_pixels, transform=geotransform))

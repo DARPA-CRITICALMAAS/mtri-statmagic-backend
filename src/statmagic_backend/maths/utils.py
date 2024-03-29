@@ -1,6 +1,7 @@
 import numpy as np
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 
 def hardenedLDivide(A, B, brief=True):
@@ -50,9 +51,9 @@ def hardenedLDivide(A, B, brief=True):
         resid = None
         rank = None
         s = None
-        print("Caught an exception in 'hardenedLDivide':")
-        print(e)
-        print("'hardenedLDivide' returning NaNs and Nones")
+        logger.debug("Caught an exception in 'hardenedLDivide':")
+        logger.debug(e)
+        logger.debug("'hardenedLDivide' returning NaNs and Nones")
 
     if brief:
         return xHat

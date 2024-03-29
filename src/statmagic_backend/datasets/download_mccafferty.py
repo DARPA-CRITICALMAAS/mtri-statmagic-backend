@@ -1,6 +1,7 @@
 from statmagic_backend.extract.sciencebasetools import fetch_sciencebase_files, recursive_download
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 if __name__ == "__main__":
     

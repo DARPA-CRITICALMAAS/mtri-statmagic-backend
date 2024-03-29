@@ -13,7 +13,8 @@ import beak.methods.som.move_to_subfolder as mts
 import beak.methods.som.plot_som_results as plot
 import beak.methods.som.do_nextsomcore_save_results as dnsr
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 if sys.version_info < (3, 9):
     from importlib_resources import files

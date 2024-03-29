@@ -6,7 +6,8 @@ from pathlib import Path
 import re
 import subprocess
 
-from statmagic_backend.utils import logger
+import logging
+logger = logging.getLogger("statmagic_backend")
 
 def ls(endpoint, bucket, path, pattern, recursive=False):
     if path:
@@ -91,5 +92,5 @@ def upload(endpoint, filename, bucket, object_name=None, extra_args=None, callba
 if __name__ == "__main__":
     s3_session = boto3.Session(profile_name="default")
     s3_client = s3_session.client("s3", endpoint_url="https://s3.macrostrat.chtc.io")
-    print(s3_client.list_buckets())
+    logger.debug(s3_client.list_buckets())
     pass
