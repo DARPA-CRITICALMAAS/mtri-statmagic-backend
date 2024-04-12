@@ -59,3 +59,36 @@ def run_minmod_query(query, values=False):
 
 def run_geokb_query(query, values=False):
     return run_sparql_query(query, endpoint='https://geokb.wikibase.cloud/query/sparql', values=values)
+
+
+def get_commodity_list():
+    query = '''SELECT ?ci ?cm ?cn
+                    WHERE {
+                        ?ci a :Commodity .
+                        ?ci rdfs:label ?cm .
+                        ?ci :name ?cn .
+                    } 
+            '''
+    return sorted(run_minmod_query(query, values=True)["cn.value"].unique())
+
+
+def get_default_commodity_list():
+    return ['Abrasive', 'Abrasive, Corundum', 'Abrasive, Emery', 'Abrasive, Garnet', 'Aggregate, Light Weight', 'Aluminum', 'Aluminum, Contained Or Metal', 'Aluminum, High Alumina Clay', 'Andalusite', 'Antimony', 'Arsenic', 'Asbestos', 'Barium-Barite', 'Bismuth', 'Boron-Borates', 'Cadmium', 'Carbon Dioxide', 'Cement Rock', 'Chromium', 'Chromium, Ferrochrome', 'Clay', 'Clay, Ball Clay', 'Clay, Bloating Material', 'Clay, Brick', 'Clay, Chlorite', 'Clay, Fire (Refractory)', 'Clay, Fullers Earth', 'Clay, General', 'Clay, Glauconite', 'Clay, Hectorite', 'Clay, Kaolin', 'Clay, Montmorillonite', 'Coal, Anthracite', 'Coal, Bituminous', 'Coal, Lignite', 'Coal, Subbituminous', 'Cobalt', 'Copper', 'Copper, Oxide', 'Copper, Sulfide', 'Dolomite', 'Feldspar', 'Fluorine-Fluorite', 'Gemstone', 'Gemstone, Diamond', 'Gemstone, Emerald', 'Gemstone, Ruby', 'Gemstone, Sapphire', 'Gemstone, Semiprecious', 'Geothermal', 'Gold', 'Gold, Refinery', 'Graphite', 'Graphite, Carbon', 'Gypsum-Anhydrite', 'Gypsum-Anhydrite, Alabaster', 'Hafnium', 'Helium', 'Indium', 'Iodine', 'Iron', 'Iron, Pig Iron', 'Iron, Pyrite', 'Kyanite', 'Lead', 'Limestone, Dimension', 'Limestone, High Calcium', 'Limestone, Ultra Pure', 'Lithium', 'Magnesite', 'Manganese', 'Manganese, Ferromanganese', 'Mercury', 'Mica', 'Mineral Pigments', 'Molybdenum', 'Natural Gas', 'Nickel', 'Niobium', 'Nitrogen-Nitrates', 'Nonmetal', 'Potassium', 'Potassium, Alum', 'Silver', 'Silver, Refinery', 'Tin', 'Uranium', 'Zinc', 'platinum-group elements']
+
+def get_query_colocated_commodities(primary_commodity: str):
+    print("Pri com:", primary_commodity)
+    query = """
+            SELECT ?si ?ri ?mn ?mi_commodity_name ?assoc_com
+            WHERE {{
+                ?ms a :MineralSite .
+                ?ms :source_id ?si . 
+                ?ms :record_id ?ri .
+                ?ms :mineral_inventory ?mi .
+                ?mi :commodity [ :name ?mi_commodity_name ] .
+                FILTER(CONTAINS(?mi_commodity_name,  "{pri_com}"))
+                ?ms :mineral_inventory ?mn .
+                ?mn :commodity [ :name ?assoc_com] .
+            }}
+            """.format(pri_com=primary_commodity)
+    print("sparkutils:", query)
+    return query
