@@ -4,37 +4,31 @@ import boto3
 from botocore.exceptions import ClientError
 from pathlib import Path
 import re
-import subprocess
 
 import logging
 logger = logging.getLogger("statmagic_backend")
 
 def ls(endpoint, bucket, path, pattern, recursive=False):
+    s3_session = boto3.Session(profile_name="default")
+    s3_client = s3_session.client("s3", endpoint_url=endpoint)
     if path:
-        s3path = f"s3://{bucket}/{path}"
+        contents = s3_client.list_objects_v2(Bucket=bucket, Prefix=path)['Contents']
     else:
-        s3path = f"s3://{bucket}"
-
-    command = ["aws", "s3", "ls", s3path, "--endpoint-url", endpoint]
-
-    if recursive:
-        command += ["--recursive"]
-
-    result = subprocess.run(command, stdout=subprocess.PIPE)
-    result_clean = result.stdout.decode("utf-8").split("\n")
+        contents = s3_client.list_objects_v2(Bucket=bucket)['Contents']
 
     if pattern:
         matches = []
-        for line in result_clean:
-            if re.search(pattern, line):
-                matches.append(line)
+        for item in contents:
+            key = item['Key']
+            if re.search(pattern, key):
+                matches.append(item)
     else:
-        matches = result_clean
+        matches = contents
 
     files = []
 
     for match in matches:
-        files.append(match.split(" ")[-1])
+        files.append(match['Key'])
 
     return files
 
