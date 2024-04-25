@@ -21,7 +21,7 @@ class CDR():
         Parameters
         ----------
         cdr_host : str
-                   URL of the CDR API server
+            URL of the CDR API server
 
 
         '''
@@ -29,6 +29,7 @@ class CDR():
         self.cdr_host = cdr_host
         self.cdr_version = cdr_version
 
+        # Retrieve CDR API token from env variables
         token = os.environ['CDR_API_TOKEN']
 
         self.headers = {"Authorization": f"Bearer {token}"}
@@ -41,13 +42,13 @@ class CDR():
 
     def process_csv_result(self,content_bytes):
         '''
-        Processes a CSV return from CDR endpoint; expects "content_bytes"
+        Processes a CSV response from CDR endpoint; expects "content_bytes"
 
         Parameters
         ----------
         content_bytes bytes
-            Return from httpx "content" call to CDR API endpoint that return as
-            CSV
+            'content' attribute of a response object from httpx to CDR API
+            endpoint that returns a CSV
 
         Returns
         -------
@@ -110,7 +111,7 @@ class CDR():
         Returns
         -------
         response : pandas dataframe
-            represents CSV results from API
+            represents CSV response from API
         '''
 
         return self.run_query(
