@@ -6,7 +6,7 @@ import io
 
 class CDR():
     '''
-    Utils for interfacing with the CDR
+    Class with utils for interfacing with the CDR
 
     '''
 
@@ -18,7 +18,12 @@ class CDR():
         '''
         On initialization, register authentication headers and httpx client
 
-        :param cdr_host: (str) URL of the CDR API server
+        Parameters
+        ----------
+        cdr_host : str
+                   URL of the CDR API server
+
+
         '''
 
         self.cdr_host = cdr_host
@@ -38,10 +43,16 @@ class CDR():
         '''
         Processes a CSV return from CDR endpoint; expects "content_bytes"
 
-        :param content_bytes: (bytes) return from httpx "content" call to CDR
-                              API endpoint that return as CSV
+        Parameters
+        ----------
+        content_bytes bytes
+            Return from httpx "content" call to CDR API endpoint that return as
+            CSV
 
-        :return: pandas dataframe
+        Returns
+        -------
+        response : pandas dataframe
+            Represents CSV response from API
         '''
         return pd.read_csv(io.BytesIO(content_bytes))
 
@@ -50,12 +61,22 @@ class CDR():
         '''
         Queries a CDR API endpoint
 
-        :param query:   (str) URL representing API endpoint including args, not
-                              including API server host name/version, e.g.
-                        'knowledge/csv/mineral_site_grade_and_tonnage/copper'
-        :param csv:     (bool) indicates whether or not response is a CSV; if not
-                               assumed to be JSON
-        :return:        (json/pandas data frame)
+        Parameters
+        ----------
+        query : str
+            URL representing API endpoint including args, not including API
+            server host name/version, e.g.
+                'knowledge/csv/mineral_site_grade_and_tonnage/copper'
+
+        csv : bool
+            Indicates whether or not response is a CSV; if not assumed to be
+            JSON
+
+        Returns
+        -------
+        response : dict OR pandas data frame
+            API response which is either dict representing JSON or if csv=True,
+            a pandas data frame representing CSV response
         '''
         resp = self.client.get(
             f'{self.cdr_host}/{self.cdr_version}/{query}',
@@ -81,9 +102,15 @@ class CDR():
     def get_mineral_site_grade_and_tonnage(self,commodity):
         '''
 
-        :param commodity:   (str) name of commodity, e.g. 'copper'
+        Parameters
+        ----------
+        commodity : str
+            name of commodity, e.g. 'copper'
 
-        :return:            (pandas dataframe) representing CSV results
+        Returns
+        -------
+        response : pandas dataframe
+            represents CSV results from API
         '''
 
         return self.run_query(
@@ -112,16 +139,34 @@ class CDR():
     def get_mineral_site_deposit_type_candidates(self,deposit_type_name):
         '''
 
-        :param deposit_type_name:   (str) deposit type name (see list of opts
-                                          from get_deposit_types()), e.g.:
-                                        "Epithermal mercury"
-        :return:
+        Parameters
+        ----------
+        deposit_type_name : str
+            deposit type name (see list of opts from get_deposit_types()), e.g.:
+            "Epithermal mercury"
+
+        Returns
+        -------
+        response : pandas dataframe
+            represents CSV results from API
         '''
         return self.run_query(
             f'knowledge/mineral_site_deposit_type_candidates/{deposit_type_name}'
         )
 
     def get_mineral_site_deposit_type_candidates_csv(self, deposit_type_name):
+        '''
+        Parameters
+        ----------
+        deposit_type_name : str
+            deposit type name (see list of opts from get_deposit_types()), e.g.:
+            "Epithermal mercury"
+
+        Returns
+        -------
+        response : dict
+            dict representing JSON response from API
+        '''
         return self.run_query(
             f'knowledge/csv/mineral_site_deposit_type_candidates/{deposit_type_name}',
             csv=True
@@ -129,8 +174,8 @@ class CDR():
 
 
 
-# Testing code...
-cdr = CDR()
+### Testing code...
+#cdr = CDR()
 #print(cdr.get_deposit_types())
 #print(cdr.get_commodity_list())
 #print(cdr.get_mineral_site_grade_and_tonnage('copper'))
