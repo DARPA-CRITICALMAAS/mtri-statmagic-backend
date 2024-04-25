@@ -85,6 +85,13 @@ class CDR():
             timeout=self.timeout_seconds
         )
 
+        # Raises error if not success
+        # Alternatively, could check for success and log, e.g.:
+        # if not resp.is_success:
+        #       logger.exception(f'Query not successful; reason: {resp.content}')
+        # ...or could wrap the below "raise" call in try/except and log result
+        resp.raise_for_status()
+
         # If not a CSV response, assume JSON
         if csv:
             data = self.process_csv_result(resp.content)
@@ -176,7 +183,7 @@ class CDR():
 
 
 ### Testing code...
-#cdr = CDR()
+cdr = CDR()
 #print(cdr.get_deposit_types())
 #print(cdr.get_commodity_list())
 #print(cdr.get_mineral_site_grade_and_tonnage('copper'))
