@@ -28,6 +28,15 @@ def create_template_raster_from_bounds_and_resolution(bounds, target_crs, pixel_
 
     raster_width, raster_height, coord_west, coord_north = get_array_shape_from_bounds_and_res(bounds, pixel_size)
     out_array = np.full((1, raster_height, raster_width), 0, dtype=np.float32)
+    # Delete after calcs are finished
+    print("IN backend function")
+    print(f"bounds: {bounds}")
+    print(f"raster width: {raster_width}")
+    print(f"raster height: {raster_height}")
+    print(f"pixel size: {pixel_size}")
+
+
+
     out_transform = from_origin(coord_west, coord_north, pixel_size, pixel_size)
     # TODO: Figure out how to make the clipping gdf and if it is a geodataframe, then if indent the next three lines
     # This should really only get done if the polygon != bounds
