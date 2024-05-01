@@ -15,7 +15,7 @@ class LogStream:
         # TODO: figure out why flush gets called when something is logged
         pass
     def __str__(self):
-        return "\n".join(self.logs)
+        return "".join(self.logs)
 
 stream = LogStream()
 stream_handler = logging.StreamHandler(stream=stream)
