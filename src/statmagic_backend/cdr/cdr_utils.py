@@ -23,6 +23,9 @@ class CDR():
         cdr_host : str
             URL of the CDR API server
 
+        cdr_version : str
+            CDR version string, which is part of the API call; e.g. 'v1'
+
 
         '''
 
@@ -38,24 +41,6 @@ class CDR():
         # Set an extended timeout period b/c the CSV endpoints in particular
         # take longer than the default of 5 seconds
         self.timeout_seconds = 60
-
-
-    def process_csv_result(self,content_bytes):
-        '''
-        Processes a CSV response from CDR endpoint; expects "content_bytes"
-
-        Parameters
-        ----------
-        content_bytes bytes
-            'content' attribute of a response object from httpx to CDR API
-            endpoint that returns a CSV
-
-        Returns
-        -------
-        response : pandas dataframe
-            Represents CSV response from API
-        '''
-        return pd.read_csv(io.BytesIO(content_bytes))
 
 
     def run_query(self,query,csv=False):
@@ -100,8 +85,28 @@ class CDR():
 
         return data
 
+
+    def process_csv_result(self, content_bytes):
+        '''
+        Processes a CSV response from CDR endpoint; expects "content_bytes"
+
+        Parameters
+        ----------
+        content_bytes bytes
+            'content' attribute of a response object from httpx to CDR API
+            endpoint that returns a CSV
+
+        Returns
+        -------
+        response : pandas dataframe
+            Represents CSV response from API
+        '''
+        return pd.read_csv(io.BytesIO(content_bytes))
+
+
     def get_deposit_types(self):
         return self.run_query('knowledge/deposit_types')
+
 
     def get_commodity_list(self):
         return self.run_query('knowledge/commodities')
@@ -126,11 +131,13 @@ class CDR():
             csv=True
         )
 
+
     def get_mineral_site_deposit_type_classification_results(self,commodity):
        return self.run_query(
            f'knowledge/csv/mineral_site_deposit_type_classificiation_results/{commodity}',
            csv=True
        )
+
 
     def get_hyper_site_results(self,commodity):
         return self.run_query(
@@ -138,11 +145,13 @@ class CDR():
             csv=True
         )
 
+
     def get_mineral_site_inventories(self,commodity):
         return self.run_query(
             f'knowledge/csv/mineral_site_inventories/{commodity}',
             csv=True
         )
+
 
     def get_mineral_site_deposit_type_candidates(self,deposit_type_name):
         '''
@@ -161,6 +170,7 @@ class CDR():
         return self.run_query(
             f'knowledge/mineral_site_deposit_type_candidates/{deposit_type_name}'
         )
+
 
     def get_mineral_site_deposit_type_candidates_csv(self, deposit_type_name):
         '''
@@ -183,7 +193,7 @@ class CDR():
 
 
 ### Testing code...
-cdr = CDR()
+#cdr = CDR()
 #print(cdr.get_deposit_types())
 #print(cdr.get_commodity_list())
 #print(cdr.get_mineral_site_grade_and_tonnage('copper'))
