@@ -75,6 +75,7 @@ def get_commodity_list():
 def get_default_commodity_list():
     return ['Abrasive', 'Abrasive, Corundum', 'Abrasive, Emery', 'Abrasive, Garnet', 'Aggregate, Light Weight', 'Aluminum', 'Aluminum, Contained Or Metal', 'Aluminum, High Alumina Clay', 'Andalusite', 'Antimony', 'Arsenic', 'Asbestos', 'Barium-Barite', 'Bismuth', 'Boron-Borates', 'Cadmium', 'Carbon Dioxide', 'Cement Rock', 'Chromium', 'Chromium, Ferrochrome', 'Clay', 'Clay, Ball Clay', 'Clay, Bloating Material', 'Clay, Brick', 'Clay, Chlorite', 'Clay, Fire (Refractory)', 'Clay, Fullers Earth', 'Clay, General', 'Clay, Glauconite', 'Clay, Hectorite', 'Clay, Kaolin', 'Clay, Montmorillonite', 'Coal, Anthracite', 'Coal, Bituminous', 'Coal, Lignite', 'Coal, Subbituminous', 'Cobalt', 'Copper', 'Copper, Oxide', 'Copper, Sulfide', 'Dolomite', 'Feldspar', 'Fluorine-Fluorite', 'Gemstone', 'Gemstone, Diamond', 'Gemstone, Emerald', 'Gemstone, Ruby', 'Gemstone, Sapphire', 'Gemstone, Semiprecious', 'Geothermal', 'Gold', 'Gold, Refinery', 'Graphite', 'Graphite, Carbon', 'Gypsum-Anhydrite', 'Gypsum-Anhydrite, Alabaster', 'Hafnium', 'Helium', 'Indium', 'Iodine', 'Iron', 'Iron, Pig Iron', 'Iron, Pyrite', 'Kyanite', 'Lead', 'Limestone, Dimension', 'Limestone, High Calcium', 'Limestone, Ultra Pure', 'Lithium', 'Magnesite', 'Manganese', 'Manganese, Ferromanganese', 'Mercury', 'Mica', 'Mineral Pigments', 'Molybdenum', 'Natural Gas', 'Nickel', 'Niobium', 'Nitrogen-Nitrates', 'Nonmetal', 'Potassium', 'Potassium, Alum', 'Silver', 'Silver, Refinery', 'Tin', 'Uranium', 'Zinc', 'platinum-group elements']
 
+
 def get_query_colocated_commodities(primary_commodity: str):
     print("Pri com:", primary_commodity)
     query = """
@@ -90,5 +91,24 @@ def get_query_colocated_commodities(primary_commodity: str):
                 ?mn :commodity [ :name ?assoc_com] .
             }}
             """.format(pri_com=primary_commodity)
+    print("sparkutils:", query)
+    return query
+
+
+def get_mineral_sites(commodity: str):
+    query = """
+            SELECT ?ms ?msr ?mss ?mi ?loc_wkt ?crs ?com ?ore_value ?ore_grade ?grade_unit
+            WHERE {{
+                ?ms a :MineralSite .
+                ?ms :source_id ?si . 
+                ?ms :record_id ?ri .
+                ?ms :location_info [ :location ?loc_wkt; :crs ?crs ] .
+                ?ms :mineral_inventory ?mi .
+                OPTIONAL{{?mi :ore [:ore_value ?ore_value] .}}
+                OPTIONAL{{?mi :grade [:grade_value ?ore_grade; :grade_unit ?grade_unit] .}}
+                ?mi :commodity [ :name ?com ] .
+                FILTER contains(lcase(str(?com)), "{commodity}")
+            }}
+            """.format(commodity=commodity)
     print("sparkutils:", query)
     return query

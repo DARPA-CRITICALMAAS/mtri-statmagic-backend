@@ -63,3 +63,6 @@ Thumbs.db
 
 #docker environment variables
 .env
+
+# eggs
+*.egg-info
