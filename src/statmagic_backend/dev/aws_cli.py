@@ -33,6 +33,10 @@ def ls(profile, endpoint, bucket, path, pattern, recursive=False):
             List of object names
         """
     s3_session = boto3.Session(profile_name=profile)
+    credentials = s3_session.get_credentials()
+    # if credentials are not configured for the specified profile, switch to the default profile
+    if credentials is None:
+        s3_session = boto3.Session()
     if endpoint:
         s3_client = s3_session.client("s3", endpoint_url=endpoint)
     else:
@@ -102,6 +106,8 @@ def upload(profile, endpoint, filename, bucket, object_name=None, extra_args=Non
 
     # Upload the file
     s3_session = boto3.Session(profile_name=profile)
+    if s3_session.get_credentials() is None:
+        s3_session = boto3.Session()
     if endpoint:
         s3_client = s3_session.client("s3", endpoint_url=endpoint)
     else:
@@ -153,6 +159,8 @@ def download(profile, endpoint, bucket, object_name, filename, extra_args=None, 
 
     # Download the file
     s3_session = boto3.Session(profile_name=profile)
+    if s3_session.get_credentials() is None:
+        s3_session = boto3.Session()
     if endpoint == '':
         s3_client = s3_session.client("s3")
     else:
