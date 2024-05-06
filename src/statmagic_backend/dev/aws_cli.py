@@ -58,7 +58,8 @@ def ls(profile, endpoint, bucket, path, pattern, recursive=False):
     files = []
 
     for match in matches:
-        files.append(match['Key'])
+        if match['Size'] > 0:
+            files.append(match['Key'])
 
     return files
 
