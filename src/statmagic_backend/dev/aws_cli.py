@@ -8,6 +8,16 @@ import re
 import logging
 logger = logging.getLogger("statmagic_backend")
 
+def session_setup(profile, endpoint):
+    session = boto3.Session(profile_name=profile)
+    if session.get_credentials() is None:
+        session = boto3.Session()
+    if endpoint:
+        client = session.client("s3", endpoint_url=endpoint)
+    else:
+        client = session.client("s3")
+    return client, session.get_credentials()
+
 def ls(profile, endpoint, bucket, path, pattern, recursive=False):
     """
         Search for files in S3 Bucket
@@ -32,15 +42,9 @@ def ls(profile, endpoint, bucket, path, pattern, recursive=False):
         files: list
             List of object names
         """
-    s3_session = boto3.Session(profile_name=profile)
-    credentials = s3_session.get_credentials()
-    # if credentials are not configured for the specified profile, switch to the default profile
+    s3_client, credentials = session_setup(profile, endpoint)
     if credentials is None:
-        s3_session = boto3.Session()
-    if endpoint:
-        s3_client = s3_session.client("s3", endpoint_url=endpoint)
-    else:
-        s3_client = s3_session.client("s3")
+        return None
     if path:
         contents = s3_client.list_objects_v2(Bucket=bucket, Prefix=path)['Contents']
     else:
@@ -106,13 +110,9 @@ def upload(profile, endpoint, filename, bucket, object_name=None, extra_args=Non
         object_name = Path(filename).stem
 
     # Upload the file
-    s3_session = boto3.Session(profile_name=profile)
-    if s3_session.get_credentials() is None:
-        s3_session = boto3.Session()
-    if endpoint:
-        s3_client = s3_session.client("s3", endpoint_url=endpoint)
-    else:
-        s3_client = s3_session.client("s3")
+    s3_client, credentials = session_setup(profile, endpoint)
+    if credentials is None:
+        return None
     try:
         response = s3_client.upload_file(filename, bucket, object_name)
     except ClientError as e:
@@ -159,13 +159,9 @@ def download(profile, endpoint, bucket, object_name, filename, extra_args=None, 
         callback = NullCallback()
 
     # Download the file
-    s3_session = boto3.Session(profile_name=profile)
-    if s3_session.get_credentials() is None:
-        s3_session = boto3.Session()
-    if endpoint == '':
-        s3_client = s3_session.client("s3")
-    else:
-        s3_client = s3_session.client("s3", endpoint_url=endpoint)
+    s3_client, credentials = session_setup(profile, endpoint)
+    if credentials is None:
+        return None
     try:
         response = s3_client.download_file(bucket, object_name, filename)
     except ClientError as e:
