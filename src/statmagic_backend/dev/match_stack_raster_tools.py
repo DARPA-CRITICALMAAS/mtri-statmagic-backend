@@ -311,7 +311,9 @@ def match_cogList_to_template_andStack(template_path: str, cog_paths: list, meth
 
 
 def _process_cog(ras_url, method, template_ds):
-    ds = rioxarray.open_rasterio(ras_url)
+    ds = rioxarray.open_rasterio(ras_url, chunks='auto')
+    if ds.rio.crs is None:
+        ds.rio.set_crs('epsg:4326')
     ds_matched = ds.rio.reproject_match(template_ds, resampling=method).to_numpy()
     return ds_matched
 
