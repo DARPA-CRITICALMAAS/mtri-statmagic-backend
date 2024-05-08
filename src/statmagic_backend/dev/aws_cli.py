@@ -9,9 +9,11 @@ import logging
 logger = logging.getLogger("statmagic_backend")
 
 def session_setup(profile, endpoint):
-    session = boto3.Session(profile_name=profile)
-    if session.get_credentials() is None:
-        session = boto3.Session()
+    session = boto3.Session()
+    if profile in session.available_profiles:
+        session = boto3.Session(profile_name=profile)
+        if session.get_credentials() is None:
+            session = boto3.Session()
     if endpoint:
         client = session.client("s3", endpoint_url=endpoint)
     else:
@@ -46,7 +48,7 @@ def ls(profile, endpoint, bucket, path, pattern, recursive=False):
     if credentials is None:
         return None
     if path:
-        contents = s3_client.list_objects_v2(Bucket=bucket, Prefix=path)['Contents']
+       contents = s3_client.list_objects_v2(Bucket=bucket, Prefix=path)['Contents']
     else:
         contents = s3_client.list_objects_v2(Bucket=bucket)['Contents']
 
