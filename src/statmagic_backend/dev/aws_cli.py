@@ -47,25 +47,26 @@ def ls(profile, endpoint, bucket, path, pattern, recursive=False):
     s3_client, credentials = session_setup(profile, endpoint)
     if credentials is None:
         return None
-    if path:
-       contents = s3_client.list_objects_v2(Bucket=bucket, Prefix=path)['Contents']
-    else:
-        contents = s3_client.list_objects_v2(Bucket=bucket)['Contents']
-
-    if pattern:
-        matches = []
-        for item in contents:
-            key = item['Key']
-            if re.search(pattern, key):
-                matches.append(item)
-    else:
-        matches = contents
 
     files = []
-
-    for match in matches:
-        if match['Size'] > 0:
-            files.append(match['Key'])
+    if path:
+        kwargs = {'Bucket': bucket, 'Prefix': path}
+    else:
+        kwargs = {'Bucket': bucket}
+    while True:
+        response = s3_client.list_objects_v2(**kwargs)
+        for item in response['Contents']:
+            if item['Size'] > 0:
+                key = item['Key']
+                if pattern:
+                    if re.search(pattern, key):
+                        files.append(key)
+                else:
+                    files.append(key)
+        try:
+            kwargs['ContinuationToken'] = response['NextContinuationToken']
+        except KeyError:
+            break
 
     return files
 
